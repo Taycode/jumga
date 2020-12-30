@@ -1,6 +1,6 @@
 import React from "react";
-import AuthSection from "./../components/AuthSection";
-import { useRouter } from "./../util/router.js";
+import AuthSection from "../../components/AuthSection";
+import { useRouter } from "../../util/router.js";
 
 function AuthPage(props) {
   const router = useRouter();

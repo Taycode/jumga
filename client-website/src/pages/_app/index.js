@@ -1,13 +1,14 @@
 import React from "react";
-import "./../styles/global.scss";
-import NavbarCustom from "./../components/NavbarCustom";
-import IndexPage from "./index";
-import AuthPage from "./auth";
-import { Switch, Route, Router } from "./../util/router.js";
-import NotFoundPage from "./not-found.js";
-import Footer from "./../components/Footer";
-import "./../util/analytics.js";
-import { ProvideAuth } from "./../util/auth.js";
+import "../../styles/global.scss";
+import NavbarCustom from "../../components/NavbarCustom";
+import IndexPage from "../home";
+import AuthPage from "../auth/index";
+import { Switch, Route, Router } from "../../util/router.js";
+import NotFoundPage from "../not-found/index.js";
+import Footer from "../../components/Footer";
+import "../../util/analytics.js";
+import { ProvideAuth } from "../../util/auth.js";
+import logoBlue from "../../assets/img/logo-blue.png";
 
 function App(props) {
   return (
@@ -18,9 +19,8 @@ function App(props) {
             bg="white"
             variant="light"
             expand="md"
-            logo="https://uploads.divjoy.com/logo.svg"
+            logo={logoBlue}
           />
-
           <Switch>
             <Route exact path="/" component={IndexPage} />
 
@@ -32,12 +32,11 @@ function App(props) {
           <Footer
             bg="light"
             textColor="dark"
-            size="sm"
+            size="md"
             bgImage=""
             bgImageOpacity={1}
-            description="A short description of what you do here"
-            copyright="© 2019 Company"
-            logo="https://uploads.divjoy.com/logo.svg"
+            copyright={`© ${new Date().getFullYear()} Jumga`}
+            logo={logoBlue}
           />
         </>
       </Router>

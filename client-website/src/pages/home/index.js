@@ -1,12 +1,11 @@
 import React from "react";
-import HeroSection from "./../components/HeroSection";
-import ClientsSection from "./../components/ClientsSection";
-import FeaturesSection from "./../components/FeaturesSection";
-import TestimonialsSection from "./../components/TestimonialsSection";
-import NewsletterSection from "./../components/NewsletterSection";
-import { useRouter } from "./../util/router.js";
+import HeroSection from "../../components/HeroSection";
+import FeaturesSection from "../../components/FeaturesSection";
+import TestimonialsSection from "../../components/TestimonialsSection";
+import NewsletterSection from "../../components/NewsletterSection";
+import { useRouter } from "../../util/router.js";
 
-import headerImg from "../assets/img/header-img.svg";
+import headerImg from "../../assets/img/header-img.svg";
 
 function IndexPage(props) {
   const router = useRouter();
@@ -25,18 +24,10 @@ function IndexPage(props) {
         buttonColor="primary"
         image={headerImg}
         buttonOnClick={() => {
-          router.push("/pricing");
+          router.push("/auth/register");
         }}
       />
-      <ClientsSection
-        bg="light"
-        textColor="dark"
-        size="sm"
-        bgImage=""
-        bgImageOpacity={1}
-        title=""
-        subtitle=""
-      />
+
       <FeaturesSection
         bg="white"
         textColor="dark"
