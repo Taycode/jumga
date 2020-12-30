@@ -1,11 +1,11 @@
 import React from "react";
-import FeaturesSection from "../../components/FeaturesSection/index";
+import FeaturesSection from "../../components/FeaturesSection/riders";
 import HeroSection from "../../components/HeroSection";
 import TestimonialsSection from "../../components/TestimonialsSection";
 import NewsletterSection from "../../components/NewsletterSection";
 import { useRouter } from "../../util/router.js";
 
-import headerImg from "../../assets/img/header-img.svg";
+import headerImg from "../../assets/img/rider-header.svg";
 import { getAppRedirect } from "../../util/helper-functions";
 
 function IndexPage(props) {
@@ -19,13 +19,13 @@ function IndexPage(props) {
         size="md"
         bgImage=""
         bgImageOpacity={1}
-        title="Start selling online now with Jumga."
-        subtitle="Set up your store in minutes and bring your brand to life."
-        buttonText="Join Jumga"
+        title="Work that puts you first."
+        subtitle="Deliver when you want, make what you need."
+        buttonText="Get Started"
         buttonColor="primary"
         image={headerImg}
         buttonOnClick={() => {
-          window.location.replace(getAppRedirect("seller", "register"));
+          window.location.replace(getAppRedirect("rider", "register"));
         }}
       />
 
@@ -35,8 +35,8 @@ function IndexPage(props) {
         size="md"
         bgImage=""
         bgImageOpacity={1}
-        title="Features"
-        subtitle="So easy and seamless, you’ll be up and running in minutes."
+        title="Become a Rider"
+        subtitle="Earn easy money, without any hassel."
       />
       <TestimonialsSection
         bg="light"
@@ -44,7 +44,7 @@ function IndexPage(props) {
         size="md"
         bgImage=""
         bgImageOpacity={1}
-        title="Here's what people are saying"
+        title="Meet some riders"
         subtitle=""
       />
       <NewsletterSection
