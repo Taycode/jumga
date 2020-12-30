@@ -17,13 +17,12 @@ function IndexPage(props) {
         size="md"
         bgImage=""
         bgImageOpacity={1}
-        title="Your landing page title here"
-        subtitle="This landing page is perfect for showing off your awesome product and driving people to sign up for a paid plan."
+        title="Start selling online now with Jumga store"
+        subtitle="Set up your store in minutes and bring your brand to life."
         buttonText="Get Started"
         buttonColor="primary"
         image="https://uploads.divjoy.com/undraw-japan_ubgk.svg"
         buttonOnClick={() => {
-          // Navigate to pricing page
           router.push("/pricing");
         }}
       />
