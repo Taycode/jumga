@@ -1,6 +1,6 @@
 import React from "react";
+import FeaturesSection from "../../components/FeaturesSection/index";
 import HeroSection from "../../components/HeroSection";
-import FeaturesSection from "../../components/FeaturesSection";
 import TestimonialsSection from "../../components/TestimonialsSection";
 import NewsletterSection from "../../components/NewsletterSection";
 import { useRouter } from "../../util/router.js";
@@ -18,7 +18,7 @@ function IndexPage(props) {
         size="md"
         bgImage=""
         bgImageOpacity={1}
-        title="Start selling online now with Jumga store"
+        title="Start selling online now with Jumga."
         subtitle="Set up your store in minutes and bring your brand to life."
         buttonText="Get Started"
         buttonColor="primary"
@@ -35,7 +35,7 @@ function IndexPage(props) {
         bgImage=""
         bgImageOpacity={1}
         title="Features"
-        subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud."
+        subtitle="So easy and seamless, you’ll be up and running in minutes."
       />
       <TestimonialsSection
         bg="light"
