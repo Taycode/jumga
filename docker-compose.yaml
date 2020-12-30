@@ -1,0 +1,16 @@
+version: "3.7"
+services:
+  website:
+    build: ./client-website
+    volumes:
+      - ./client-website:/usr/src/app
+    ports:
+      - "3000:3000"
+    hostname: website
+  seller:
+    build: ./client-seller
+    volumes:
+      - ./client-seller:/usr/src/app
+    ports:
+      - "3001:3001"
+    hostname: seller
