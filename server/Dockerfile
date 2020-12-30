@@ -6,13 +6,13 @@ FROM python:3.6
 ENV PYTHONUNBUFFERED 1
 
 # create root directory for our project in the container
-RUN mkdir /django_api
+RUN mkdir /server
 
 # Set the working directory to /music_service
-WORKDIR /django_api
+WORKDIR /server
 
 # Copy the current directory contents into the container at /music_service
-ADD . /django_api/
+ADD . /server/
 
 # Install any needed packages specified in requirements.txt
 RUN pip install -r requirements.txt
