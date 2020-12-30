@@ -6,6 +6,8 @@ import TestimonialsSection from "./../components/TestimonialsSection";
 import NewsletterSection from "./../components/NewsletterSection";
 import { useRouter } from "./../util/router.js";
 
+import headerImg from "../assets/img/header-img.svg";
+
 function IndexPage(props) {
   const router = useRouter();
 
@@ -21,7 +23,7 @@ function IndexPage(props) {
         subtitle="Set up your store in minutes and bring your brand to life."
         buttonText="Get Started"
         buttonColor="primary"
-        image="https://uploads.divjoy.com/undraw-japan_ubgk.svg"
+        image={headerImg}
         buttonOnClick={() => {
           router.push("/pricing");
         }}
