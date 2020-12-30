@@ -9,7 +9,7 @@ import queryString from "query-string";
 import fakeAuth from "fake-auth";
 import { useUser, createUser, updateUser } from "./db";
 import { history } from "./router";
-import PageLoader from "./../components/PageLoader";
+import PageLoader from "../components/PageLoader";
 
 import analytics from "./analytics";
 
