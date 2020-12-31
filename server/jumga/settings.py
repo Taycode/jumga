@@ -151,3 +151,10 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 
 AUTH_USER_MODEL = 'users.User'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication'
+    ]
+}
