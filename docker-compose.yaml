@@ -42,9 +42,4 @@ services:
       - ./client-app:/usr/src/app
     ports:
       - "3001:3001"
-<<<<<<< HEAD
-    hostname: seller
-
-=======
     hostname: app
->>>>>>> auth-setup
