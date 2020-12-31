@@ -30,13 +30,17 @@ function useProvideAuth() {
   };
 
   const register = async (registerData) => {
-    const response = await apiRequest("/auth/register", "POST", registerData);
+    const response = await apiRequest(
+      "user/registration/",
+      "POST",
+      registerData
+    );
     return response;
   };
 
   const login = async (signInData) => {
     const loginResponse = await await apiRequest(
-      "/auth/login",
+      "user/login/",
       "POST",
       signInData
     );

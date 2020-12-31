@@ -3,6 +3,7 @@ import { Switch, Route, Router } from "./../../util/router";
 import NotFoundPage from "../not-found";
 import AuthPage from "../auth";
 import { ProvideAuth } from "./../../util/auth";
+import DashboardPage from "../dashboard";
 
 function App() {
   return (
@@ -11,12 +12,9 @@ function App() {
         <Router>
           <>
             <Switch>
-              <Route path="/:authType" component={AuthPage} />
+              <Route path="/dashboard" render={() => <DashboardPage />} />
 
-              {/* <Route
-                path="/dashboard"
-                render={() => <Dashboard mediaQuery={mediaQuery} />}
-              /> */}
+              <Route path="/:authType" component={AuthPage} />
 
               <Route component={NotFoundPage} />
             </Switch>
