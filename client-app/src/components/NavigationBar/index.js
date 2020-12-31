@@ -8,7 +8,17 @@ function NavbarCustom(props) {
   return (
     <Navbar bg={props.bg} variant={props.variant} expand={props.expand}>
       <Container>
-        <NavLink to="/">
+        <NavLink
+          onClick={() => {
+            window.location.replace(
+              `${
+                process.env.NODE_ENV === "development"
+                  ? WEBSITE_DEV_URL
+                  : WEBSITE_PROD_URL
+              }`
+            );
+          }}
+        >
           <Navbar.Brand>
             <img
               className="d-inline-block align-top"
@@ -24,19 +34,17 @@ function NavbarCustom(props) {
           <Nav>
             <Nav.Item>
               <NavLink
-                onClick={() =>
+                onClick={() => {
                   window.location.replace(
                     `${
-                      process.env.NODE_ENV === "developement"
+                      process.env.NODE_ENV === "development"
                         ? WEBSITE_DEV_URL
                         : WEBSITE_PROD_URL
                     }/products`
-                  )
-                }
+                  );
+                }}
               >
-                <span className="nav-link" active={false}>
-                  Products
-                </span>
+                <span className="nav-link">Products</span>
               </NavLink>
             </Nav.Item>
           </Nav>

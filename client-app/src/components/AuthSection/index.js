@@ -9,7 +9,6 @@ import "./styles.scss";
 import logoBlue from "../../assets/img/logo-white.png";
 
 const AuthSection = ({ authType, role }) => {
-  console.log("ROLE", role);
   return (
     <section className="auth-section">
       <NavigationBar bg="primary" variant="dark" expand="md" logo={logoBlue} />

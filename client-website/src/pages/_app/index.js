@@ -15,7 +15,7 @@ function App(props) {
   return (
     <Router>
       <>
-        <NavbarCustom bg="white" variant="light" expand="md" logo={logoBlue} />
+        <NavbarCustom bg="light" variant="light" expand="md" logo={logoBlue} />
         <Switch>
           <Route exact path="/" component={IndexPage} />
           <Route exact path="/rider" component={RidersHomePage} />

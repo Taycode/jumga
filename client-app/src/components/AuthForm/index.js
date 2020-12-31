@@ -7,9 +7,9 @@ import handleAuthFormSubmit from "./helper";
 import { useRouter } from "./../../util/router.js";
 import AuthAlert from "../AuthAlert";
 
-const AuthForm = ({ authType, authFormData }) => {
+const AuthForm = ({ authType, authFormData, role }) => {
   const auth = useAuth();
-  console.log(auth);
+
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [authMessage, setAuthMessage] = useState(false);
@@ -19,7 +19,7 @@ const AuthForm = ({ authType, authFormData }) => {
   const onSubmit = (formData) => {
     return handleAuthFormSubmit(
       authType,
-      formData,
+      { ...formData, role },
       auth,
       setLoading,
       router,

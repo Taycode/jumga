@@ -14,7 +14,7 @@ function IndexPage(props) {
   return (
     <>
       <HeroSection
-        bg="white"
+        bg="light"
         textColor="dark"
         size="md"
         bgImage=""
