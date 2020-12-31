@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
+    'users'
 ]
 
 SITE_ID = 1
@@ -89,7 +90,7 @@ if os.getenv('USE_DOCKER', False):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'db',
+            'NAME': 'jumgadb',
             'USER': 'postgres',
             'PASSWORD': 'postgres',
             'HOST': 'db',
@@ -143,3 +144,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+
+AUTH_USER_MODEL = 'users.User'
