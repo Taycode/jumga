@@ -2,7 +2,9 @@
 
 
 from rest_framework import serializers
+from dj_rest_auth.registration.serializers import RegisterSerializer
 from .models import User
+from .choices import role_choices, DEFAULT_USER_ROLE
 
 
 class SuperUserCreateSerializer(serializers.Serializer):
@@ -45,3 +47,51 @@ class SuperUserCreateSerializer(serializers.Serializer):
 		"""
 		pass
 
+
+class UserEditSerializer(serializers.ModelSerializer):
+	"""Serializer for Editing Users DAta"""
+
+	username = serializers.CharField(required=False, max_length=255)
+
+	class Meta:
+		"""Meta Class"""
+		model = User
+		fields = ('username', 'email', 'role')
+
+
+class CustomRegisterSerializer(RegisterSerializer):
+	"""Custom Register Serializer"""
+
+	role = serializers.ChoiceField(role_choices, default=DEFAULT_USER_ROLE)
+
+	def update(self, instance, validated_data):
+		"""
+
+		:param instance:
+		:param validated_data:
+		:return:
+		"""
+		pass
+
+	def create(self, validated_data):
+		"""
+
+		:param validated_data:
+		:return:
+		"""
+		pass
+
+	def custom_signup(self, request, user):
+		"""
+
+		:param request: request object
+		:param user: User object
+		:return: User Object
+		"""
+		data = {
+			'role': self.validated_data.get('role')
+		}
+		serializer = UserEditSerializer(instance=user, data=data)
+		serializer.is_valid(raise_exception=True)
+		serializer.save()
+		return serializer.instance
