@@ -1,3 +1,10 @@
-from django.shortcuts import render
+"""Views for User APP"""
 
-# Create your views here.
+
+from rest_framework.generics import CreateAPIView
+from .serializers import SuperUserCreateSerializer
+
+
+class CreateSuperUserView(CreateAPIView):
+	"""Creates Admin User"""
+	serializer_class = SuperUserCreateSerializer

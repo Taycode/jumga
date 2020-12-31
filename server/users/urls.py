@@ -2,7 +2,9 @@
 
 
 from django.urls import path, include
+from .views import CreateSuperUserView
 
 urlpatterns = [
-	path('registration/', include('dj_rest_auth.registration.urls'))
+	path('registration/', include('dj_rest_auth.registration.urls')),
+	path('admin/register/', CreateSuperUserView.as_view())
 ]
