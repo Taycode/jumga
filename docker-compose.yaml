@@ -1,6 +1,5 @@
 version: "3"
 services:
-
   db:
     image: postgres:latest
     ports:
@@ -37,11 +36,15 @@ services:
     ports:
       - "3000:3000"
     hostname: website
-  seller:
-    build: ./client-seller
+  app:
+    build: ./client-app
     volumes:
-      - ./client-seller:/usr/src/app
+      - ./client-app:/usr/src/app
     ports:
       - "3001:3001"
+<<<<<<< HEAD
     hostname: seller
 
+=======
+    hostname: app
+>>>>>>> auth-setup

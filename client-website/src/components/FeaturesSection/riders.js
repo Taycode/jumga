@@ -1,10 +1,11 @@
 import React from "react";
-import Section from "../Section";
-import Container from "react-bootstrap/Container";
+import Section from "../Section/index";
+import { Container } from "react-bootstrap";
 import SectionHeader from "../SectionHeader";
-import Button from "react-bootstrap/Button";
+import Features from "../Features";
+import { ridersFeaturesArray } from "./helper";
 
-function HeroSection2(props) {
+function FeaturesSection(props) {
   return (
     <Section
       bg={props.bg}
@@ -17,20 +18,14 @@ function HeroSection2(props) {
         <SectionHeader
           title={props.title}
           subtitle={props.subtitle}
-          size={1}
+          size={2}
           spaced={true}
           className="text-center"
         />
-        <Button
-          variant={props.buttonColor}
-          size="lg"
-          onClick={props.buttonOnClick}
-        >
-          {props.buttonText}
-        </Button>
+        <Features items={ridersFeaturesArray} />
       </Container>
     </Section>
   );
 }
 
-export default HeroSection2;
+export default FeaturesSection;
