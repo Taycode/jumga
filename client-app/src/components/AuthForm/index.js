@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import handleAuthFormSubmit from "./helper";
 import { useRouter } from "./../../util/router.js";
 import AuthAlert from "../AuthAlert";
+import { SUPPORTED_COUNTRIES } from "../../util/constants";
 
 const AuthForm = ({ authType, authFormData, role }) => {
   const auth = useAuth();
@@ -81,6 +82,22 @@ const AuthForm = ({ authType, authFormData, role }) => {
                 required: "Your email is required",
               })}
             ></FormField>
+          </Form.Group>
+        )}
+        {["register"].includes(authType) && (
+          <Form.Group controlId="country">
+            {/* <Form.Label>Country </Form.Label> */}
+            <select
+              ref={register({
+                required: "Please select country",
+              })}
+              name="country"
+              className="form-control"
+            >
+              {SUPPORTED_COUNTRIES.map((item) => (
+                <option value={item.code}>{item.country}</option>
+              ))}
+            </select>
           </Form.Group>
         )}
         {["register", "login", "change-password"].includes(authType) && (
