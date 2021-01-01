@@ -3,13 +3,13 @@ import FeaturesSection from "../../components/FeaturesSection/riders";
 import HeroSection from "../../components/HeroSection";
 import TestimonialsSection from "../../components/TestimonialsSection";
 import NewsletterSection from "../../components/NewsletterSection";
-import { useRouter } from "../../util/router.js";
+// import { useRouter } from "../../util/router.js";
 
 import headerImg from "../../assets/img/rider-header.svg";
 import { getAppRedirect } from "../../util/helper-functions";
 
 function IndexPage(props) {
-  const router = useRouter();
+  // const router = useRouter();
 
   return (
     <>

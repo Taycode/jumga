@@ -7,8 +7,12 @@ import storeactiveIcon from "../assets/icons/store-active.png";
 import storeIcon from "../assets/icons/store.png";
 import productActiveIcon from "../assets/icons/product-active.png";
 import ProductIcon from "../assets/icons/product.png";
+
 import userActiveIcon from "../assets/icons/user-active.png";
 import userIcon from "../assets/icons/user.png";
+
+import supportActiveIcon from "../assets/icons/support-active.png";
+import supportIcon from "../assets/icons/support.png";
 
 const Overview = lazy(() => import("../dashboard-pages/Overview"));
 const Stores = lazy(() => import("../dashboard-pages/Stores"));
@@ -53,6 +57,13 @@ const routes = {
       component: Account,
       getLinkIcon: (selected) =>
         selected === "sidebar-active" ? userActiveIcon : userIcon,
+    },
+    {
+      path: "/support",
+      name: "Support",
+      component: Account,
+      getLinkIcon: (selected) =>
+        selected === "sidebar-active" ? supportActiveIcon : supportIcon,
     },
   ],
   RIDER: [
