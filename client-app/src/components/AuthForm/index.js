@@ -93,6 +93,13 @@ const AuthForm = ({ authType, authFormData, role }) => {
               error={errors.password}
               inputRef={register({
                 required: "Please enter a password",
+                validate: (value) => {
+                  if (value && value.trim().length < 8) {
+                    return "Please ensure your password has at least 8 characters";
+                  } else {
+                    return true;
+                  }
+                },
               })}
             ></FormField>
           </Form.Group>

@@ -1,0 +1,81 @@
+@import "../../styles/global.scss";
+
+.sidebar-nav-link {
+  color: map-get($theme-colors, dark-blue);
+  font-weight: 600;
+  height: 50px;
+  padding-left: 10%;
+}
+.sidebar-nav-item {
+  height: 50px;
+  width: 100%;
+  padding: 5% 8%;
+  margin-bottom: 10%;
+  color: map-get($theme-colors, dark-blue);
+}
+
+.sidebar-active {
+  color: map-get($theme-colors, "orange") !important;
+  background: map-get($theme-colors, "white") !important;
+}
+
+.side-bar {
+  padding: 2% 0% !important;
+  background: $light-background;
+  position: fixed !important;
+  height: 100vh;
+  width: 60% !important;
+  z-index: 9000 !important;
+  transition: all 0.9s !important;
+}
+.sidebar-nav {
+  margin-top: 40%;
+  transition: all 0.9s !important;
+}
+.sidebar-logo-container {
+  text-align: center;
+}
+.sidebar--logo {
+  width: 80px;
+  height: auto;
+}
+.buttom-nav-link {
+  position: absolute !important;
+  bottom: 0;
+  width: 90%;
+  margin: 10% 5%;
+}
+.button-nav-link-item,
+.dropdown-toggle {
+  color: $dark !important;
+}
+.dropdown-toggle {
+  letter-spacing: 1px;
+  font-size: 80%;
+}
+.request-truck-btn {
+  color: map-get($theme-colors, "orange") !important;
+  background: map-get($theme-colors, "white") !important;
+  font-weight: 600 !important;
+  border-radius: 5px !important;
+}
+.sidbar-toggler {
+  position: absolute !important;
+  top: 3% !important;
+  left: 2% !important;
+  z-index: 1;
+  width: 30px;
+  height: auto;
+}
+.sidebar-icon {
+  width: 20px;
+  height: auto;
+}
+
+.close-icon {
+  width: 20px !important;
+  height: auto;
+  box-shadow: 2px 1px 2px grey;
+  padding: 2%;
+  border-radius: 100%;
+}
