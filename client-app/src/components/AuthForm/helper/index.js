@@ -4,7 +4,7 @@ const afterAuthRedirectPaths = {
   "forgot-password": "#",
 };
 
-export default async (
+const handleAuthh = async (
   authType,
   formData,
   auth,
@@ -30,3 +30,5 @@ export default async (
     message: response.message,
   });
 };
+
+export default handleAuthh;

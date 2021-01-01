@@ -1,5 +1,5 @@
-import React, { useState, Suspense, useEffect, useContext } from "react";
-import { requireAuth, useAuth } from "../../util/auth";
+import React, { Suspense } from "react";
+// import { requireAuth, useAuth } from "../../util/auth";
 import { Switch, Route } from "./../../util/router";
 import { Redirect } from "react-router-dom";
 import NotFoundPage from "../not-found";

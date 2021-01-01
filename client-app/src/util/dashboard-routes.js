@@ -15,7 +15,7 @@ const Stores = lazy(() => import("../dashboard-pages/Stores"));
 const Products = lazy(() => import("../dashboard-pages/Products"));
 const Account = lazy(() => import("../dashboard-pages/Account"));
 
-export default {
+const routes = {
   SELLER: [
     {
       path: "/overview",
@@ -63,3 +63,5 @@ export default {
     },
   ],
 };
+
+export default routes;

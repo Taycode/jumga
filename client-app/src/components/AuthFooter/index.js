@@ -14,19 +14,19 @@ function AuthFooter({ authType, role }) {
         </>
       )}
 
-      {/* {authType === "forgot-password" && (
+      {authType === "forgot-password" && (
         <>
           <Link to={`/register${role && roleQuery}`}>Get an account</Link>
           <Link to="/login">Login </Link>
         </>
-      )} */}
+      )}
 
-      {/* {authType === "login" && (
+      {authType === "login" && (
         <>
           <Link to={`/register${role && roleQuery}`}>Get an account</Link>
           <Link to="/user/forgot-password">Forgot Password ? </Link>
         </>
-      )} */}
+      )}
     </div>
   );
 }

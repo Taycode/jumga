@@ -1,11 +1,15 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import { Container, Col, Row } from "react-bootstrap";
 
 const Products = () => {
   return (
     <>
-      <Container>
-        <h2> Products Page</h2>
+      <Container className="mb-5">
+        <Row>
+          <Col>
+            <h5 className="dashboard-header mb-5"> Products</h5>
+          </Col>
+        </Row>
       </Container>
     </>
   );
