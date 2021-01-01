@@ -1,0 +1,11 @@
+@import "../../styles/global.scss";
+.stat-card {
+  flex: 1;
+}
+.stat-card__title {
+  font-size: 60%;
+  text-transform: uppercase;
+  color: map-get($theme-colors, $key: "secondary");
+  font-weight: 600;
+  display: block;
+}

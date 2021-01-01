@@ -1,0 +1,28 @@
+@import "../../styles/global.scss";
+
+.overview-card {
+  padding: 3%;
+  background: map-get($theme-colors, $key: "main-shade") !important;
+  color: map-get($theme-colors, $key: "white");
+}
+.overview-card__header {
+  &::after {
+    display: block;
+    height: 1px;
+    background-color: map-get($theme-colors, "light");
+    width: 100%;
+    content: " ";
+    margin: 1% 0%;
+  }
+  h6 {
+    font-size: 150%;
+  }
+  span {
+    font-size: 80%;
+    color: map-get($theme-colors, $key: "light");
+  }
+}
+.overview-card__stats-section {
+  display: flex;
+  margin-top: 3%;
+}

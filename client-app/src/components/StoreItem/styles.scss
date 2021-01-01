@@ -1,0 +1,25 @@
+.store-item-card {
+  border: none;
+  padding: 3%;
+  margin-top: 5px;
+}
+
+.store-item__name {
+  font-weight: 600;
+}
+.store-item__actions-section {
+  display: flex;
+  justify-content: space-evenly;
+  img {
+    width: 30px;
+    height: auto;
+    &:hover {
+      transform: scale(1.1);
+      transition: all 0.3s;
+    }
+    &:active {
+      transform: scale(0.8);
+      transition: all 0.3s;
+    }
+  }
+}

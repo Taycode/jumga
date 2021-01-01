@@ -6,10 +6,11 @@ import { useForm } from "react-hook-form";
 import handleAuthFormSubmit from "./helper";
 import { useRouter } from "./../../util/router.js";
 import AuthAlert from "../AuthAlert";
+import { SUPPORTED_COUNTRIES } from "../../util/constants";
 
-const AuthForm = ({ authType, authFormData }) => {
+const AuthForm = ({ authType, authFormData, role }) => {
   const auth = useAuth();
-  console.log(auth);
+
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [authMessage, setAuthMessage] = useState(false);
@@ -19,7 +20,7 @@ const AuthForm = ({ authType, authFormData }) => {
   const onSubmit = (formData) => {
     return handleAuthFormSubmit(
       authType,
-      formData,
+      { ...formData, role },
       auth,
       setLoading,
       router,
@@ -42,7 +43,7 @@ const AuthForm = ({ authType, authFormData }) => {
               <Form.Group controlId="First Name">
                 <FormField
                   size="md"
-                  name="firstName"
+                  name="first_name"
                   type="text"
                   placeholder="Firstname"
                   error={errors.firstName}
@@ -56,7 +57,7 @@ const AuthForm = ({ authType, authFormData }) => {
               <Form.Group controlId="Last Name">
                 <FormField
                   size="md"
-                  name="lastName"
+                  name="last_name"
                   type="text"
                   placeholder="Lastname"
                   error={errors.lastName}
@@ -83,6 +84,22 @@ const AuthForm = ({ authType, authFormData }) => {
             ></FormField>
           </Form.Group>
         )}
+        {["register"].includes(authType) && (
+          <Form.Group controlId="country">
+            {/* <Form.Label>Country </Form.Label> */}
+            <select
+              ref={register({
+                required: "Please select country",
+              })}
+              name="country"
+              className="form-control"
+            >
+              {SUPPORTED_COUNTRIES.map((item) => (
+                <option value={item.code}>{item.country}</option>
+              ))}
+            </select>
+          </Form.Group>
+        )}
         {["register", "login", "change-password"].includes(authType) && (
           <Form.Group controlId="Password">
             <FormField
@@ -93,6 +110,13 @@ const AuthForm = ({ authType, authFormData }) => {
               error={errors.password}
               inputRef={register({
                 required: "Please enter a password",
+                validate: (value) => {
+                  if (value && value.trim().length < 8) {
+                    return "Please ensure your password has at least 8 characters";
+                  } else {
+                    return true;
+                  }
+                },
               })}
             ></FormField>
           </Form.Group>

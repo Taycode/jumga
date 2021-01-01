@@ -9,15 +9,16 @@ const AuthPage = () => {
   const {
     match: {
       params: { authType },
-      query,
     },
+    query: { role },
   } = router;
 
   return (
     <>
-      {["register", "login", "forgot-password"].includes(authType) ? (
+      {((role && ["seller", "rider"].includes(role)) || !role) &&
+      ["register", "login", "forgot-password"].includes(authType) ? (
         <AuthSection
-          role={query?.role ? query?.role.toLowerCase() : "seller"}
+          role={role ? role.toLowerCase() : "seller"}
           authType={authType}
         />
       ) : (

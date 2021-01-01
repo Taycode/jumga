@@ -24,7 +24,8 @@ export async function apiRequest(path, method = "GET", data, params) {
 
   try {
     const response = await axios({
-      url: `${process.env.REACT_APP_API_BASEURL}${path}`,
+      // url: `${process.env.REACT_APP_API_BASEURL}${path}`,
+      url: `https://localhost:8000${path}`,
       method,
       headers: {
         token: accessToken,
@@ -46,6 +47,7 @@ export async function apiRequest(path, method = "GET", data, params) {
       };
     }
   } catch (err) {
+    // console.log(err);
     return {
       status: false,
       message: err.response ? err.response.data.message : err.message,
