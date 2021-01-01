@@ -21,8 +21,7 @@
 
 .side-bar {
   padding: 2% 0% !important;
-  // background: ;
-
+  background: map-get($theme-colors, primary);
   position: fixed !important;
   height: 100vh;
   width: 60% !important;

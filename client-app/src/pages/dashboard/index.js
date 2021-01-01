@@ -8,17 +8,26 @@ import DashboardContainer from "../../components/DashboardContainer";
 import { Container, Row } from "react-bootstrap";
 import PageLoader from "../../components/PageLoader";
 import appRoutes from "../../util/dashboard-routes";
+import useMedia from "../../util/useQuery";
 
-const DashboardPage = ({ mediaQuery, ...props }) => {
+const DashboardPage = (props) => {
   const role = "seller";
+
+  const queries = [
+    "(min-width: 1024px)", // isDesktop
+    "(min-width: 768px)", // isTab
+    "(min-width: 310px)", // isMobile
+  ];
+  const queryValues = ["isDesktop", "isTab", "isMobile"];
+  const mediaQuery = useMedia(queries, queryValues, "isDesktop");
 
   return (
     <>
       <Container fluid>
         {
           <Row>
-            <SideBar role={role} />
-            <DashboardContainer>
+            <SideBar mediaQuery={mediaQuery} role={role} />
+            <DashboardContainer mediaQuery={mediaQuery}>
               <Suspense fallback={<PageLoader />}>
                 <Switch>
                   {appRoutes[role.toUpperCase()]?.map((route) => {

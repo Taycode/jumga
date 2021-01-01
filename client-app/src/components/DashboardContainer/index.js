@@ -1,14 +1,7 @@
 import React from "react";
 import { Col } from "react-bootstrap";
 
-const DashboardContainer = ({
-  notifications,
-  children,
-  mediaQuery,
-  signout,
-  user,
-  setShowActionModal,
-}) => {
+const DashboardContainer = ({ children, mediaQuery }) => {
   return (
     <>
       <Col
