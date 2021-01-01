@@ -19,3 +19,5 @@ export const AUTH_TYPES = {
 
 export const WEBSITE_DEV_URL = "http://localhost:3000";
 export const WEBSITE_PROD_URL = "";
+
+export const ADD_STORE = "ADD_STORE";

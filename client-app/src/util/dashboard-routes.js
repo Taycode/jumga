@@ -14,6 +14,7 @@ const Overview = lazy(() => import("../dashboard-pages/Overview"));
 const Stores = lazy(() => import("../dashboard-pages/Stores"));
 const Products = lazy(() => import("../dashboard-pages/Products"));
 const Account = lazy(() => import("../dashboard-pages/Account"));
+const SingleStore = lazy(() => import("../dashboard-pages/SingleStore"));
 
 const routes = {
   SELLER: [
@@ -23,6 +24,14 @@ const routes = {
       component: Overview,
       getLinkIcon: (selected) =>
         selected === "sidebar-active" ? dashboardActiveIcon : dashboardIcon,
+    },
+    {
+      path: "/stores/:id",
+      name: "Stores",
+      slug: "/:storeId",
+      component: SingleStore,
+      getLinkIcon: (selected) =>
+        selected === "sidebar-active" ? storeactiveIcon : storeIcon,
     },
     {
       path: "/stores",

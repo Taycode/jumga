@@ -5,3 +5,10 @@
 .btn {
   font-weight: 600;
 }
+a {
+  text-decoration: none !important;
+  color: inherit;
+  &:hover {
+    color: inherit;
+  }
+}

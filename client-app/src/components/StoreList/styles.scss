@@ -1,4 +1,41 @@
+@import "../../styles/global.scss";
+
 .store-list {
   padding: 3%;
-  margin-top: 5%;
+  // margin-top: 5%;
+  height: 80vh;
+}
+.search-section {
+  margin-bottom: 3%;
+  display: flex;
+  justify-content: space-between;
+
+  div {
+    flex: 1;
+    &:last-child {
+      flex: 2;
+      display: flex;
+      justify-content: flex-end !important;
+
+      input {
+        border: none !important;
+        outline: none;
+        background: map-get($theme-colors, "light");
+        padding: 4px 3%;
+
+        margin-left: 2%;
+      }
+    }
+  }
+}
+.store-list__items-section {
+  overflow-y: scroll;
+  font-size: 80%;
+}
+.store-list__header {
+  font-weight: 600;
+  font-size: 70%;
+  margin-bottom: 2%;
+  color: map-get($theme-colors, "secondary");
+  padding: 0% 3% !important;
 }
