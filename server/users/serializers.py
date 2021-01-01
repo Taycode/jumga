@@ -99,3 +99,13 @@ class CustomRegisterSerializer(RegisterSerializer):
 		serializer.is_valid(raise_exception=True)
 		serializer.save()
 		return serializer.instance
+
+
+class UserDetailsSerializer(serializers.ModelSerializer):
+	"""This is used to get User Details data"""
+
+	class Meta:
+		"""Meta Class"""
+
+		model = User
+		fields = ('first_name', 'last_name', 'role', 'email', )
