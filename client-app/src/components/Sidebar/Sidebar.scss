@@ -1,10 +1,14 @@
 @import "../../styles/global.scss";
 
 .sidebar-nav-link {
-  color: map-get($theme-colors, primary);
+  color: map-get($theme-colors, "white");
   font-weight: 600;
   height: 50px;
   padding-left: 10%;
+  text-decoration: none;
+  &:hover {
+    color: map-get($theme-colors, "white");
+  }
 }
 .sidebar-nav-item {
   height: 50px;
@@ -63,7 +67,7 @@
   height: auto;
 }
 .sidebar-icon {
-  width: 20px;
+  width: 30px;
   height: auto;
 }
 

@@ -62,7 +62,9 @@ const SideBar = ({ role, mediaQuery }) => {
                       onClick={() =>
                         mediaQuery !== "isDesktop" && setShowSidebar(false)
                       }
-                      className={`sidebar-nav-item  ${activeRoute(route.path)}`}
+                      className={`sidebar-nav-item text-decoration-none  ${activeRoute(
+                        route.path
+                      )}`}
                     >
                       <img
                         className="sidebar-icon img-fluid"
@@ -70,7 +72,7 @@ const SideBar = ({ role, mediaQuery }) => {
                         alt="Nav-icon"
                       />
                       <Link
-                        className={` sidebar-nav-link ${activeRoute(
+                        className={` sidebar-nav-link text-decoration-none ${activeRoute(
                           route.path
                         )}`}
                         to={`/dashboard${route.path}`}
@@ -81,6 +83,9 @@ const SideBar = ({ role, mediaQuery }) => {
                   ) : null}
                 </React.Fragment>
               ))}
+              <Button className="buttom-nav-link btn-white request-truck-btn btn">
+                Log Out
+              </Button>
             </Nav>
           </Col>
         </>
