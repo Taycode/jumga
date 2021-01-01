@@ -33,6 +33,7 @@ services:
     build: ./client-website
     volumes:
       - ./client-website:/usr/src/app
+      - /usr/src/app/node_modules
     ports:
       - "3000:3000"
     hostname: website
@@ -40,6 +41,7 @@ services:
     build: ./client-app
     volumes:
       - ./client-app:/usr/src/app
+      - /usr/src/app/node_modules
     ports:
       - "3001:3001"
     hostname: app
