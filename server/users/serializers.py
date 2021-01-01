@@ -56,13 +56,15 @@ class UserEditSerializer(serializers.ModelSerializer):
 	class Meta:
 		"""Meta Class"""
 		model = User
-		fields = ('username', 'email', 'role')
+		fields = ('username', 'email', 'role', 'first_name', 'last_name', )
 
 
 class CustomRegisterSerializer(RegisterSerializer):
 	"""Custom Register Serializer"""
 
 	role = serializers.ChoiceField(role_choices, default=DEFAULT_USER_ROLE)
+	first_name = serializers.CharField(max_length=255, required=True)
+	last_name = serializers.CharField(max_length=255, required=True)
 
 	def update(self, instance, validated_data):
 		"""
@@ -89,7 +91,9 @@ class CustomRegisterSerializer(RegisterSerializer):
 		:return: User Object
 		"""
 		data = {
-			'role': self.validated_data.get('role')
+			'role': self.validated_data.get('role'),
+			'first_name': self.validated_data.get('first_name'),
+			'last_name': self.validated_data.get('last_name')
 		}
 		serializer = UserEditSerializer(instance=user, data=data)
 		serializer.is_valid(raise_exception=True)
