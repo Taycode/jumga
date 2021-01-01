@@ -5,7 +5,7 @@ import jumga_logo from "../../assets/img/logo-white.png";
 import menuIcon from "../../assets/img/menu.png";
 import closeMenuIcon from "../../assets/img/close.png";
 import routes from "../../util/dashboard-routes";
-// import "./Sidebar.scss";
+import "./Sidebar.scss";
 
 const SideBar = ({ role, mediaQuery }) => {
   const hist = useHistory();

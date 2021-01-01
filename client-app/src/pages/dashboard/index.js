@@ -3,7 +3,7 @@ import { requireAuth, useAuth } from "../../util/auth";
 import { Switch, Route } from "./../../util/router";
 import { Redirect } from "react-router-dom";
 import NotFoundPage from "../not-found";
-// import SideBar from "../../components/Sidebar";
+import SideBar from "../../components/Sidebar";
 import DashboardContainer from "../../components/DashboardContainer";
 import { Container, Row } from "react-bootstrap";
 import PageLoader from "../../components/PageLoader";
@@ -17,7 +17,7 @@ const DashboardPage = ({ mediaQuery, ...props }) => {
       <Container fluid>
         {
           <Row>
-            {/* <SideBar /> */}
+            <SideBar role={role} />
             <DashboardContainer>
               <Suspense fallback={<PageLoader />}>
                 <Switch>

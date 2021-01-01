@@ -47,6 +47,7 @@ export async function apiRequest(path, method = "GET", data, params) {
       };
     }
   } catch (err) {
+    // console.log(err);
     return {
       status: false,
       message: err.response ? err.response.data.message : err.message,

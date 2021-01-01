@@ -4,6 +4,7 @@ import NotFoundPage from "../not-found";
 import AuthPage from "../auth";
 import { ProvideAuth } from "./../../util/auth";
 import DashboardPage from "../dashboard";
+import { Redirect } from "react-router-dom";
 
 function App() {
   return (
@@ -15,6 +16,8 @@ function App() {
               <Route path="/dashboard" render={() => <DashboardPage />} />
 
               <Route path="/:authType" component={AuthPage} />
+
+              <Redirect from="/" to="/login" />
 
               <Route component={NotFoundPage} />
             </Switch>
