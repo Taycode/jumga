@@ -8,3 +8,13 @@ role_choices = (
 )
 
 DEFAULT_USER_ROLE = 'seller'
+
+
+country_choices = (
+	('nigeria', 'nigeria'),
+	('ghana', 'ghana'),
+	('kenya', 'kenya'),
+	('uk', 'uk')
+)
+
+DEFAULT_COUNTRY_CHOICE = 'nigeria'

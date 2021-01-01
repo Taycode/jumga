@@ -3,6 +3,19 @@
 
 from rest_framework import serializers
 from .models import Store
+from django.contrib.auth import get_user_model
+
+
+User = get_user_model()
+
+
+class BasicStoreModelSerializer(serializers.ModelSerializer):
+	"""Basic Model Serializer for Stores"""
+
+	class Meta:
+		"""Meta Class"""
+		model = Store
+		fields = '__all__'
 
 
 class ListStoresSerializer(serializers.ModelSerializer):
@@ -11,14 +24,14 @@ class ListStoresSerializer(serializers.ModelSerializer):
 	class Meta:
 		"""Meta class"""
 		model = Store
-		fields = ('name', )
+		fields = ('id', 'name', )
 
 
 class CreateStoreSerializer(serializers.Serializer):
 	"""USed to create Stores"""
 
 	name = serializers.CharField(max_length=255)
-	owner = serializers.IntegerField()
+	owner = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), required=False)
 
 	def update(self, instance, validated_data):
 		"""Updates Store"""

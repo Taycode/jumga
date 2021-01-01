@@ -1,7 +1,7 @@
 """Views for Stores"""
 
-from rest_framework.generics import ListAPIView, CreateAPIView
-from .serializers import ListStoresSerializer, CreateStoreSerializer
+from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView, DestroyAPIView, UpdateAPIView
+from .serializers import ListStoresSerializer, CreateStoreSerializer, BasicStoreModelSerializer
 from .models import Store
 from rest_framework.permissions import IsAuthenticated
 
@@ -22,4 +22,34 @@ class CreateStoreView(CreateAPIView):
 
 	def perform_create(self, serializer):
 		"""Override Perform create function"""
-		serializer.save(owner=self.request.user.id)
+
+		serializer.save(owner=self.request.user)
+
+
+class DeleteStoreView(DestroyAPIView):
+	"""Deletes Stores"""
+	serializer_class = BasicStoreModelSerializer
+
+	def get_queryset(self):
+		"""Gets Queryset"""
+		return Store.objects.filter(owner=self.request.user)
+
+
+class UpdateStoreView(UpdateAPIView):
+	"""Edit Stores"""
+
+	serializer_class = BasicStoreModelSerializer
+
+	def get_queryset(self):
+		"""Gets Queryset"""
+		return Store.objects.filter(owner=self.request.user)
+
+
+class RetrieveStoreView(RetrieveAPIView):
+	"""Retrieve Stores"""
+
+	serializer_class = ListStoresSerializer
+
+	def get_queryset(self):
+		"""Gets Queryset"""
+		return Store.objects.filter(owner=self.request.user)
