@@ -22,16 +22,16 @@ function useProvideAuth() {
   const [user, setUser] = useState(null);
 
   const handleAuthStateChange = async () => {
-    const response = await apiRequest("/auth/user", "GET");
-    if (response && response.status) {
-      return setUser({ ...response.data.user });
-    }
+    // const response = await apiRequest("/auth/user", "GET");
+    // if (response && response.status) {
+    //   return setUser({ ...response.data.user });
+    // }
     return setUser(false);
   };
 
   const register = async (registerData) => {
     const { password } = registerData;
-    const response = await apiRequest("/users/registration/", "POST", {
+    const response = await apiRequest("/user/registration/", "POST", {
       ...registerData,
       password1: password,
       password2: password,

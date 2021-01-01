@@ -42,7 +42,7 @@ const AuthForm = ({ authType, authFormData, role }) => {
               <Form.Group controlId="First Name">
                 <FormField
                   size="md"
-                  name="firstName"
+                  name="first_name"
                   type="text"
                   placeholder="Firstname"
                   error={errors.firstName}
@@ -56,7 +56,7 @@ const AuthForm = ({ authType, authFormData, role }) => {
               <Form.Group controlId="Last Name">
                 <FormField
                   size="md"
-                  name="lastName"
+                  name="last_name"
                   type="text"
                   placeholder="Lastname"
                   error={errors.lastName}
