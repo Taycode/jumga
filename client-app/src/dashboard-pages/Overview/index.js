@@ -4,7 +4,7 @@ import OverviewCard from "../../components/OverviewCard";
 import GraphSection from "../../components/GraphSection";
 import "./styles.scss";
 
-const OverviewPage = () => {
+const OverviewPage = ({ user }) => {
   return (
     <>
       <Container className="mb-5">
@@ -13,7 +13,7 @@ const OverviewPage = () => {
             <h5 className="dashboard-header mb-5"> Overview</h5>
           </Col>
         </Row>
-        <OverviewCard />
+        <OverviewCard user={user} />
         <GraphSection />
       </Container>
     </>

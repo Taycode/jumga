@@ -22,10 +22,10 @@ function useProvideAuth() {
   const [user, setUser] = useState(null);
 
   const handleAuthStateChange = async () => {
-    // const response = await apiRequest("/auth/user", "GET");
-    // if (response && response.status) {
-    //   return setUser({ ...response.data.user });
-    // }
+    const response = await apiRequest("/user/details", "GET");
+    if (response && response.status && response.data.email) {
+      return setUser({ ...response.data });
+    }
     return setUser(false);
   };
 
@@ -36,20 +36,21 @@ function useProvideAuth() {
       password1: password,
       password2: password,
     });
+
     return response;
   };
 
   const login = async (signInData) => {
-    const loginResponse = await await apiRequest(
-      "/users/login/",
-      "POST",
-      signInData
-    );
+    const { email, password } = signInData;
+    const loginResponse = await await apiRequest("/user/auth/login/", "POST", {
+      email,
+      password,
+    });
     if (loginResponse && loginResponse.status) {
       const {
-        data: { token },
+        data: { key },
       } = loginResponse;
-      localStorage.setItem("token", token);
+      localStorage.setItem("token", key);
       await handleAuthStateChange();
     }
     return loginResponse;
@@ -61,7 +62,6 @@ function useProvideAuth() {
   };
 
   useEffect(() => {
-    console.log("called");
     handleAuthStateChange();
   }, []);
 
@@ -82,7 +82,7 @@ export const requireAuth = (Component) => {
     useEffect(() => {
       // Redirect if not signed in
       if (auth.user === false) {
-        history.replace("/user/login");
+        history.replace("/login");
       }
     }, [auth]);
 

@@ -1,5 +1,5 @@
 import React, { Suspense, useState } from "react";
-// import { requireAuth, useAuth } from "../../util/auth";
+import { requireAuth, useAuth } from "../../util/auth";
 import { Switch, Route } from "./../../util/router";
 import { Redirect } from "react-router-dom";
 import NotFoundPage from "../not-found";
@@ -12,14 +12,14 @@ import appRoutes from "../../util/dashboard-routes";
 import useMedia from "../../util/useQuery";
 import allModals from "./helper";
 
-const DashboardPage = (props) => {
+const DashboardPage = () => {
+  const { user, logout } = useAuth();
+
   const [showModal, setShowModal] = useState({
     modalId: " ",
     show: false,
     data: {},
   });
-
-  const role = "seller";
 
   const queries = [
     "(min-width: 1024px)", // isDesktop
@@ -32,9 +32,9 @@ const DashboardPage = (props) => {
   return (
     <>
       <Container fluid>
-        {
+        {user ? (
           <Row>
-            <SideBar mediaQuery={mediaQuery} role={role} />
+            <SideBar mediaQuery={mediaQuery} role={user.role} logout={logout} />
             <DashboardContainer mediaQuery={mediaQuery}>
               {showModal.show && (
                 <Modal showModal={showModal} setShowModal={setShowModal}>
@@ -48,7 +48,7 @@ const DashboardPage = (props) => {
               )}
               <Suspense fallback={<PageLoader />}>
                 <Switch>
-                  {appRoutes[role.toUpperCase()]?.map((route) => {
+                  {appRoutes[user.role.toUpperCase()]?.map((route) => {
                     const Component = route.component;
                     return (
                       <Route
@@ -58,6 +58,7 @@ const DashboardPage = (props) => {
                           <Component
                             setShowModal={setShowModal}
                             {...routeProps}
+                            user={user}
                           />
                         )}
                       />
@@ -70,12 +71,12 @@ const DashboardPage = (props) => {
               </Suspense>
             </DashboardContainer>
           </Row>
-        }
-
-        {/* <PageLoader /> */}
+        ) : (
+          <PageLoader />
+        )}
       </Container>
     </>
   );
 };
 
-export default DashboardPage;
+export default requireAuth(DashboardPage);

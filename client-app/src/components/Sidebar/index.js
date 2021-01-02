@@ -7,7 +7,7 @@ import closeMenuIcon from "../../assets/img/close.png";
 import routes from "../../util/dashboard-routes";
 import "./Sidebar.scss";
 
-const SideBar = ({ role, mediaQuery }) => {
+const SideBar = ({ role, mediaQuery, logout }) => {
   const hist = useHistory();
 
   const [showSidebar, setShowSidebar] = useState(
@@ -83,7 +83,10 @@ const SideBar = ({ role, mediaQuery }) => {
                   ) : null}
                 </React.Fragment>
               ))}
-              <Button className="buttom-nav-link btn-white request-truck-btn btn">
+              <Button
+                onClick={() => logout()}
+                className="buttom-nav-link btn-white request-truck-btn btn"
+              >
                 Log Out
               </Button>
             </Nav>

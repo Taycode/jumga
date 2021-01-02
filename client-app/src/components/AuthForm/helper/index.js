@@ -1,5 +1,5 @@
 const afterAuthRedirectPaths = {
-  register: "/user/login",
+  register: "/login",
   login: "/dashboard",
   "forgot-password": "#",
 };
@@ -20,7 +20,7 @@ const handleAuthh = async (
   if (response.status) {
     setAuthMessage({
       type: "success",
-      message: response.message,
+      message: "Success !",
     });
     return router.push(afterAuthRedirectPaths[authType]);
   }
