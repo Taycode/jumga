@@ -30,6 +30,7 @@ class ListStoresSerializer(serializers.ModelSerializer):
 class CreateStoreSerializer(serializers.Serializer):
 	"""USed to create Stores"""
 
+	id = serializers.IntegerField(required=False)
 	name = serializers.CharField(max_length=255)
 	owner = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), required=False)
 
