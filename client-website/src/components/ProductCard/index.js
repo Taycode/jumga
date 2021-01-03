@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.scss";
 import { Link, useRouter } from "../../util/router";
-import { getCurrency } from "../../util/helper-functions";
+import { getCurrency, handleAddToCart } from "../../util/helper-functions";
 import { getRating } from "./helper";
 
 const ProductCard = ({
@@ -18,13 +18,13 @@ const ProductCard = ({
               <img class="pic-2" alt={name} src={image2} />
             </Link>
             <ul class="social">
-              <li>
+              <li onClick={() => router.push(`/product/${id}`)}>
                 <span data-tip="View Product">
                   <i class="fa fa-eye"></i>
                 </span>
               </li>
 
-              <li>
+              <li onClick={() => handleAddToCart(id)}>
                 <span data-tip="Add to Cart">
                   <i class="fa fa-shopping-cart"></i>
                 </span>

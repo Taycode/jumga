@@ -5,6 +5,8 @@ export const sampleProducts = [
     image2:
       "http://bestjquery.com/tutorial/product-grid/demo9/images/img-2.jpg",
     name: "Women's Blouse",
+    description:
+      "Spicy, delicious ofada sauce; prep with various assorted, beef, kpomo and egg soaked in the sauce. Can be paired with the world famous ofada rice, or even your everyday white rice",
     price: 3000,
     country: "NG",
     rating: 4,
@@ -16,6 +18,8 @@ export const sampleProducts = [
     image2:
       "http://bestjquery.com/tutorial/product-grid/demo9/images/img-2.jpg",
     name: "Women's Blouse",
+    description:
+      "Spicy, delicious ofada sauce; prep with various assorted, beef, kpomo and egg soaked in the sauce. Can be paired with the world famous ofada rice, or even your everyday white rice",
     price: 3000,
     country: "NG",
     rating: 4,
@@ -27,6 +31,8 @@ export const sampleProducts = [
     image2:
       "http://bestjquery.com/tutorial/product-grid/demo9/images/img-2.jpg",
     name: "Women's Blouse",
+    description:
+      "Spicy, delicious ofada sauce; prep with various assorted, beef, kpomo and egg soaked in the sauce. Can be paired with the world famous ofada rice, or even your everyday white rice",
     price: 3000,
     country: "NG",
     rating: 4,
