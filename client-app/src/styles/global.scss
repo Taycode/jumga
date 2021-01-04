@@ -60,3 +60,9 @@ $grid-breakpoints: (
     flex-shrink: 0;
   }
 }
+
+body {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

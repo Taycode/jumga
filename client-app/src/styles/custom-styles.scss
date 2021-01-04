@@ -12,3 +12,11 @@ a {
     color: inherit;
   }
 }
+.dashboard-header {
+  font-size: 90%;
+  font-weight: 400;
+  color: map-get($theme-colors, $key: "secondary");
+}
+.is-clickable {
+  cursor: pointer;
+}

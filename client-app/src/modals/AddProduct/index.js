@@ -1,9 +1,10 @@
 import React, { useState, useContext } from "react";
 import { FormGroup, Button, Spinner } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { handleProductCreattion } from "./helper";
+import { handleProductCreation } from "./helper";
 import { Context as ProductsContext } from "./../../contexts/storeContext";
 
+// image1, image2, name, description, price, country, rating, id
 const AddStore = ({ setShowModal, data }) => {
   const { register, handleSubmit, errors } = useForm();
   const [loading, setLoading] = useState(false);
@@ -12,8 +13,8 @@ const AddStore = ({ setShowModal, data }) => {
   const { addNewProduct, editAProduct } = useContext(ProductsContext);
 
   const submit = (formData) => {
-    return handleProductCreattion(
-      { ...storeData, ...formData },
+    return handleProductCreation(
+      { ...productData, ...formData },
       setLoading,
       setShowModal,
       addNewProduct,
@@ -26,7 +27,7 @@ const AddStore = ({ setShowModal, data }) => {
     <>
       <h5 className="text-center mb-3">
         {" "}
-        {editStore ? "Edit Product" : "Add Product "}
+        {editProduct ? "Edit Product" : "Add Product "}
       </h5>
       <form onSubmit={handleSubmit(submit)}>
         <FormGroup>

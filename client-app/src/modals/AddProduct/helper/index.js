@@ -1,7 +1,7 @@
 import { notifyUser } from "../../../util/helper-functions";
 import { addStore, editStore } from "../../../util/operations/store";
 
-export const handleStoreCreation = async (
+export const handleProductCreation = async (
   formData,
   setLoading,
   setShowModal,

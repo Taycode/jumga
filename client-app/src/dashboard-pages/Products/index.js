@@ -3,6 +3,7 @@ import { Container, Col, Row, Button } from "react-bootstrap";
 import SearchProducts from "../../components/SearchProducts";
 import { ADD_PRODUCT } from "../../util/constants";
 import "./styles.scss";
+import ProductList from "../../components/ProductList";
 
 const Products = ({ setShowModal }) => {
   return (
@@ -26,7 +27,7 @@ const Products = ({ setShowModal }) => {
                       data: {},
                     });
                   }}
-                  className="btn-info btn-sm"
+                  className="btn-info btn-sm d-block"
                 >
                   + Add Product
                 </Button>
@@ -34,6 +35,7 @@ const Products = ({ setShowModal }) => {
             </div>
           </Col>
         </Row>
+        <ProductList />
       </Container>
     </>
   );

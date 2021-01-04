@@ -1,0 +1,10 @@
+.product-list-section {
+  padding: 3%;
+  height: 80vh;
+  overflow-y: scroll;
+  padding-bottom: 5%;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

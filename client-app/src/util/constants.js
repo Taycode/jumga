@@ -49,3 +49,12 @@ export const SUPPORTED_COUNTRIES = [
     code: "TZ",
   },
 ];
+
+export const currencyMap = {
+  NG: "₦",
+  GH: "GH¢",
+  KE: "KES",
+  UG: "USh",
+  ZA: "R",
+  TZ: "TZS",
+};

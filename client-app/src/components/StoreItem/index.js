@@ -8,9 +8,11 @@ import { ADD_STORE } from "../../util/constants";
 
 import { handleDeleteStore } from "./helper";
 
-import { Link } from "../../util/router";
+import { Link, useRouter } from "../../util/router";
+import { Router } from "react-router-dom";
 
 const StoreItem = ({ store, setShowModal, removeStore }) => {
+  const router = useRouter();
   const { name, rider, product_count, id } = store;
   const [loading, setLoading] = useState(false);
   return (
@@ -24,48 +26,46 @@ const StoreItem = ({ store, setShowModal, removeStore }) => {
             </div>
           ) : (
             <Row>
-              <Col md={4}>
-                <Link
-                  className="text-decoration-none"
-                  to={`/dashboard/stores/${id}`}
-                >
-                  <Avatar
-                    bgColor="#d2ddef3b"
-                    textColor="#061123"
-                    roundShape="true"
-                    initials={name.trim()[0]}
-                  ></Avatar>{" "}
-                  <span> {name}</span>
-                </Link>
+              <Col
+                onClick={() => Router.push(`/dashboard/stores/${id}`)}
+                className="is-clickable"
+                md={4}
+              >
+                <Avatar
+                  bgColor="#d2ddef3b"
+                  textColor="#061123"
+                  roundShape="true"
+                  initials={name.trim()[0]}
+                ></Avatar>{" "}
+                <span> {name}</span>
               </Col>
-              <Col md={3}>
-                <Link
-                  className="text-decoration-none"
-                  to={`/dashboard/stores/${id}`}
-                >
-                  {rider ? (
-                    <>
-                      {" "}
-                      <Avatar
-                        roundShape="true"
-                        textColor="#fff"
-                        bgColor="#061123"
-                        initials={rider.trim()[0]}
-                      ></Avatar>{" "}
-                      {rider}{" "}
-                    </>
-                  ) : (
-                    <>Unassigned</>
-                  )}
-                </Link>
+              <Col
+                onClick={() => Router.push(`/dashboard/stores/${id}`)}
+                className="is-clickable"
+                md={3}
+              >
+                {rider ? (
+                  <>
+                    {" "}
+                    <Avatar
+                      roundShape="true"
+                      textColor="#fff"
+                      bgColor="#061123"
+                      initials={rider.trim()[0]}
+                    ></Avatar>{" "}
+                    {rider}{" "}
+                  </>
+                ) : (
+                  <>Unassigned</>
+                )}
               </Col>
-              <Col className="text-center" md={2}>
-                <Link
-                  className="text-decoration-none"
-                  to={`/dashboard/stores/${id}`}
-                >
-                  <span className="store-item__name">{product_count}</span>
-                </Link>
+              <Col
+                onClick={() => Router.push(`/dashboard/stores/${id}`)}
+                className="is-clickable"
+                className="text-center"
+                md={2}
+              >
+                <span className="store-item__name">{product_count}</span>
               </Col>
               <Col className="" md={3}>
                 <div className="store-item__actions-section">
