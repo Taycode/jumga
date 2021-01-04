@@ -21,6 +21,7 @@ export const WEBSITE_DEV_URL = "http://localhost:3000";
 export const WEBSITE_PROD_URL = "";
 
 export const ADD_STORE = "ADD_STORE";
+export const ADD_PRODUCT = "ADD_PRODUCT";
 
 export const SUPPORTED_COUNTRIES = [
   {

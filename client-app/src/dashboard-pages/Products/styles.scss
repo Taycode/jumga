@@ -1,0 +1,12 @@
+.products-top-section {
+  display: flex;
+  justify-content: stretch;
+
+  form {
+    flex: 5;
+  }
+  div {
+    flex: 1;
+    margin: 0% 1%;
+  }
+}
