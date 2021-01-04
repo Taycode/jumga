@@ -9,7 +9,6 @@ import { ADD_STORE } from "../../util/constants";
 import { handleDeleteStore } from "./helper";
 
 import { Link, useRouter } from "../../util/router";
-import { Router } from "react-router-dom";
 
 const StoreItem = ({ store, setShowModal, removeStore }) => {
   const router = useRouter();
@@ -27,7 +26,7 @@ const StoreItem = ({ store, setShowModal, removeStore }) => {
           ) : (
             <Row>
               <Col
-                onClick={() => Router.push(`/dashboard/stores/${id}`)}
+                onClick={() => router.push(`/dashboard/stores/${id}`)}
                 className="is-clickable"
                 md={4}
               >
@@ -40,7 +39,7 @@ const StoreItem = ({ store, setShowModal, removeStore }) => {
                 <span> {name}</span>
               </Col>
               <Col
-                onClick={() => Router.push(`/dashboard/stores/${id}`)}
+                onClick={() => router.push(`/dashboard/stores/${id}`)}
                 className="is-clickable"
                 md={3}
               >
@@ -60,9 +59,8 @@ const StoreItem = ({ store, setShowModal, removeStore }) => {
                 )}
               </Col>
               <Col
-                onClick={() => Router.push(`/dashboard/stores/${id}`)}
-                className="is-clickable"
-                className="text-center"
+                onClick={() => router.push(`/dashboard/stores/${id}`)}
+                className="text-center is-clickable"
                 md={2}
               >
                 <span className="store-item__name">{product_count}</span>
