@@ -26,6 +26,7 @@ function useProvideAuth() {
     if (response && response.status && response.data.email) {
       return setUser({ ...response.data });
     }
+    localStorage.setItem("token", "");
     return setUser(false);
   };
 

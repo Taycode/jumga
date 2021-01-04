@@ -62,35 +62,23 @@ export const sampleProducts = [
   },
 ];
 
-export const sampleStoresdata = [
+export const sampleOrders = [
   {
-    name: "Jilayo enterprises",
-    rider: "Emma Ohmagee",
-    product_count: 12,
-    id: 212,
+    product_name: "Denim Jacket",
+    rider: "Jesutofumi Olosho",
+    deliveryStatus: "pending",
+    reciever: "Aliko Dangote",
+    delivery_address: "12, Jogunosimi street, Alausa, Ikeja, Lagos",
+    country: "NG",
+    id: 0,
   },
   {
-    name: "Jilayo enterprises",
-    rider: "Emma Ohmagee",
-    product_count: 12,
-    id: 12,
-  },
-  {
-    name: "Jilayo enterprises",
-    rider: "Emma Ohmagee",
-    product_count: 12,
-    id: 2,
-  },
-  {
-    name: "Jilayo enterprises",
-    rider: "Emma Ohmagee",
-    product_count: 12,
-    id: 32,
-  },
-  {
-    name: "Jilayo enterprises",
-    rider: "Emma Ohmagee",
-    product_count: 12,
-    id: 992,
+    product_name: "Denim Jacket",
+    rider: "Jesutofumi Kolololo",
+    deliveryStatus: "pending",
+    reciever: "Aliko Dangote",
+    delivery_address: "12, Jogunosimi street, Alausa, Ikeja, Lagos",
+    country: "NG",
+    id: 1,
   },
 ];

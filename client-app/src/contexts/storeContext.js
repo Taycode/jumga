@@ -1,13 +1,14 @@
 import createDataContext from "./createContext";
-import { useEffect, useMemo } from "react";
 import { notifyUser } from "../util/helper-functions";
 import { fetchStores } from "../util/operations/store";
-import { useData } from "../util/useData";
 
 const reducer = (state, action) => {
   switch (action.type) {
     case "ADD_NEW_STORE":
-      return { ...state, stores: [...state.stores, action.payload] };
+      return {
+        ...state,
+        stores: [...state.stores, { ...action.payload, product_count: 0 }],
+      };
     case "FETCH_STORES_SUCCESSFULLY":
       return { stores: action.payload };
     case "EDIT_A_STORE":

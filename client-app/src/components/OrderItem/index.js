@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 import { Col, Card, Row } from "react-bootstrap";
-import Avatar from "react-string-avatar";
-import "./styles.scss";
+import { VIEW_ORDER } from "../../util/constants";
+
 import trash from "../../assets/icons/trash.png";
 import edit from "../../assets/icons/edit.png";
-import { ADD_STORE } from "../../util/constants";
+import { useRouter } from "../../util/router";
+import "../StoreItem/styles.scss";
 
-import { handleDeleteStore } from "./helper";
-
-import { Link, useRouter } from "../../util/router";
-
-const StoreItem = ({ store, setShowModal, removeStore }) => {
+const OrderItem = ({ order, setShowModal }) => {
   const router = useRouter();
-  const { name, rider, product_count, id } = store;
+  const { product_name, rider, id, delivery_address, delivery_status } = order;
   const [loading, setLoading] = useState(false);
+
   return (
     <>
       <Col md={12}>
@@ -30,40 +28,21 @@ const StoreItem = ({ store, setShowModal, removeStore }) => {
                 className="is-clickable"
                 md={4}
               >
-                <Avatar
-                  bgColor="#d2ddef3b"
-                  textColor="#061123"
-                  roundShape="true"
-                  initials={name.trim()[0]}
-                ></Avatar>{" "}
-                <span> {name}</span>
+                <span> product name</span>
               </Col>
               <Col
                 onClick={() => router.push(`/dashboard/stores/${id}`)}
                 className="is-clickable"
                 md={3}
               >
-                {rider ? (
-                  <>
-                    {" "}
-                    <Avatar
-                      roundShape="true"
-                      textColor="#fff"
-                      bgColor="#061123"
-                      initials={rider.trim()[0]}
-                    ></Avatar>{" "}
-                    {rider}{" "}
-                  </>
-                ) : (
-                  <>Unassigned</>
-                )}
+                Hi
               </Col>
               <Col
                 onClick={() => router.push(`/dashboard/stores/${id}`)}
                 className="text-center is-clickable"
                 md={2}
               >
-                <span className="store-item__name">{product_count}</span>
+                <span className="store-item__name"> Blaaah</span>
               </Col>
               <Col className="" md={3}>
                 <div className="store-item__actions-section">
@@ -71,23 +50,20 @@ const StoreItem = ({ store, setShowModal, removeStore }) => {
                     onClick={() => {
                       setShowModal({
                         show: true,
-                        modalId: ADD_STORE,
-                        data: {
-                          storeData: store,
-                          editStore: true,
-                        },
+                        modalId: VIEW_ORDER,
+                        data: {},
                       });
                     }}
-                    alt="Edit icon"
+                    alt="view order "
                     src={edit}
                   />
-                  <img
+                  {/* <img
                     onClick={() =>
                       handleDeleteStore(store, setLoading, removeStore)
                     }
                     alt="Delete icon"
                     src={trash}
-                  />
+                  /> */}
                 </div>
               </Col>
             </Row>
@@ -98,4 +74,4 @@ const StoreItem = ({ store, setShowModal, removeStore }) => {
   );
 };
 
-export default StoreItem;
+export default OrderItem;
