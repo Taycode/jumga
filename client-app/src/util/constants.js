@@ -22,6 +22,7 @@ export const WEBSITE_PROD_URL = "";
 
 export const ADD_STORE = "ADD_STORE";
 export const ADD_PRODUCT = "ADD_PRODUCT";
+export const VIEW_ORDER = "VIEW_ORDER";
 
 export const SUPPORTED_COUNTRIES = [
   {

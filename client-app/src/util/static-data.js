@@ -61,3 +61,24 @@ export const sampleProducts = [
     id: 5,
   },
 ];
+
+export const sampleOrders = [
+  {
+    product_name: "Denim Jacket",
+    rider: "Jesutofumi Olosho",
+    deliveryStatus: "pending",
+    reciever: "Aliko Dangote",
+    delivery_address: "12, Jogunosimi street, Alausa, Ikeja, Lagos",
+    country: "NG",
+    id: 0,
+  },
+  {
+    product_name: "Denim Jacket",
+    rider: "Jesutofumi Kolololo",
+    deliveryStatus: "pending",
+    reciever: "Aliko Dangote",
+    delivery_address: "12, Jogunosimi street, Alausa, Ikeja, Lagos",
+    country: "NG",
+    id: 1,
+  },
+];
