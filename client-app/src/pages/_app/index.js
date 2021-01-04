@@ -5,25 +5,28 @@ import AuthPage from "../auth";
 import { ProvideAuth } from "./../../util/auth";
 import DashboardPage from "../dashboard";
 import { Redirect } from "react-router-dom";
+import ContextProvider from "../../contexts/ContextProviders";
 
 function App() {
   return (
     <>
-      <ProvideAuth>
-        <Router>
-          <>
-            <Switch>
-              <Route path="/dashboard" render={() => <DashboardPage />} />
+      <ContextProvider>
+        <ProvideAuth>
+          <Router>
+            <>
+              <Switch>
+                <Route path="/dashboard" render={() => <DashboardPage />} />
 
-              <Route path="/:authType" component={AuthPage} />
+                <Route path="/:authType" component={AuthPage} />
 
-              <Redirect from="/" to="/login" />
+                <Redirect from="/" to="/login" />
 
-              <Route component={NotFoundPage} />
-            </Switch>
-          </>
-        </Router>
-      </ProvideAuth>
+                <Route component={NotFoundPage} />
+              </Switch>
+            </>
+          </Router>
+        </ProvideAuth>
+      </ContextProvider>
     </>
   );
 }

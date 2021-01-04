@@ -1,3 +1,4 @@
+@import "../../styles/global.scss";
 .store-item-card {
   border: none;
   padding: 3%;
@@ -12,6 +13,7 @@
   justify-content: space-evenly;
   img {
     width: 30px;
+    cursor: pointer;
     height: auto;
     &:hover {
       transform: scale(1.1);
@@ -22,4 +24,7 @@
       transition: all 0.3s;
     }
   }
+}
+.store-item-loading {
+  height: 60px;
 }

@@ -12,6 +12,13 @@ import appRoutes from "../../util/dashboard-routes";
 import useMedia from "../../util/useQuery";
 import allModals from "./helper";
 
+import { toast } from "react-toastify";
+
+toast.configure({
+  autoClose: 3000,
+  hideProgressBar: true,
+});
+
 const DashboardPage = () => {
   const { user, logout } = useAuth();
 
@@ -52,7 +59,7 @@ const DashboardPage = () => {
                     const Component = route.component;
                     return (
                       <Route
-                        key={route.route}
+                        key={route.path}
                         path={`/dashboard${route.path}`}
                         render={(routeProps) => (
                           <Component

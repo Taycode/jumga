@@ -1,11 +1,11 @@
 import React from "react";
 import { Card, Row, Col, Button } from "react-bootstrap";
 import "./styles.scss";
-import { storeListTableHeader, samplestoreData } from "./helper";
+import { storeListTableHeader } from "./helper";
 import { ADD_STORE } from "../../util/constants";
 import StoreItem from "../StoreItem";
 
-const StoreList = ({ setShowModal }) => {
+const StoreList = ({ setShowModal, stores, removeStore }) => {
   return (
     <>
       <Row>
@@ -21,6 +21,7 @@ const StoreList = ({ setShowModal }) => {
                     setShowModal({
                       show: true,
                       modalId: ADD_STORE,
+                      data: {},
                     });
                   }}
                   className="btn-info btn-sm "
@@ -36,7 +37,7 @@ const StoreList = ({ setShowModal }) => {
               {storeListTableHeader.map((tableHeader) => (
                 <Col
                   className="store-list__header"
-                  key={tableHeader.title}
+                  key={tableHeader.id}
                   md={tableHeader.width}
                 >
                   {" "}
@@ -44,10 +45,24 @@ const StoreList = ({ setShowModal }) => {
                 </Col>
               ))}
             </Row>
+
             <Row className="store-list__items-section">
-              {samplestoreData.map((store) => (
-                <StoreItem key={store.id} store={store} />
-              ))}
+              {stores && stores.length > 0 ? (
+                <>
+                  {stores.map((store) => (
+                    <StoreItem
+                      setShowModal={setShowModal}
+                      key={store.id}
+                      store={store}
+                      removeStore={removeStore}
+                    />
+                  ))}
+                </>
+              ) : (
+                <Col className="text-center p-5">
+                  Create a store to get started
+                </Col>
+              )}
             </Row>
           </Card>
         </Col>

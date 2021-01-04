@@ -21,6 +21,14 @@ class BasicStoreModelSerializer(serializers.ModelSerializer):
 class ListStoresSerializer(serializers.ModelSerializer):
 	"""Serializer for listing stores for a user"""
 
+	def to_representation(self, instance):
+		"""Customize response"""
+		data = super(ListStoresSerializer, self).to_representation(instance)
+		data.update({
+			'product_count': instance.product_set.count()
+		})
+		return data
+
 	class Meta:
 		"""Meta class"""
 		model = Store
@@ -30,6 +38,7 @@ class ListStoresSerializer(serializers.ModelSerializer):
 class CreateStoreSerializer(serializers.Serializer):
 	"""USed to create Stores"""
 
+	id = serializers.IntegerField(required=False, read_only=True)
 	name = serializers.CharField(max_length=255)
 	owner = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), required=False)
 
