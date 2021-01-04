@@ -4,18 +4,30 @@ export const fetchProducts = () => {
   return apiRequest("/products/all/", "GET");
 };
 
+export const fetchStoreProducts = (storeId) => {
+  return apiRequest(`/store/${storeId}/product/all/`, "GET");
+};
+
 export const addProduct = (productdata) => {
-  return apiRequest("/products/create/", "POST", productdata);
+  const { storeId } = productdata;
+  return apiRequest(`/store/${storeId}/product/create/`, "POST", productdata);
 };
 
 export const deleteProduct = (productdata) => {
-  return apiRequest(`/product/delete/${productdata.id}`, "DELETE");
+  const { storeId, productId } = productdata;
+  return apiRequest(`/store/${storeId}/product/${productId}/`, "DELETE");
 };
 
 export const editProduct = (productdata) => {
-  return apiRequest(`/product/update/${productdata.id}`, "PUT");
+  const { storeId, productId } = productdata;
+  return apiRequest(
+    `/store/${storeId}/product/${productId}/update/`,
+    "PUT",
+    productdata
+  );
 };
 
 export const fetchSingleProduct = (productdata) => {
-  return apiRequest(`/product/${productdata.id}`, "GET");
+  const { storeId, productId } = productdata;
+  return apiRequest(`/store/${storeId}/product/${productId}/`, "GET");
 };

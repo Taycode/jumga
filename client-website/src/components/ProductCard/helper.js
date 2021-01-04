@@ -4,11 +4,11 @@ export const getRating = (rating) => {
   // I am still tryna figure this out...
   return (
     <>
-      <li class="fa fa-star"></li>
-      <li class="fa fa-star"></li>
-      <li class="fa fa-star"></li>
-      <li class="fa fa-star"></li>
-      <li class="fa fa-star disable"></li>
+      <li className="fa fa-star"></li>
+      <li className="fa fa-star"></li>
+      <li className="fa fa-star"></li>
+      <li className="fa fa-star"></li>
+      <li className="fa fa-star disable"></li>
     </>
   );
 };

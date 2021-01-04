@@ -27,7 +27,7 @@ const ProductsPage = (props) => {
                 className="btn-sm btm-btn"
                 variant="primary"
               >
-                <i class="fa fa-shopping-cart"></i> View Cart
+                <i className="fa fa-shopping-cart"></i> View Cart
               </Button>
             </div>
           </Col>

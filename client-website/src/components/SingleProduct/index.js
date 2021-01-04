@@ -30,7 +30,7 @@ const SingleProduct = ({ product }) => {
             <p> {description}</p>
             <Button variant="primary">
               {" "}
-              <i class="fa fa-shopping-cart"></i> Add to Cart{" "}
+              <i className="fa fa-shopping-cart"></i> Add to Cart{" "}
             </Button>
           </div>
         </Col>

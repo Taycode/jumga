@@ -28,26 +28,32 @@ export const SUPPORTED_COUNTRIES = [
   {
     country: "Nigeria",
     code: "NG",
+    currency: "₦",
   },
   {
     country: "Ghana",
     code: "GH",
+    currency: "GH¢",
   },
   {
     country: "Kenya",
     code: "KE",
+    currency: "KES",
   },
   {
     country: "Uganda",
     code: "UG",
+    currency: "USh",
   },
   {
     country: "South Africa",
     code: "ZA",
+    currency: "R",
   },
   {
     country: "Tanzania",
     code: "TZ",
+    currency: "TZS",
   },
 ];
 

@@ -2,15 +2,23 @@ import React, { useState, useContext } from "react";
 import { FormGroup, Button, Spinner } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { handleProductCreation } from "./helper";
-import { Context as ProductsContext } from "./../../contexts/storeContext";
+import { Context as ProductsContext } from "./../../contexts/productContext";
+import { Context as StoresContext } from "./../../contexts/storeContext";
+import { SUPPORTED_COUNTRIES } from "../../util/constants";
 
-// image1, image2, name, description, price, country, rating, id
 const AddStore = ({ setShowModal, data }) => {
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, errors, getValues } = useForm();
   const [loading, setLoading] = useState(false);
   const { editProduct = false, productData = {} } = data;
 
   const { addNewProduct, editAProduct } = useContext(ProductsContext);
+
+  const {
+    state: { stores },
+    fetchAllStores,
+  } = useContext(StoresContext);
+
+  fetchAllStores();
 
   const submit = (formData) => {
     return handleProductCreation(
@@ -43,6 +51,96 @@ const AddStore = ({ setShowModal, data }) => {
             type="text"
             name="name"
             defaultValue={productData?.name}
+          />
+        </FormGroup>
+
+        <FormGroup>
+          <label
+            className={errors.currency ? "error-label" : "label"}
+            htmlFor="Currency "
+          >
+            Store
+          </label>
+          <select
+            ref={register({ required: true })}
+            className="form-control"
+            name="storeId"
+          >
+            {stores.map((store) => (
+              <option
+                selected={productData.storeId === store.id ? "selected" : false}
+                key={store.id}
+                value={store.id}
+              >
+                {store.name}
+              </option>
+            ))}
+          </select>
+        </FormGroup>
+
+        <FormGroup>
+          <label
+            className={errors.currency ? "error-label" : "label"}
+            htmlFor="Currency "
+          >
+            Price Value Currency
+          </label>
+          <select
+            ref={register({ required: true })}
+            className="form-control"
+            name="country"
+          >
+            {SUPPORTED_COUNTRIES.map((country) => (
+              <option
+                selected={
+                  productData.country === country.code ? "selected" : false
+                }
+                key={country.code}
+                value={country.code}
+              >
+                {country.currency}
+              </option>
+            ))}
+          </select>
+        </FormGroup>
+
+        <FormGroup>
+          <label
+            className={errors.title ? "error-label" : "label"}
+            htmlFor="Title "
+          >
+            Price
+          </label>
+          <input
+            ref={register({
+              required: true,
+              validate: (value) => {
+                if (value > 0) {
+                  return true;
+                } else {
+                  return "Product cannot be valueless";
+                }
+              },
+            })}
+            className="form-control"
+            type="number"
+            name="price"
+            defaultValue={productData?.price}
+          />
+        </FormGroup>
+
+        <FormGroup>
+          <label
+            className={errors.message ? "error-label" : "label"}
+            htmlFor="description "
+          >
+            Product Description
+          </label>
+          <textarea
+            ref={register({ required: true })}
+            rows="10"
+            className="form-control"
+            name="description"
           />
         </FormGroup>
 
