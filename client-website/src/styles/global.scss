@@ -39,6 +39,9 @@ $grid-breakpoints: (
 // IMPORT FONT AWESOME
 @import url("https://use.fontawesome.com/releases/v5.10.1/css/all.css");
 
+// Image gallery
+@import "~react-image-gallery/styles/scss/image-gallery.scss";
+
 #root {
   // Full height of screen and flex so that we can push footer
   // to the bottom even if content is shorter than screen
@@ -53,5 +56,10 @@ $grid-breakpoints: (
   // is taller than the screen (quirk of having flex parent)
   > * {
     flex-shrink: 0;
+  }
+}
+body {
+  &::-webkit-scrollbar {
+    display: none;
   }
 }

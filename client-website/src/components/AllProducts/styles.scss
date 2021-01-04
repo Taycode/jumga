@@ -1,4 +1,9 @@
 .all-products-section {
   height: 70vh;
   overflow-y: scroll;
+  // scrollbar-width: none !important;
+  // -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }

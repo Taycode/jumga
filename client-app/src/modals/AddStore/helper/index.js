@@ -1,22 +1,28 @@
 import { notifyUser } from "../../../util/helper-functions";
-import { createStore } from "../../../util/operations/store";
+import { addStore, editStore } from "../../../util/operations/store";
 
 export const handleStoreCreation = async (
   formData,
   setLoading,
   setShowModal,
-  addNewStore
+  addNewStore,
+  editAStore,
+  shouldEdit
 ) => {
   setLoading(true);
 
-  const response = await createStore(formData);
+  const response = shouldEdit
+    ? await editStore(formData)
+    : await addStore(formData);
+
   response && setLoading(false);
   response && notifyUser(response);
-  // if (response && response.status) {
-  //   addNewStore(response.data);
-  //   return setShowModal({
-  //     show: false,
-  //   });
-  // }
+
+  if (response && response.status) {
+    shouldEdit ? editAStore(formData) : addNewStore(response.data);
+    return setShowModal({
+      show: false,
+    });
+  }
   return setLoading(false);
 };

@@ -25,8 +25,7 @@ class ListStoresSerializer(serializers.ModelSerializer):
 		"""Customize response"""
 		data = super(ListStoresSerializer, self).to_representation(instance)
 		data.update({
-			'product_count': instance.product_set.count(),
-			'rider': ''
+			'product_count': instance.product_set.count()
 		})
 		return data
 

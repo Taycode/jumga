@@ -1,6 +1,6 @@
 import React from "react";
 import ProductCard from "../ProductCard";
-import { sampleProducts } from "./helper";
+import { sampleProducts } from "../../util/static-data";
 import { Row } from "react-bootstrap";
 import "./styles.scss";
 

@@ -10,3 +10,7 @@ export const getAppRedirect = (role, authType) => {
 export const getCurrency = (country) => {
   return currencyMap[country];
 };
+
+export const handleAddToCart = (productId) => {
+  alert("Alaye e no dey work ");
+};

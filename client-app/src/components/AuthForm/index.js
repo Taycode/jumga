@@ -95,7 +95,9 @@ const AuthForm = ({ authType, authFormData, role }) => {
               className="form-control"
             >
               {SUPPORTED_COUNTRIES.map((item) => (
-                <option value={item.code}>{item.country}</option>
+                <option key={item.code} value={item.code}>
+                  {item.country}
+                </option>
               ))}
             </select>
           </Form.Group>

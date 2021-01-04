@@ -31,6 +31,10 @@
 .store-list__items-section {
   overflow-y: scroll;
   font-size: 80%;
+  padding-bottom: 5%;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 .store-list__header {
   font-weight: 600;

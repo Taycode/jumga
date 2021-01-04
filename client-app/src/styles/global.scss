@@ -36,6 +36,10 @@ $grid-breakpoints: (
 // IMPORT BOOTSTRAP
 @import "~bootstrap/scss/bootstrap";
 @import "./custom-styles.scss";
+@import "./toasts.scss";
+
+// Toastify
+@import "~react-toastify/dist/ReactToastify.css";
 
 // IMPORT FONT AWESOME
 @import url("https://use.fontawesome.com/releases/v5.10.1/css/all.css");

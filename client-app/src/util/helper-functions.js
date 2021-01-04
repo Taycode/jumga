@@ -6,6 +6,6 @@ import { toast } from "react-toastify";
  */
 export const notifyUser = (response) => {
   response.status
-    ? toast.success(response.message)
+    ? toast.success(response.message ? response.message : "Success")
     : toast.error(response.message);
 };

@@ -6,6 +6,8 @@ import { Switch, Route, Router } from "../../util/router.js";
 import NotFoundPage from "../not-found/index.js";
 import ProductsPage from "../products";
 import Footer from "../../components/Footer";
+import CartPage from "../cart";
+import SingleProduct from "../SingleProduct";
 
 import logoBlue from "../../assets/img/logo-blue.png";
 import "../../util/analytics.js";
@@ -18,8 +20,14 @@ function App(props) {
         <NavbarCustom bg="light" variant="light" expand="md" logo={logoBlue} />
         <Switch>
           <Route exact path="/" component={IndexPage} />
+
           <Route exact path="/rider" component={RidersHomePage} />
+
           <Route path="/products" component={ProductsPage} />
+
+          <Route path="/cart" component={CartPage} />
+
+          <Route path="/product/:productId" component={SingleProduct} />
 
           <Route component={NotFoundPage} />
         </Switch>
