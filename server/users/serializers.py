@@ -108,4 +108,4 @@ class UserDetailsSerializer(serializers.ModelSerializer):
 		"""Meta Class"""
 
 		model = User
-		fields = ('first_name', 'last_name', 'role', 'email', )
+		fields = ('first_name', 'last_name', 'role', 'email', 'country', )
