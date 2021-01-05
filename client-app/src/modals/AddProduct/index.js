@@ -11,7 +11,7 @@ const AddStore = ({ setShowModal, data }) => {
     user: { country },
   } = useAuth();
 
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, errors, setValue } = useForm();
   const [loading, setLoading] = useState(false);
   const { editProduct = false, productData = {} } = data;
 
@@ -62,7 +62,7 @@ const AddStore = ({ setShowModal, data }) => {
 
         <FormGroup>
           <label
-            className={errors.currency ? "error-label" : "label"}
+            className={errors.storeId ? "error-label" : "label"}
             htmlFor="Store "
           >
             Store
@@ -71,7 +71,7 @@ const AddStore = ({ setShowModal, data }) => {
             ref={register({ required: true })}
             className="form-control"
             name="storeId"
-            disabled={productData.storeId && true}
+            // disabled={productData.storeId && true}
           >
             {stores.map((store) => (
               <option

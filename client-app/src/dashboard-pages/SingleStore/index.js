@@ -32,7 +32,12 @@ const SingleStore = (props) => {
     fetchAllStores(stores);
   }, []);
 
+  useEffect(() => {
+    setStore(getStoreName(stores, id));
+  }, [stores, id]);
+
   const [storeProducts, setStoreProducts] = useState([]);
+  const [store, setStore] = useState();
 
   useEffect(() => {
     products && id && setStoreProducts(getStoreProducts(products, id));
@@ -40,47 +45,54 @@ const SingleStore = (props) => {
 
   return (
     <>
-      <Container className="mb-5">
-        <Row>
-          <Col>
-            <h5 className="dashboard-header mb-5">
-              {" "}
-              {getStoreName(stores, id)?.name}{" "}
-            </h5>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <div className="products-top-section">
-              <SearchProducts />
-              <div>
-                <Button
-                  onClick={() => {
-                    setShowModal({
-                      show: true,
-                      modalId: ADD_PRODUCT,
-                      data: {
-                        productData: {
-                          storeId: id,
+      {store ? (
+        <Container className="mb-5">
+          <Row>
+            <Col>
+              <h5 className="dashboard-header mb-5"> {store.name} </h5>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <div className="products-top-section">
+                <SearchProducts />
+                <div>
+                  <Button
+                    onClick={() => {
+                      setShowModal({
+                        show: true,
+                        modalId: ADD_PRODUCT,
+                        data: {
+                          productData: {
+                            storeId: id,
+                          },
                         },
-                      },
-                    });
-                  }}
-                  className="btn-info btn-sm d-block"
-                >
-                  + Add Product
-                </Button>
+                      });
+                    }}
+                    className="btn-info btn-sm d-block"
+                  >
+                    + Add Product
+                  </Button>
+                </div>
               </div>
-            </div>
-          </Col>
-        </Row>
+            </Col>
+          </Row>
 
-        <ProductList
-          products={storeProducts}
-          setShowModal={setShowModal}
-          removeproduct={removeProduct}
-        />
-      </Container>
+          <ProductList
+            products={storeProducts}
+            setShowModal={setShowModal}
+            removeproduct={removeProduct}
+          />
+        </Container>
+      ) : (
+        <Container>
+          <Row>
+            <Col>
+              <p className="p-5  mt-5"> Store does not exist</p>
+            </Col>
+          </Row>
+        </Container>
+      )}
     </>
   );
 };

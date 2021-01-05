@@ -47,7 +47,7 @@ const Products = ({ setShowModal }) => {
           </Col>
         </Row>
         <ProductList
-          products={products}
+          products={products.sort((a, b) => a.id - b.id)}
           setShowModal={setShowModal}
           removeproduct={removeProduct}
         />

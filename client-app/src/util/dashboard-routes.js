@@ -47,7 +47,7 @@ const routes = {
         selected === "sidebar-active" ? storeactiveIcon : storeIcon,
     },
     {
-      path: "/product/:productId",
+      path: "/products/:productId",
       slug: "/:productId",
       name: "Product",
       component: SingleProduct,
