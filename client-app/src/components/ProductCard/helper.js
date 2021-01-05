@@ -21,7 +21,7 @@ export const handleDeleteProduct = async (
   removeProduct
 ) => {
   setLoading(true);
-  const response = await deleteProduct({ productData });
+  const response = await deleteProduct(productData);
   response && notifyUser(response);
 
   if (response.status) {

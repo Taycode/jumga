@@ -15,7 +15,7 @@ export const addProduct = (productdata) => {
 
 export const deleteProduct = (productdata) => {
   const { store, id } = productdata;
-  return apiRequest(`/store/${store}/product/${id}/`, "DELETE");
+  return apiRequest(`/store/${store}/product/${id}/delete/`, "DELETE");
 };
 
 export const editProduct = (productdata) => {
