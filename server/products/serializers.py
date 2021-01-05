@@ -9,6 +9,7 @@ from stores.models import Store
 class CreateProductSerializer(serializers.Serializer):
 	"""Serializer for Creating Products"""
 
+	id = serializers.IntegerField(read_only=True, required=False)
 	name = serializers.CharField(max_length=255, required=True)
 	price = serializers.IntegerField(max_value=10**12, min_value=0)
 	description = serializers.CharField(max_length=511, required=False)
