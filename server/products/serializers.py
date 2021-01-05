@@ -26,10 +26,18 @@ class CreateProductSerializer(serializers.Serializer):
 class ListAndViewProductSerializer(serializers.ModelSerializer):
 	"""Serializer for Listing and Retrieving Products"""
 
+	def to_representation(self, instance):
+		"""Customize Response"""
+		data = super(ListAndViewProductSerializer, self).to_representation(instance)
+		data.update({
+			'country': instance.store.owner.country
+		})
+		return data
+
 	class Meta:
 		"""Meta Class"""
 		model = Product
-		fields = ('id', 'name', 'price', 'description', )
+		fields = ('id', 'name', 'price', 'description', 'store', )
 
 
 class BasicProductSerializer(serializers.ModelSerializer):
