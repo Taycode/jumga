@@ -37,7 +37,7 @@ class ListAndViewProductSerializer(serializers.ModelSerializer):
 	class Meta:
 		"""Meta Class"""
 		model = Product
-		fields = ('id', 'name', 'price', 'description', )
+		fields = ('id', 'name', 'price', 'description', 'store', )
 
 
 class BasicProductSerializer(serializers.ModelSerializer):
