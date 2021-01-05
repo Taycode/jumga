@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import { Container, Col, Row, Button } from "react-bootstrap";
 import SearchProducts from "../../components/SearchProducts";
 import { ADD_PRODUCT } from "../../util/constants";
 import "./styles.scss";
 import ProductList from "../../components/ProductList";
+import { Context as ProductsContext } from "./../../contexts/productContext";
 
 const Products = ({ setShowModal }) => {
+  const {
+    state: { products },
+    fetchAllProducts,
+    removeProduct,
+  } = useContext(ProductsContext);
+
+  useEffect(() => {
+    fetchAllProducts();
+  }, []);
+
   return (
     <>
       <Container className="mb-5">
@@ -35,7 +46,11 @@ const Products = ({ setShowModal }) => {
             </div>
           </Col>
         </Row>
-        <ProductList />
+        <ProductList
+          products={products}
+          setShowModal={setShowModal}
+          removeproduct={removeProduct}
+        />
       </Container>
     </>
   );

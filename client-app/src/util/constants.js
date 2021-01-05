@@ -27,35 +27,29 @@ export const VIEW_ORDER = "VIEW_ORDER";
 export const SUPPORTED_COUNTRIES = [
   {
     country: "Nigeria",
-    code: "NG",
+    code: "nigeria",
+    currency: "₦",
   },
   {
     country: "Ghana",
-    code: "GH",
+    code: "ghana",
+    currency: "GH¢",
   },
   {
     country: "Kenya",
-    code: "KE",
+    code: "kenya",
+    currency: "KES",
   },
   {
-    country: "Uganda",
-    code: "UG",
-  },
-  {
-    country: "South Africa",
-    code: "ZA",
-  },
-  {
-    country: "Tanzania",
-    code: "TZ",
+    country: "United Kingdom",
+    code: "uk",
+    currency: "$",
   },
 ];
 
 export const currencyMap = {
-  NG: "₦",
-  GH: "GH¢",
-  KE: "KES",
-  UG: "USh",
-  ZA: "R",
-  TZ: "TZS",
+  nigeria: "₦",
+  ghana: "GH¢",
+  kenya: "KES",
+  uk: "$",
 };

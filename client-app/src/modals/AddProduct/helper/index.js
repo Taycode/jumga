@@ -1,25 +1,25 @@
 import { notifyUser } from "../../../util/helper-functions";
-import { addStore, editStore } from "../../../util/operations/store";
+import { addProduct, editProduct } from "../../../util/operations/product";
 
 export const handleProductCreation = async (
   formData,
   setLoading,
   setShowModal,
-  addNewStore,
-  editAStore,
+  addNewProduct,
+  editAProduct,
   shouldEdit
 ) => {
   setLoading(true);
 
   const response = shouldEdit
-    ? await editStore(formData)
-    : await addStore(formData);
+    ? await editProduct(formData)
+    : await addProduct(formData);
 
   response && setLoading(false);
   response && notifyUser(response);
 
   if (response && response.status) {
-    shouldEdit ? editAStore(formData) : addNewStore(response.data);
+    shouldEdit ? editAProduct(formData) : addNewProduct(response.data);
     return setShowModal({
       show: false,
     });

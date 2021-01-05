@@ -10,6 +10,7 @@ const SingleProduct = () => {
             <h5 className="dashboard-header mb-5"> Single product</h5>
           </Col>
         </Row>
+        {/* Does not matter which store... Just render the product */}
       </Container>
     </>
   );
