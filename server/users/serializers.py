@@ -5,6 +5,7 @@ from rest_framework import serializers
 from dj_rest_auth.registration.serializers import RegisterSerializer
 from .models import User
 from .choices import role_choices, DEFAULT_USER_ROLE
+from products.models import Product
 
 
 class SuperUserCreateSerializer(serializers.Serializer):
@@ -103,6 +104,19 @@ class CustomRegisterSerializer(RegisterSerializer):
 
 class UserDetailsSerializer(serializers.ModelSerializer):
 	"""This is used to get User Details data"""
+
+	def to_representation(self, instance):
+		"""Customize Response"""
+		data = super(UserDetailsSerializer, self).to_representation(instance)
+		if instance.role == 'seller':
+			data.update({
+				'stores_count': instance.store_set.count(),
+				'product_count': Product.objects.filter(store__owner=instance).count(),
+				'sales': 0,
+				'balance': 0,
+				'earnings': 0
+			})
+		return data
 
 	class Meta:
 		"""Meta Class"""

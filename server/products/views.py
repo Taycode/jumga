@@ -62,3 +62,9 @@ class UpdateProductView(UpdateAPIView):
 		"""Get Queryset"""
 		store = Store.objects.get(id=self.kwargs.get('store'))
 		return Product.objects.filter(store=store)
+
+
+class GlobalListProductsView(ListAPIView):
+	"""View for listing Products"""
+	serializer_class = ListAndViewProductSerializer
+	queryset = Product.objects.all()
