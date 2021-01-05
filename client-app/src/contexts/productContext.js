@@ -42,15 +42,16 @@ const editAProduct = (dispatch) => (productData) => {
   dispatch({ type: "EDIT_A_PRODUCT", payload: productData });
 };
 
-const fetchAllProducts = (dispatch) => async () => {
+const fetchAllProducts = (dispatch) => async (products) => {
+  if (products && products.length > 0) {
+    return;
+  }
   const { status, data, message } = await fetchProducts();
 
   !status && notifyUser({ status, message });
 
   data &&
     (await dispatch({ type: "FETCH_PRODUCTS_SUCCESSFULLY", payload: data }));
-  // useMemo(() => {
-  // }, [data, status, message]);
 };
 
 export const { Context, Provider } = createDataContext(

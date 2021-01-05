@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { handleProductCreation } from "./helper";
 import { Context as ProductsContext } from "./../../contexts/productContext";
 import { Context as StoresContext } from "./../../contexts/storeContext";
-import { SUPPORTED_COUNTRIES } from "../../util/constants";
 import { useAuth } from "../../util/auth";
 
 const AddStore = ({ setShowModal, data }) => {
@@ -12,7 +11,7 @@ const AddStore = ({ setShowModal, data }) => {
     user: { country },
   } = useAuth();
 
-  const { register, handleSubmit, errors, getValues } = useForm();
+  const { register, handleSubmit, errors } = useForm();
   const [loading, setLoading] = useState(false);
   const { editProduct = false, productData = {} } = data;
 
@@ -72,10 +71,15 @@ const AddStore = ({ setShowModal, data }) => {
             ref={register({ required: true })}
             className="form-control"
             name="storeId"
+            disabled={productData.storeId && true}
           >
             {stores.map((store) => (
               <option
-                selected={productData.storeId === store.id ? "selected" : false}
+                selected={
+                  parseInt(productData.storeId) === parseInt(store.id)
+                    ? "selected"
+                    : false
+                }
                 key={store.id}
                 value={store.id}
               >
