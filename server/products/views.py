@@ -116,4 +116,3 @@ class DeleteProductImageView(DestroyAPIView):
 		"""Get Queryset"""
 		product = Product.objects.get(id=self.kwargs.get('product'))
 		return ProductImage.objects.filter(product=product)
->>>>>>> transactions
