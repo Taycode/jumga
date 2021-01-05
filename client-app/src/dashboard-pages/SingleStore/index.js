@@ -10,6 +10,8 @@ const SingleStore = () => {
             <h5 className="dashboard-header mb-5"> Single store</h5>
           </Col>
         </Row>
+
+        {/* Fetch products that belong to store here */}
       </Container>
     </>
   );

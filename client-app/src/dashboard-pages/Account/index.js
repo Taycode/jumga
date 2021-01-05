@@ -11,6 +11,8 @@ const Account = () => {
             <h5 className="dashboard-header mb-5"> Account</h5>
           </Col>
         </Row>
+
+        {/* <ProfileForm /> */}
       </Container>
     </>
   );
