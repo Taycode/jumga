@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'users',
     'stores',
     'products',
+    'payment',
     'cloudinary'
 ]
 
@@ -191,3 +192,8 @@ cloudinary.config(
   api_key=os.getenv('CLOUDINARY_API_KEY'),
   api_secret=os.getenv('CLOUDINARY_API_SECRET')
 )
+
+
+FLUTTERWAVE_SECRET_KEY = os.getenv('flutterwave_secret_key')
+FLUTTERWAVE_PUBLIC_KEY = os.getenv('flutterwave_public_key')
+FLUTTERWAVE_ENCRYPTION_KEY = os.getenv('flutterwave_encryption_key')
