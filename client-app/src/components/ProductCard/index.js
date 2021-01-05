@@ -3,13 +3,14 @@ import "./styles.scss";
 import { Link, useRouter } from "../../util/router";
 import { getCurrency, formatMoney } from "../../util/helper-functions";
 import { getRating, handleDeleteProduct } from "./helper";
+import { ADD_PRODUCT } from "../../util/constants";
 
 const image1 =
   "http://bestjquery.com/tutorial/product-grid/demo9/images/img-1.jpg";
 const image2 =
   "http://bestjquery.com/tutorial/product-grid/demo9/images/img-2.jpg";
 
-const ProductCard = ({ product, removeproduct }) => {
+const ProductCard = ({ product, removeproduct, setShowModal }) => {
   const { name, price, country, rating, id } = product;
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -29,7 +30,18 @@ const ProductCard = ({ product, removeproduct }) => {
                 </span>
               </li>
 
-              <li onClick={() => {}}>
+              <li
+                onClick={() => {
+                  setShowModal({
+                    show: true,
+                    modalId: ADD_PRODUCT,
+                    data: {
+                      productData: product,
+                      editProduct: true,
+                    },
+                  });
+                }}
+              >
                 <span data-tip="Edit Product">
                   <i className="fa fa-edit"></i>
                 </span>

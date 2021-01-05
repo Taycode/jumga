@@ -46,7 +46,11 @@ const Products = ({ setShowModal }) => {
             </div>
           </Col>
         </Row>
-        <ProductList products={products} removeproduct={removeProduct} />
+        <ProductList
+          products={products}
+          setShowModal={setShowModal}
+          removeproduct={removeProduct}
+        />
       </Container>
     </>
   );

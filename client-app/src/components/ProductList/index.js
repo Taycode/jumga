@@ -4,7 +4,7 @@ import "./styles.scss";
 import ProductCard from "./../ProductCard";
 import { sampleProducts } from "../../util/static-data";
 
-const ProductList = ({ products, removeproduct }) => {
+const ProductList = ({ products, removeproduct, setShowModal }) => {
   return (
     <>
       <div className="product-list-section">
@@ -13,6 +13,7 @@ const ProductList = ({ products, removeproduct }) => {
             <ProductCard
               removeproduct={removeproduct}
               key={product.id}
+              setShowModal={setShowModal}
               product={product}
             />
           ))}

@@ -5,8 +5,13 @@ import { handleProductCreation } from "./helper";
 import { Context as ProductsContext } from "./../../contexts/productContext";
 import { Context as StoresContext } from "./../../contexts/storeContext";
 import { SUPPORTED_COUNTRIES } from "../../util/constants";
+import { useAuth } from "../../util/auth";
 
 const AddStore = ({ setShowModal, data }) => {
+  const {
+    user: { country },
+  } = useAuth();
+
   const { register, handleSubmit, errors, getValues } = useForm();
   const [loading, setLoading] = useState(false);
   const { editProduct = false, productData = {} } = data;
@@ -24,7 +29,7 @@ const AddStore = ({ setShowModal, data }) => {
 
   const submit = (formData) => {
     return handleProductCreation(
-      { ...productData, ...formData },
+      { ...productData, ...formData, country },
       setLoading,
       setShowModal,
       addNewProduct,
@@ -59,7 +64,7 @@ const AddStore = ({ setShowModal, data }) => {
         <FormGroup>
           <label
             className={errors.currency ? "error-label" : "label"}
-            htmlFor="Currency "
+            htmlFor="Store "
           >
             Store
           </label>
@@ -75,32 +80,6 @@ const AddStore = ({ setShowModal, data }) => {
                 value={store.id}
               >
                 {store.name}
-              </option>
-            ))}
-          </select>
-        </FormGroup>
-
-        <FormGroup>
-          <label
-            className={errors.currency ? "error-label" : "label"}
-            htmlFor="Currency "
-          >
-            Price Value Currency
-          </label>
-          <select
-            ref={register({ required: true })}
-            className="form-control"
-            name="country"
-          >
-            {SUPPORTED_COUNTRIES.map((country) => (
-              <option
-                selected={
-                  productData.country === country.code ? "selected" : false
-                }
-                key={country.code}
-                value={country.code}
-              >
-                {country.currency}
               </option>
             ))}
           </select>
@@ -143,6 +122,7 @@ const AddStore = ({ setShowModal, data }) => {
             rows="10"
             className="form-control"
             name="description"
+            defaultValue={productData?.description}
           />
         </FormGroup>
 
