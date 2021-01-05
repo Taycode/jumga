@@ -2,7 +2,7 @@
 
 
 from rest_framework import serializers
-from .models import Product
+from .models import Product, ProductImage
 from stores.models import Store
 
 
@@ -30,7 +30,8 @@ class ListAndViewProductSerializer(serializers.ModelSerializer):
 		"""Customize Response"""
 		data = super(ListAndViewProductSerializer, self).to_representation(instance)
 		data.update({
-			'country': instance.store.owner.country
+			'country': instance.store.owner.country,
+			'images': ProductImageSerializer(ProductImage.objects.filter(product=instance), many=True).data
 		})
 		return data
 
@@ -46,4 +47,15 @@ class BasicProductSerializer(serializers.ModelSerializer):
 	class Meta:
 		"""Meta Class"""
 		model = Product
+		fields = '__all__'
+
+
+class ProductImageSerializer(serializers.ModelSerializer):
+	"""Serializer for creating PRoduct Images"""
+
+	product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all(), required=False)
+
+	class Meta:
+		"""Meta Class"""
+		model = ProductImage
 		fields = '__all__'
