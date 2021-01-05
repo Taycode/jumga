@@ -1,6 +1,11 @@
 import { notifyUser } from "../../../util/helper-functions";
 import { addProduct, editProduct } from "../../../util/operations/product";
 
+export const handleStoreSelected = async (storeId, setvalue) => {
+  await setvalue("storeId", storeId);
+  return "selected";
+};
+
 export const handleProductCreation = async (
   formData,
   setLoading,

@@ -41,15 +41,16 @@ const editAStore = (dispatch) => (storeData) => {
   dispatch({ type: "EDIT_A_STORE", payload: storeData });
 };
 
-const fetchAllStores = (dispatch) => async () => {
+const fetchAllStores = (dispatch) => async (stores) => {
+  if (stores && stores.length > 0) {
+    return;
+  }
   const { status, data, message } = await fetchStores();
 
   !status && notifyUser({ status, message });
 
   data &&
     (await dispatch({ type: "FETCH_STORES_SUCCESSFULLY", payload: data }));
-  // useMemo(() => {
-  // }, [data, status, message]);
 };
 
 export const { Context, Provider } = createDataContext(

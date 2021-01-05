@@ -21,7 +21,7 @@ const ProductList = ({ products, removeproduct, setShowModal }) => {
           ) : (
             <Col className="text-center">
               {" "}
-              Add a product to any store you own !
+              Add a product for them to appear here !
             </Col>
           )}
         </Row>

@@ -1,0 +1,17 @@
+.products-top-section {
+  display: flex;
+  padding: 3%;
+  justify-content: stretch;
+  margin-bottom: 3%;
+
+  form {
+    flex: 5;
+  }
+  div {
+    flex: 1;
+    margin: 0% 1%;
+    .btn {
+      width: 100%;
+    }
+  }
+}

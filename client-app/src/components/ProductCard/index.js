@@ -19,12 +19,12 @@ const ProductCard = ({ product, removeproduct, setShowModal }) => {
       <div className="col-md-4 col-sm-6">
         <div className=" shadow product-grid">
           <div className="product-image">
-            <Link to={`/dashboard/product/${id}`}>
+            <Link to={`/dashboard/products/${id}`}>
               <img className="pic-1" alt={name} src={image1} />
               <img className="pic-2" alt={name} src={image2} />
             </Link>
             <ul className="social">
-              <li onClick={() => router.push(`/dashboard/product/${id}`)}>
+              <li onClick={() => router.push(`/dashboard/products/${id}`)}>
                 <span data-tip="View Product">
                   <i className="fa fa-eye"></i>
                 </span>
