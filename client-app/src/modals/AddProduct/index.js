@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { FormGroup, Button, Spinner } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { handleProductCreation } from "./helper";
@@ -18,7 +18,9 @@ const AddStore = ({ setShowModal, data }) => {
     fetchAllStores,
   } = useContext(StoresContext);
 
-  fetchAllStores();
+  useEffect(() => {
+    fetchAllStores();
+  }, []);
 
   const submit = (formData) => {
     return handleProductCreation(

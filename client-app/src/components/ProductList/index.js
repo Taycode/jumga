@@ -4,13 +4,17 @@ import "./styles.scss";
 import ProductCard from "./../ProductCard";
 import { sampleProducts } from "../../util/static-data";
 
-const ProductList = () => {
+const ProductList = ({ products, removeproduct }) => {
   return (
     <>
       <div className="product-list-section">
         <Row>
-          {sampleProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
+          {products.map((product) => (
+            <ProductCard
+              removeproduct={removeproduct}
+              key={product.id}
+              product={product}
+            />
           ))}
         </Row>
       </div>

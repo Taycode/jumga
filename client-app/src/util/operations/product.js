@@ -1,9 +1,9 @@
 import { apiRequest } from "../apiRequest";
 
 export const fetchProducts = () => {
-  return apiRequest("/products/all/", "GET");
+  return apiRequest("/store/14/product/all/", "GET");
 };
-
+// 14
 export const fetchStoreProducts = (storeId) => {
   return apiRequest(`/store/${storeId}/product/all/`, "GET");
 };

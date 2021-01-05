@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles.scss";
 import { Link, useRouter } from "../../util/router";
-import { getCurrency } from "../../util/helper-functions";
-import { getRating } from "./helper";
+import { getCurrency, formatMoney } from "../../util/helper-functions";
+import { getRating, handleDeleteProduct } from "./helper";
 
-const ProductCard = ({
-  product: { image1, image2, name, price, country, rating, id },
-}) => {
+const image1 =
+  "http://bestjquery.com/tutorial/product-grid/demo9/images/img-1.jpg";
+const image2 =
+  "http://bestjquery.com/tutorial/product-grid/demo9/images/img-2.jpg";
+
+const ProductCard = ({ product, removeproduct }) => {
+  const { name, price, country, rating, id } = product;
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   return (
     <>
@@ -30,7 +35,11 @@ const ProductCard = ({
                 </span>
               </li>
 
-              <li onClick={() => {}}>
+              <li
+                onClick={() => {
+                  handleDeleteProduct(product, setLoading, removeproduct);
+                }}
+              >
                 <span data-tip="Delete Product">
                   <i className="fa fa-trash"></i>
                 </span>
@@ -41,13 +50,19 @@ const ProductCard = ({
           </div>
           <ul className="rating">{getRating(rating)}</ul>
           <div className="product-content">
-            <h3 className="title">
-              <Link to={`/product/${id}`}>{name}</Link>
-            </h3>
-            <div className="price mb-3">
-              {getCurrency(country)} {price}
-              {/* <span>$20.00</span> */}
-            </div>
+            {loading ? (
+              <div className="text-center p-5"> Please Wait</div>
+            ) : (
+              <>
+                <h3 className="title">
+                  <Link to={`/product/${id}`}>{name}</Link>
+                </h3>
+                <div className="price mb-3">
+                  {getCurrency(country)} {formatMoney(price)}
+                  {/* <span>$20.00</span> */}
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>
