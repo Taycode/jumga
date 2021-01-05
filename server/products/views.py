@@ -4,6 +4,7 @@ from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView,
 from .serializers import CreateProductSerializer, ListAndViewProductSerializer, BasicProductSerializer
 from .models import Product
 from stores.models import Store
+from rest_framework.permissions import IsAuthenticated
 
 
 class CreateProductView(CreateAPIView):
@@ -68,3 +69,13 @@ class GlobalListProductsView(ListAPIView):
 	"""View for listing Products"""
 	serializer_class = ListAndViewProductSerializer
 	queryset = Product.objects.all()
+
+
+class SellerListProductsView(ListAPIView):
+	"""View for listing Products"""
+	serializer_class = ListAndViewProductSerializer
+	permission_classes = (IsAuthenticated, )
+
+	def get_queryset(self):
+		"""Get Queryset"""
+		return Product.objects.filter(store__owner=self.request.user)
