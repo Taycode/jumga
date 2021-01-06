@@ -1,7 +1,8 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import ProfileForm from "../../components/ProfileForm";
 
-const Account = () => {
+const Account = ({ user }) => {
   return (
     <>
       {" "}
@@ -12,7 +13,7 @@ const Account = () => {
           </Col>
         </Row>
 
-        {/* <ProfileForm /> */}
+        <ProfileForm user={user} />
       </Container>
     </>
   );

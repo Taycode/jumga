@@ -1,0 +1,22 @@
+@import "../../styles/global.scss";
+
+.profile-sections-nav {
+  list-style: none;
+  padding: 5%;
+  border-right: 1px solid map-get($theme-colors, "secondary");
+  li {
+    color: map-get($theme-colors, "secondary");
+    font-weight: 600;
+    padding: 9%;
+    cursor: pointer;
+    font-size: 80%;
+    // letter-spacing: 1px;
+  }
+}
+.active-section {
+  color: map-get($theme-colors, "dark") !important;
+}
+.profile-card {
+  padding: 5%;
+  height: 70vh;
+}
