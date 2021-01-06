@@ -122,4 +122,28 @@ class UserDetailsSerializer(serializers.ModelSerializer):
 		"""Meta Class"""
 
 		model = User
-		fields = ('first_name', 'last_name', 'role', 'email', 'country', )
+		fields = (
+			'first_name',
+			'last_name',
+			'role',
+			'email',
+			'country',
+			'account_name',
+			'account_bank',
+			'account_number'
+		)
+
+
+class UpdateBankDetailSerializer(serializers.ModelSerializer):
+	"""Serializer for updating serializer"""
+
+	class Meta:
+		"""Meta Class"""
+
+		model = User
+		fields = (
+			'id',
+			'account_bank',
+			'account_name',
+			'account_number',
+		)
