@@ -4,7 +4,8 @@ role_choices = (
 		('rider', 'rider'),
 		('seller', 'seller'),
 		('admin', 'admin'),
-		('superuser', 'superuser')
+		('superuser', 'superuser'),
+		('buyer', 'buyer')
 )
 
 DEFAULT_USER_ROLE = 'seller'

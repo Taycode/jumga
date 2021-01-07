@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'stores',
     'products',
     'payment',
+    'orders',
     'cloudinary'
 ]
 
