@@ -1,5 +1,17 @@
-export const handleFormSubmission = (formData, setLoading) => {
+import { editDetails } from "../../../util/operations/account";
+import { notifyUser } from "../../../util/helper-functions";
+
+export const handleFormSubmission = async (formData, setLoading) => {
   setLoading(true);
+
+  const response = await editDetails(formData);
+
+  response && notifyUser(response);
+
+  if (response && response.status) {
+    //
+  }
+  return setLoading(false);
 };
 
 export const personalDetails = [
