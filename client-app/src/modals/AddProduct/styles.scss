@@ -1,0 +1,39 @@
+.btn-bs-file {
+  position: relative;
+}
+.upload-btn {
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.upload-btn input[type="file"] {
+  position: absolute;
+
+  top: -9999999;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  width: 0;
+  height: 0;
+  outline: none;
+  cursor: inherit;
+}
+.upload-img {
+  width: 60%;
+  margin: auto;
+  height: auto;
+  display: block;
+  margin-bottom: 5%;
+}
+.file-name {
+  word-wrap: break-word;
+}
+.upload-card {
+  padding: 20%;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  width: 100%;
+  text-align: center;
+}
+.upload-button {
+  width: 100%;
+  font-weight: 600;
+}

@@ -27,6 +27,15 @@ export const editProduct = (productdata) => {
   );
 };
 
+export const addProductImage = (imageData, productdata) => {
+  const { storeId, id } = productdata;
+  return apiRequest(
+    `/store/${storeId}/product/${id}/image/create/`,
+    "POST",
+    imageData
+  );
+};
+
 export const fetchSingleProduct = (productdata) => {
   const { storeId, productId } = productdata;
   return apiRequest(`/store/${storeId}/product/${productId}/`, "GET");

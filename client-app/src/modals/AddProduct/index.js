@@ -5,13 +5,15 @@ import { handleProductCreation } from "./helper";
 import { Context as ProductsContext } from "./../../contexts/productContext";
 import { Context as StoresContext } from "./../../contexts/storeContext";
 import { useAuth } from "../../util/auth";
+import uploadImg from "../../assets/icons/upload.png";
+import "./styles.scss";
 
 const AddStore = ({ setShowModal, data }) => {
   const {
     user: { country },
   } = useAuth();
 
-  const { register, handleSubmit, errors, setValue } = useForm();
+  const { register, handleSubmit, errors, getValues } = useForm();
   const [loading, setLoading] = useState(false);
   const { editProduct = false, productData = {} } = data;
 
@@ -130,6 +132,30 @@ const AddStore = ({ setShowModal, data }) => {
           />
         </FormGroup>
 
+        <div className="upload-card mb-4">
+          <label className="upload-btn mb-3">
+            <img
+              className="upload-img"
+              src={uploadImg}
+              alt="Upload file icon"
+            />
+            <span className="mt-3 file-name">
+              {errors.images
+                ? "Please select a images to upload"
+                : getValues().images
+                ? "Images selected"
+                : "Select file"}
+            </span>
+            <input
+              type="file"
+              ref={register({ required: true })}
+              accept=".png, .jpeg, .jpg,"
+              name="images"
+              multiple="multiple"
+              // onChange={(e) => setFileName(e.target.files[0].name)}
+            />
+          </label>
+        </div>
         <Button
           variant="primary"
           block={true}
