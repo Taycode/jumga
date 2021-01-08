@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include('users.urls')),
     path('store/', include('stores.urls')),
+    path('order/', include('orders.urls')),
     path('all-products/', GlobalListProductsView.as_view())
 ]

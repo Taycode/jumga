@@ -11,6 +11,7 @@ djangorestframework==3.12.2
 idna==2.10
 oauthlib==3.1.0
 psycopg2-binary==2.8.6
+pycrypto==2.6.1
 python-dotenv==0.15.0
 python3-openid==3.2.0
 pytz==2020.5
