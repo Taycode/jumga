@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Row, Col, Card } from "react-bootstrap";
+import { formatStatsArray, statHeadings } from "./helper";
 import "./styles.scss";
 import StatCard from "../StatCard";
 
-const statHeadings = ["Stores", "Products", "Sales", "Balance", "Earnings"];
-
 const OverviewCard = ({ user }) => {
   const { first_name } = user;
+  const [stats, setStats] = useState(false);
+
+  useEffect(() => {
+    user && setStats(formatStatsArray(user));
+  }, [user]);
   return (
     <Row>
       <Col>
@@ -18,7 +22,13 @@ const OverviewCard = ({ user }) => {
 
           <div className="overview-card__stats-section">
             {statHeadings.map((heading, i) => {
-              return <StatCard heading={heading} key={i} />;
+              return (
+                <StatCard
+                  stat={stats ? stats[i] : 0}
+                  heading={heading}
+                  key={i}
+                />
+              );
             })}
           </div>
         </Card>
