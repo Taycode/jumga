@@ -4,6 +4,8 @@
 from rest_framework import serializers
 from products.models import Product
 from orders.models import ProductsInCart
+from payment.serializers import CollectCardDetails
+from orders.mixins import OrderProductMixin
 
 
 class AddToCartSerializer(serializers.Serializer):
@@ -46,3 +48,10 @@ class BasicCartSerializer(serializers.ModelSerializer):
 
 		model = ProductsInCart
 		fields = '__all__'
+
+
+class MakeOrderWithCardSerializer(OrderProductMixin, CollectCardDetails):
+	"""Make Order with Card Serializer"""
+
+	address = serializers.CharField()
+

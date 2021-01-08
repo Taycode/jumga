@@ -7,7 +7,7 @@ from rest_framework.generics import (
 	DestroyAPIView,
 	UpdateAPIView
 )
-from .serializers import AddToCartSerializer, ViewCartSerializer, BasicCartSerializer
+from .serializers import AddToCartSerializer, ViewCartSerializer, BasicCartSerializer, MakeOrderWithCardSerializer
 from .models import ProductsInCart
 
 
@@ -53,6 +53,17 @@ class UpdateProductInCartAPIView(UpdateAPIView):
 	"""View for Updating products in cart"""
 
 	serializer_class = ViewCartSerializer
+
+	def get_queryset(self):
+		"""Get Queryset"""
+
+		return ProductsInCart.objects.filter(user=self.request.user)
+
+
+class MakeOrderWithCardAPIView(CreateAPIView):
+	"""View for Making Order"""
+
+	serializer_class = MakeOrderWithCardSerializer
 
 	def get_queryset(self):
 		"""Get Queryset"""
