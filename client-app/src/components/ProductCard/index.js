@@ -3,15 +3,10 @@ import "./styles.scss";
 import { Link, useRouter } from "../../util/router";
 import { getCurrency, formatMoney } from "../../util/helper-functions";
 import { getRating, handleDeleteProduct } from "./helper";
-import { ADD_PRODUCT } from "../../util/constants";
-
-const image1 =
-  "http://bestjquery.com/tutorial/product-grid/demo9/images/img-1.jpg";
-const image2 =
-  "http://bestjquery.com/tutorial/product-grid/demo9/images/img-2.jpg";
+import { ADD_PRODUCT, CLOUDINARY_IMAGE_PREPEND } from "../../util/constants";
 
 const ProductCard = ({ product, removeproduct, setShowModal }) => {
-  const { name, price, country, rating, id } = product;
+  const { name, price, country, rating, id, images } = product;
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   return (
@@ -20,8 +15,16 @@ const ProductCard = ({ product, removeproduct, setShowModal }) => {
         <div className=" shadow product-grid">
           <div className="product-image">
             <Link to={`/dashboard/products/${id}`}>
-              <img className="pic-1" alt={name} src={image1} />
-              <img className="pic-2" alt={name} src={image2} />
+              <img
+                className="pic-1"
+                alt={name}
+                src={`${CLOUDINARY_IMAGE_PREPEND}${images[0].image}`}
+              />
+              <img
+                className="pic-2"
+                alt={name}
+                src={`${CLOUDINARY_IMAGE_PREPEND}${images[1].image}`}
+              />
             </Link>
             <ul className="social">
               <li onClick={() => router.push(`/dashboard/products/${id}`)}>

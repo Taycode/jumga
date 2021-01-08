@@ -13,14 +13,17 @@ export const handleStoreSelected = async (storeId, setvalue) => {
 const handleFormData = async (formdata) => {
   const docData = new FormData();
 
-  console.log(formdata);
   const { images } = formdata;
+  const imagesArray = [];
   for (let i = 0; i < images.length; i++) {
-    docData.set("image", images[0], images[0].name);
+    docData.set("image", images[i], images[i].name);
 
     const response = await addProductImage(docData, formdata);
     console.log(`Resp ${i}`, response);
+    imagesArray.push(response.data);
   }
+  formdata.images = imagesArray;
+  return formdata;
 };
 
 export const handleProductCreation = async (
@@ -40,10 +43,15 @@ export const handleProductCreation = async (
   response && notifyUser(response);
 
   if (response && response.status) {
-    await handleFormData({ ...formData, ...response.data });
+    const productsDataWithImages = await handleFormData({
+      ...formData,
+      ...response.data,
+    });
     setLoading(false);
 
-    shouldEdit ? editAProduct(formData) : addNewProduct(response.data);
+    shouldEdit
+      ? editAProduct(productsDataWithImages)
+      : addNewProduct(productsDataWithImages);
     return setShowModal({
       show: false,
     });

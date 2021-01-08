@@ -1,22 +1,22 @@
-import { sampleProducts } from "../../../util/static-data";
 import { deleteProduct } from "../../../util/operations/product";
 import { notifyUser } from "../../../util/helper-functions";
+import { CLOUDINARY_IMAGE_PREPEND } from "../../../util/constants";
 
 export const formatGalleryimages = (product) => {
-  const { image1, image2 } = sampleProducts[0];
+  const { images } = product;
 
-  const images = [
-    {
-      original: image1,
-      thumbnail: image1,
-    },
-    {
-      original: image2,
-      thumbnail: image2,
-    },
-  ];
+  const imagesArray = [];
 
-  return images;
+  for (let i = 0; i < images.length; i++) {
+    const imageData = {
+      original: `${CLOUDINARY_IMAGE_PREPEND}${images[i].image}`,
+      thumbnail: `${CLOUDINARY_IMAGE_PREPEND}${images[i].image}`,
+    };
+
+    imagesArray.push(imageData);
+  }
+
+  return imagesArray;
 };
 
 export const handleDeleteProduct = async (
