@@ -1,7 +1,7 @@
 import React from "react";
 import { Row, Col, Button } from "react-bootstrap";
 import ImageGallery from "react-image-gallery";
-import { getCurrency } from "../../util/helper-functions";
+import { getCurrency, formatMoney } from "../../util/helper-functions";
 import { formatGalleryimages } from "./helper";
 import "./styles.scss";
 
@@ -25,10 +25,10 @@ const SingleProduct = ({ product }) => {
             <h3> {name}</h3>
             <span className="product-price">
               {" "}
-              {getCurrency(country)} {price}{" "}
+              {getCurrency(country)} {formatMoney(price)}{" "}
             </span>
             <p> {description}</p>
-            <Button variant="primary">
+            <Button onClick={() => alert("wahala")} variant="primary">
               {" "}
               <i className="fa fa-shopping-cart"></i> Add to Cart{" "}
             </Button>

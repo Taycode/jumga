@@ -43,7 +43,7 @@ const ProductsPage = (props) => {
             </div>
           </Col>
           <Col md={10}>
-            <AllProducts products={products} />
+            <AllProducts products={products.sort((a, b) => b.id - a.id)} />
           </Col>
         </Row>
       </Section>

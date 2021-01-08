@@ -25,3 +25,11 @@ export const notifyUser = (response) => {
     ? toast.success(response.message ? response.message : "Success")
     : toast.error(response.message);
 };
+
+// Function to format monetary values with commas
+export function formatMoney(x) {
+  if (x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+  return 0;
+}

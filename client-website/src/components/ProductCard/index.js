@@ -1,7 +1,11 @@
 import React from "react";
 import "./styles.scss";
 import { Link, useRouter } from "../../util/router";
-import { getCurrency, handleAddToCart } from "../../util/helper-functions";
+import {
+  getCurrency,
+  handleAddToCart,
+  formatMoney,
+} from "../../util/helper-functions";
 import { getRating } from "./helper";
 import { CLOUDINARY_IMAGE_PREPEND } from "./../../util/constants";
 
@@ -49,7 +53,7 @@ const ProductCard = ({
               <Link to={`/product/${id}`}>{name}</Link>
             </h3>
             <div className="price mb-3">
-              {getCurrency(country)} {price}
+              {getCurrency(country)} {formatMoney(price)}
               {/* <span>$20.00</span> */}
             </div>
           </div>
