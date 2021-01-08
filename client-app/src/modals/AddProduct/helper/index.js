@@ -10,6 +10,10 @@ export const handleStoreSelected = async (storeId, setvalue) => {
   return "selected";
 };
 
+export const calculateImagesLength = (images, setCount) => {
+  return setCount(images.length);
+};
+
 const handleFormData = async (formdata) => {
   const docData = new FormData();
 
@@ -40,14 +44,13 @@ export const handleProductCreation = async (
     ? await editProduct(formData)
     : await addProduct(formData);
 
-  response && notifyUser(response);
-
   if (response && response.status) {
     const productsDataWithImages = await handleFormData({
       ...formData,
       ...response.data,
     });
     setLoading(false);
+    await notifyUser(response);
 
     shouldEdit
       ? editAProduct(productsDataWithImages)
@@ -56,7 +59,8 @@ export const handleProductCreation = async (
       show: false,
     });
   }
-  setLoading(false);
+
+  notifyUser(response);
 
   return setLoading(false);
 };
