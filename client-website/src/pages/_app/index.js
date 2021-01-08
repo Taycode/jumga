@@ -12,37 +12,45 @@ import SingleProduct from "../SingleProduct";
 import logoBlue from "../../assets/img/logo-blue.png";
 import "../../util/analytics.js";
 import "../../styles/global.scss";
+import ContextProvider from "../../contexts/ContextProviders";
 
 function App(props) {
   return (
-    <Router>
-      <>
-        <NavbarCustom bg="light" variant="light" expand="md" logo={logoBlue} />
-        <Switch>
-          <Route exact path="/" component={IndexPage} />
+    <ContextProvider>
+      <Router>
+        <>
+          <NavbarCustom
+            bg="light"
+            variant="light"
+            expand="md"
+            logo={logoBlue}
+          />
+          <Switch>
+            <Route exact path="/" component={IndexPage} />
 
-          <Route exact path="/rider" component={RidersHomePage} />
+            <Route exact path="/rider" component={RidersHomePage} />
 
-          <Route path="/products" component={ProductsPage} />
+            <Route path="/products" component={ProductsPage} />
 
-          <Route path="/cart" component={CartPage} />
+            <Route path="/cart" component={CartPage} />
 
-          <Route path="/product/:productId" component={SingleProduct} />
+            <Route path="/product/:productId" component={SingleProduct} />
 
-          <Route component={NotFoundPage} />
-        </Switch>
+            <Route component={NotFoundPage} />
+          </Switch>
 
-        <Footer
-          bg="light"
-          textColor="dark"
-          size="md"
-          bgImage=""
-          bgImageOpacity={1}
-          copyright={`© ${new Date().getFullYear()} Jumga`}
-          logo={logoBlue}
-        />
-      </>
-    </Router>
+          <Footer
+            bg="light"
+            textColor="dark"
+            size="md"
+            bgImage=""
+            bgImageOpacity={1}
+            copyright={`© ${new Date().getFullYear()} Jumga`}
+            logo={logoBlue}
+          />
+        </>
+      </Router>
+    </ContextProvider>
   );
 }
 

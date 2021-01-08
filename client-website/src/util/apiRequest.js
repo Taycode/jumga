@@ -35,17 +35,17 @@ export async function apiRequest(path, method = "GET", data, params) {
       cancelToken: source.token,
       data,
     });
+
     const {
-      data: { status, message },
+      data: { message },
     } = response;
-    if (status) {
-      return {
-        status: true,
-        data: response.data.data,
-        message,
-      };
-    }
+    return {
+      status: true,
+      data: response.data,
+      message,
+    };
   } catch (err) {
+    // console.log(err);
     return {
       status: false,
       message: err.response ? err.response.data.message : err.message,

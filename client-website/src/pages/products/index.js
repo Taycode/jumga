@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Section from "../../components/Section";
 import { Col, Row, Button } from "react-bootstrap";
 import AllProducts from "../../components/AllProducts";
 import SearchProducts from "../../components/SearchProducts";
 import "./styles.scss";
 import { useRouter } from "../../util/router";
+import { Context as ProductsContext } from "./../../contexts/productsContext";
 
 const ProductsPage = (props) => {
   const router = useRouter();
+
+  const {
+    state: { products },
+    fetchAllProducts,
+  } = useContext(ProductsContext);
+
+  useEffect(() => {
+    fetchAllProducts(products);
+  }, []);
+
   return (
     <>
       <Section className="p-3">
@@ -32,7 +43,7 @@ const ProductsPage = (props) => {
             </div>
           </Col>
           <Col md={10}>
-            <AllProducts />
+            <AllProducts products={products} />
           </Col>
         </Row>
       </Section>

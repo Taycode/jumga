@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { APP_DEV_URL, APP_PROD_URL, currencyMap } from "../constants";
 
 export const getAppRedirect = (role, authType) => {
@@ -13,4 +14,14 @@ export const getCurrency = (country) => {
 
 export const handleAddToCart = (productId) => {
   alert("Alaye e no dey work ");
+};
+
+/**
+ * Function to toast API response messages
+ * @param {response object} response
+ */
+export const notifyUser = (response) => {
+  response.status
+    ? toast.success(response.message ? response.message : "Success")
+    : toast.error(response.message);
 };

@@ -3,19 +3,29 @@ import "./styles.scss";
 import { Link, useRouter } from "../../util/router";
 import { getCurrency, handleAddToCart } from "../../util/helper-functions";
 import { getRating } from "./helper";
+import { CLOUDINARY_IMAGE_PREPEND } from "./../../util/constants";
 
 const ProductCard = ({
-  product: { image1, image2, name, price, country, rating, id },
+  product: { images, name, price, country, rating, id },
 }) => {
   const router = useRouter();
+
   return (
     <>
       <div className="col-md-4 col-sm-6">
         <div className="product-grid">
           <div className="product-image">
             <Link to={`/product/${id}`}>
-              <img className="pic-1" alt={name} src={image1} />
-              <img className="pic-2" alt={name} src={image2} />
+              <img
+                className="pic-1"
+                alt={name}
+                src={`${CLOUDINARY_IMAGE_PREPEND}${images[0].image}`}
+              />
+              <img
+                className="pic-2"
+                alt={name}
+                src={`${CLOUDINARY_IMAGE_PREPEND}${images[1].image}`}
+              />
             </Link>
             <ul className="social">
               <li onClick={() => router.push(`/product/${id}`)}>
