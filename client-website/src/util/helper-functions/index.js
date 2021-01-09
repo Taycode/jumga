@@ -54,7 +54,7 @@ export const handleQuantityChange = async (
     }
     return notifyUser({
       status: false,
-      message: `${product.name} is not even in cart.`,
+      message: `${product.name} is not in cart.`,
     });
   }
 
@@ -62,6 +62,7 @@ export const handleQuantityChange = async (
     if (itemInCart.quantity === 0) {
       return;
     }
+
     if (itemInCart.quantity === 1) {
       updateCart(
         cart.filter(

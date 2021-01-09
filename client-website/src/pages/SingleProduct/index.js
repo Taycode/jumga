@@ -4,6 +4,7 @@ import SingleProduct from "../../components/SingleProduct";
 import { sampleProducts } from "../../util/static-data";
 import PageLoader from "../../components/PageLoader";
 import { Context as ProductsContext } from "./../../contexts/productsContext";
+import { Context as CartContext } from "./../../contexts/cartContext";
 
 const SingleProductPage = ({
   match: {
@@ -15,10 +16,13 @@ const SingleProductPage = ({
     fetchAllProducts,
   } = useContext(ProductsContext);
 
+  const { fetchCartItems } = useContext(CartContext);
+
   const [product, setProduct] = useState(false);
 
   useEffect(() => {
     fetchAllProducts(products);
+    fetchCartItems();
   }, []);
 
   useEffect(() => {
