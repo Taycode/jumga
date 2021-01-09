@@ -42,6 +42,12 @@ $grid-breakpoints: (
 // Image gallery
 @import "~react-image-gallery/styles/scss/image-gallery.scss";
 
+// Toastify
+@import "~react-toastify/dist/ReactToastify.css";
+
+// Custom Styling
+@import "./toasts.scss";
+
 #root {
   // Full height of screen and flex so that we can push footer
   // to the bottom even if content is shorter than screen
