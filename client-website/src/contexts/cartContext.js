@@ -18,6 +18,16 @@ const fetchCartItems = (dispatch) => async () => {
   dispatch({ type: "FETCH_CART_ITEMS", payload: currentCart });
 };
 
+const removeCartitem = (dispatch) => async (productId) => {
+  const currentCart = JSON.parse(localStorage.getItem("cart"));
+  const filteredCart = await currentCart.filter(
+    (products) => parseInt(products.id) !== productId
+  );
+
+  localStorage.setItem("cart", JSON.stringify(filteredCart));
+  dispatch({ type: "FETCH_CART_ITEMS", payload: filteredCart });
+};
+
 const addItemToCart = (dispatch) => async (product) => {
   const currentCart = JSON.parse(localStorage.getItem("cart"));
   if (!currentCart) {
@@ -41,6 +51,7 @@ export const { Context, Provider } = createDataContext(
     fetchCartItems,
     addItemToCart,
     updateCartItems,
+    removeCartitem,
   },
   {
     cart: [],
