@@ -14,6 +14,13 @@ import "../../util/analytics.js";
 import "../../styles/global.scss";
 import ContextProvider from "../../contexts/ContextProviders";
 
+import { toast } from "react-toastify";
+
+toast.configure({
+  autoClose: 3000,
+  hideProgressBar: true,
+});
+
 function App(props) {
   return (
     <ContextProvider>

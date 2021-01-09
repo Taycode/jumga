@@ -23,7 +23,7 @@ const ProductCard = ({ product, removeproduct, setShowModal }) => {
               <img
                 className="pic-2"
                 alt={name}
-                src={`${CLOUDINARY_IMAGE_PREPEND}${images[1].image}`}
+                src={`${CLOUDINARY_IMAGE_PREPEND}${images[1]?.image}`}
               />
             </Link>
             <ul className="social">

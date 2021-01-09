@@ -54,4 +54,11 @@ export const currencyMap = {
   uk: "$",
 };
 
+export const COUNTRY_CODE_MAP = {
+  nigeria: "NG",
+  ghana: "GH",
+  kenya: "KE",
+  uk: "UK",
+};
+
 export const CLOUDINARY_IMAGE_PREPEND = "https://res.cloudinary.com/taycode/";

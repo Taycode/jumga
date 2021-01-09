@@ -21,6 +21,7 @@ const Account = lazy(() => import("../dashboard-pages/Account"));
 const SingleStore = lazy(() => import("../dashboard-pages/SingleStore"));
 const Orders = lazy(() => import("../dashboard-pages/Orders"));
 const SingleProduct = lazy(() => import("../dashboard-pages/SingleProduct"));
+const Support = lazy(() => import("../dashboard-pages/Support"));
 
 const routes = {
   SELLER: [
@@ -79,7 +80,7 @@ const routes = {
     {
       path: "/support",
       name: "Support",
-      component: Account,
+      component: Support,
       getLinkIcon: (selected) =>
         selected === "sidebar-active" ? supportActiveIcon : supportIcon,
     },

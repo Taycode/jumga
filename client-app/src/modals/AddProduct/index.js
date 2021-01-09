@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { FormGroup, Button, Spinner } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { handleProductCreation } from "./helper";
+import { handleProductCreation, calculateImagesLength } from "./helper";
 import { Context as ProductsContext } from "./../../contexts/productContext";
 import { Context as StoresContext } from "./../../contexts/storeContext";
 import { useAuth } from "../../util/auth";
@@ -16,6 +16,8 @@ const AddStore = ({ setShowModal, data }) => {
   const { register, handleSubmit, errors, getValues } = useForm();
   const [loading, setLoading] = useState(false);
   const { editProduct = false, productData = {} } = data;
+
+  const [count, setCount] = useState(false);
 
   const { addNewProduct, editAProduct } = useContext(ProductsContext);
 
@@ -141,18 +143,31 @@ const AddStore = ({ setShowModal, data }) => {
             />
             <span className="mt-3 file-name">
               {errors.images
-                ? "Please select a images to upload"
-                : getValues().images
-                ? "Images selected"
+                ? errors.images && getValues().images.length === 1
+                  ? "Please select more than one image"
+                  : "Please select images to upload"
+                : count > 0
+                ? `${count} image(s) selected`
                 : "Select file"}
             </span>
             <input
               type="file"
-              ref={register({ required: true })}
+              ref={register({
+                required: true,
+                validate: (value) => {
+                  if (value && value.length > 1) {
+                    return true;
+                  } else {
+                    return false;
+                  }
+                },
+              })}
               accept=".png, .jpeg, .jpg,"
               name="images"
               multiple="multiple"
-              // onChange={(e) => setFileName(e.target.files[0].name)}
+              onChange={(e) =>
+                calculateImagesLength(getValues().images, setCount)
+              }
             />
           </label>
         </div>

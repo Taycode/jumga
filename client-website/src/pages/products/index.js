@@ -6,6 +6,7 @@ import SearchProducts from "../../components/SearchProducts";
 import "./styles.scss";
 import { useRouter } from "../../util/router";
 import { Context as ProductsContext } from "./../../contexts/productsContext";
+import { Context as CartContext } from "./../../contexts/cartContext";
 
 const ProductsPage = (props) => {
   const router = useRouter();
@@ -15,8 +16,11 @@ const ProductsPage = (props) => {
     fetchAllProducts,
   } = useContext(ProductsContext);
 
+  const { fetchCartItems } = useContext(CartContext);
+
   useEffect(() => {
     fetchAllProducts(products);
+    fetchCartItems();
   }, []);
 
   return (
@@ -43,7 +47,7 @@ const ProductsPage = (props) => {
             </div>
           </Col>
           <Col md={10}>
-            <AllProducts products={products} />
+            <AllProducts products={products.sort((a, b) => b.id - a.id)} />
           </Col>
         </Row>
       </Section>
