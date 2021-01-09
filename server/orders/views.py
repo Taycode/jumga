@@ -69,3 +69,8 @@ class MakeOrderWithCardAPIView(CreateAPIView):
 		"""Get Queryset"""
 
 		return ProductsInCart.objects.filter(user=self.request.user)
+
+	def perform_create(self, serializer):
+		"""Customize CReate"""
+		amount = serializer.calculate_total_price_for_orders(self.request.user)
+		serializer.save(user=self.request.user, amount=amount)

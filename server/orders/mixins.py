@@ -14,7 +14,7 @@ class OrderProductMixin(object):
 	def calculate_total_price_for_orders(self, user):
 		"""Calculates Total Price for orders"""
 		orders = self.get_all_products_in_cart(user)
-		orders.annotate(total_price=F('price') * F('quantity'))
+		orders = orders.annotate(total_price=F('product__price') * F('quantity'))
 		total_price_sum = orders.aggregate(total_price_sum=Sum('total_price'))['total_price_sum']
 		return total_price_sum
 
