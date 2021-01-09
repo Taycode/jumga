@@ -38,7 +38,6 @@ class CollectCardDetails(serializers.Serializer):
 		}
 		flutterwave = Flutterwave()
 		response = flutterwave.charge_card(data)
-		print(response)
 		return response
 
 	def create(self, validated_data):
