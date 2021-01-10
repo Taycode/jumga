@@ -113,3 +113,24 @@ export function formatMoney(x) {
   }
   return 0;
 }
+
+export const getCartTotal = (products) => {
+  const totalPrices = {};
+
+  // country, price
+
+  for (let i = 0; i < products.length; i++) {
+    const { country, price, quantity } = products[i];
+    if (totalPrices[country]) {
+      totalPrices[country] =
+        parseInt(totalPrices[country]) + parseInt(price) * quantity;
+    } else {
+      totalPrices[country] = parseInt(price) * quantity;
+    }
+  }
+
+  const subtotalArray = [Object.keys(totalPrices), Object.values(totalPrices)];
+
+  // console.log(subtotalArray);
+  return subtotalArray;
+};
