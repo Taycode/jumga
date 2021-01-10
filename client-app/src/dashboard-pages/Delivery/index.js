@@ -1,7 +1,8 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import DeliveryList from "../../components/DeliveryList";
 
-const Orders = ({ setShowModal }) => {
+const Delivery = ({ setShowModal }) => {
   return (
     <>
       <Container className="mb-5">
@@ -10,9 +11,10 @@ const Orders = ({ setShowModal }) => {
             <h5 className="dashboard-header mb-5"> Deliveries</h5>
           </Col>
         </Row>
+        <DeliveryList deliveries={[]} setShowModal={setShowModal} />
       </Container>
     </>
   );
 };
 
-export default Orders;
+export default Delivery;
