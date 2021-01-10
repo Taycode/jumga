@@ -47,3 +47,27 @@ class CollectCardDetails(serializers.Serializer):
 	def update(self, instance, validated_data):
 		"""Update Method"""
 		pass
+
+
+class ConfirmCardPaymentSerializer(serializers.Serializer):
+	"""Serializer for confirming payment"""
+
+	otp = serializers.CharField()
+	flw_ref = serializers.CharField()
+
+	def validate_charge(self):
+		"""Validate charge"""
+		self.is_valid(raise_exception=True)
+		flutterwave = Flutterwave()
+		flw_ref = self.validated_data.get('flw_ref')
+		otp = self.validated_data.get('otp')
+		response = flutterwave.validate_charge(flw_ref, otp)
+		return response
+
+	def update(self, instance, validated_data):
+		"""Update Method"""
+		pass
+
+	def create(self, validated_data):
+		"""Create Method"""
+		pass

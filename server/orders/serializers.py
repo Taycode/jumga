@@ -7,6 +7,7 @@ from orders.models import ProductsInCart, Order
 from payment.models import Transaction
 from payment.serializers import CollectCardDetails
 from orders.mixins import OrderProductMixin
+from payment.flutterwave import Flutterwave
 
 
 class AddToCartSerializer(serializers.Serializer):
@@ -77,4 +78,7 @@ class MakeOrderWithCardSerializer(OrderProductMixin, CollectCardDetails):
 			total_cost=amount,
 			user=user
 		)
+		self.create_product_in_orders(user, order)
 		return order
+
+
