@@ -7,7 +7,7 @@ import NotFoundPage from "../not-found/index.js";
 import ProductsPage from "../products";
 import Footer from "../../components/Footer";
 import CartPage from "../cart";
-import SingleProduct from "../SingleProduct";
+import SingleProduct from "../single-product";
 
 import logoBlue from "../../assets/img/logo-blue.png";
 import "../../util/analytics.js";
