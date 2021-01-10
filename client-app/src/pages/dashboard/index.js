@@ -20,7 +20,7 @@ toast.configure({
   hideProgressBar: true,
 });
 
-const verified = false;
+const verified = true;
 
 const DashboardPage = () => {
   const { user, logout } = useAuth();
@@ -49,7 +49,7 @@ const DashboardPage = () => {
           userData: user,
         },
       });
-  }, []);
+  }, [user]);
 
   return (
     <>
@@ -89,30 +89,31 @@ const DashboardPage = () => {
                       );
                     })}
 
-                  <div className="m-5 text-center alert-warning alert">
-                    <p>
-                      You account has not been verified. You need to pay $20
-                      dollars to get your account verified, so you could start
-                      sellingt your products. <br />
-                    </p>
-                    <Button
-                      className="text-dark text-decoration-none"
-                      variant="link"
-                      onClick={() =>
-                        setShowModal({
-                          show: true,
-                          modalId: MAKE_PAYMENT,
-                          data: {
-                            userData: user,
-                          },
-                        })
-                      }
-                    >
-                      {" "}
-                      Get Verified Now{" "}
-                    </Button>
-                  </div>
-
+                  {user.role === "seller" && !verified && (
+                    <div className="m-5 text-center alert-warning alert">
+                      <p>
+                        You account has not been verified. You need to pay $20
+                        to get your account verified, so you could start
+                        sellingt your products. <br />
+                      </p>
+                      <Button
+                        className="text-dark text-decoration-none"
+                        variant="link"
+                        onClick={() =>
+                          setShowModal({
+                            show: true,
+                            modalId: MAKE_PAYMENT,
+                            data: {
+                              userData: user,
+                            },
+                          })
+                        }
+                      >
+                        {" "}
+                        Get Verified Now{" "}
+                      </Button>
+                    </div>
+                  )}
                   <Redirect from="/dashboard" to="/dashboard/overview" />
 
                   <Route path="*" render={() => <NotFoundPage />} />
