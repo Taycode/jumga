@@ -2,8 +2,6 @@
 
 from rest_framework import serializers
 from .flutterwave import Flutterwave
-from orders.models import Order
-from .models import Transaction
 
 
 class ChargeCardSerializer(serializers.Serializer):
@@ -73,27 +71,3 @@ class ValidateCardChargeSerializer(serializers.Serializer):
 	def create(self, validated_data):
 		"""Create Method"""
 		pass
-
-
-class PayForCheckoutWithCardSerializer(ValidateCardChargeSerializer):
-	"""Serializer for pay for checkouts with card"""
-
-	order_id = serializers.IntegerField(write_only=True)
-
-	def update(self, instance, validated_data):
-		"""Update Method"""
-		payment_response = self.validate_charge()
-		amount = payment_response.get('data').get('amount')
-		jumga_reference = payment_response.get('data').get('tx_ref')
-		flutterwave_reference = payment_response.get('data').get('flw_ref')
-
-		transaction = Transaction.objects.create(
-			flutterwave_reference=flutterwave_reference,
-			jumga_reference=jumga_reference,
-			amount=amount,
-			transaction_type='product_purchase',
-		)
-
-		instance.transaction = transaction
-		instance.save()
-		return instance
