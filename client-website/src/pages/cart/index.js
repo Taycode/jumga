@@ -43,13 +43,15 @@ const CartPage = () => {
             removeCartitem={removeCartitem}
           />
         </Col>
-        <Col>
-          <OrderForm
-            orderItems={cart}
-            country={country}
-            clearCartItems={clearCartItems}
-          />
-        </Col>
+        {cart && cart.length > 0 && (
+          <Col>
+            <OrderForm
+              orderItems={cart}
+              country={country}
+              clearCartItems={clearCartItems}
+            />
+          </Col>
+        )}
       </Row>
     </Section>
   );

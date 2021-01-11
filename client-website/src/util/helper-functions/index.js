@@ -19,9 +19,10 @@ export const getCurrency = (country) => {
 };
 
 export const handleAddToCart = async (product, addToCart, cart) => {
-  const item = cart.find(
-    (cartItem) => parseInt(cartItem.id) === parseInt(product.id)
-  );
+  const item =
+    cart && cart.length
+      ? cart.find((cartItem) => parseInt(cartItem.id) === parseInt(product.id))
+      : false;
 
   if (item) {
     return notifyUser({
@@ -30,7 +31,9 @@ export const handleAddToCart = async (product, addToCart, cart) => {
     });
   }
   product.quantity = 1;
+
   await addToCart(product);
+
   return notifyUser({
     status: true,
     message: `${product.name} has been added to cart.`,
@@ -44,9 +47,10 @@ export const handleQuantityChange = async (
   addToCart,
   updateCart
 ) => {
-  const itemInCart = cart.find(
-    (cartItem) => parseInt(cartItem.id) === parseInt(product.id)
-  );
+  const itemInCart =
+    cart && cart.length
+      ? cart.find((cartItem) => parseInt(cartItem.id) === parseInt(product.id))
+      : false;
 
   if (!itemInCart) {
     if (mode === INCREASE) {
@@ -87,7 +91,7 @@ export const handleQuantityChange = async (
 };
 
 export const getCurrentItemQuantity = (product, cart) => {
-  const itemInCart = cart.find(
+  const itemInCart = cart?.find(
     (cartItem) => parseInt(cartItem.id) === parseInt(product.id)
   );
 
@@ -117,7 +121,12 @@ export function formatMoney(x) {
 export const getCartTotal = (products) => {
   const totalPrices = {};
 
-  // country, price
+  if (products.length === 0) {
+    return [
+      ["uk", "nigeria"],
+      [0, 0],
+    ];
+  }
 
   for (let i = 0; i < products.length; i++) {
     const { country, price, quantity } = products[i];

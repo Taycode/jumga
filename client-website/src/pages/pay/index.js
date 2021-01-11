@@ -24,7 +24,7 @@ const PaymentPage = ({}) => {
       <span className=" go-back-icon" onClick={() => history.goBack()}>
         <i className="fa fa-arrow-left"></i> Back
       </span>
-      <h3 className="text-center mb-5"> Order </h3>
+      <h3 className="text-center mb-5"> Make payments </h3>
       <Row className="p-5">
         <Col>{/* 
             

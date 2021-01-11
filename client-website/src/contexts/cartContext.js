@@ -3,7 +3,9 @@ import createDataContext from "./createContext";
 const reducer = (state, action) => {
   switch (action.type) {
     case "ADD_PRODUCT_TO_CART":
-      return { cart: [...state.cart, action.payload] };
+      return {
+        cart: state.cart ? [...state.cart, action.payload] : [action.payload],
+      };
     case "FETCH_CART_ITEMS":
       return { cart: action.payload };
     case "CLEAR_CART":
