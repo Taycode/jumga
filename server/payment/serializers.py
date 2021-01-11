@@ -1,7 +1,10 @@
 """Payment Serializers"""
 
+import random
+import string
 from rest_framework import serializers
 from .flutterwave import Flutterwave
+from .models import Transaction
 
 
 class ChargeCardSerializer(serializers.Serializer):
@@ -15,8 +18,22 @@ class ChargeCardSerializer(serializers.Serializer):
 	amount = serializers.CharField(write_only=True)
 	fullname = serializers.CharField(write_only=True)
 	email = serializers.EmailField(write_only=True)
-	tx_ref = serializers.CharField(write_only=True)
 	pin = serializers.CharField(write_only=True)
+
+	@staticmethod
+	def get_random_string(length=16):
+		"""Generate Random String"""
+		letters = string.ascii_lowercase
+		result_str = ''.join(random.choice(letters) for i in range(length))
+		result_str = f'jumga_{result_str}'
+		transactions = Transaction.objects.filter(jumga_reference=result_str)
+
+		while transactions.exists():
+			result_str = ''.join(random.choice(letters) for i in range(length))
+			result_str = f'jumga_{result_str}'
+			transactions = Transaction.objects.filter(jumga_reference=result_str)
+
+		return result_str
 
 	def charge_card(self):
 		"""Charge Card"""
@@ -30,7 +47,7 @@ class ChargeCardSerializer(serializers.Serializer):
 			"amount": self.validated_data.get('amount'),
 			"fullname": self.validated_data.get('fullname'),
 			"email": self.validated_data.get('email'),
-			"tx_ref": self.validated_data.get('tx_ref'),
+			"tx_ref": self.get_random_string(),
 			"authorization": {
 				"mode": "pin",
 				"pin": self.validated_data.get('pin')
