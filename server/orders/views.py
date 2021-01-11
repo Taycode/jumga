@@ -7,9 +7,15 @@ from rest_framework.generics import (
 	DestroyAPIView,
 	UpdateAPIView
 )
-from rest_framework.views import APIView
-from .serializers import AddToCartSerializer, ViewCartSerializer, BasicCartSerializer, MakeOrderWithCardSerializer
+from .serializers import (
+	AddToCartSerializer,
+	ViewCartSerializer,
+	BasicCartSerializer,
+	MakeOrderWithCardSerializer,
+	CreateOrderOnCheckoutSerializer
+)
 from .models import ProductsInCart
+from products.models import Product
 
 
 class AddToCartAPIView(CreateAPIView):
@@ -77,5 +83,15 @@ class MakeOrderWithCardAPIView(CreateAPIView):
 		serializer.save(user=self.request.user, amount=amount)
 
 
-class ConfirmCardPaymentAPIView(APIView):
-	"""Confirm Card Payment View"""
+class CheckoutAPIView(CreateAPIView):
+	"""View for Checkout"""
+
+	serializer_class = CreateOrderOnCheckoutSerializer
+
+	def get_queryset(self):
+		"""Get Queryset"""
+
+		return Product.objects.all()
+
+# class ConfirmCardPaymentAPIView(APIView):
+# 	"""Confirm Card Payment View"""

@@ -20,10 +20,11 @@ class ProductsInCart(models.Model):
 class Order(models.Model):
 	"""Order Model"""
 
-	transaction = models.OneToOneField(Transaction, on_delete=models.CASCADE)
+	transaction = models.OneToOneField(Transaction, on_delete=models.CASCADE, blank=True)
 	address = models.TextField()
 	total_cost = models.DecimalField(decimal_places=2, max_digits=12, default=0)
-	user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+	phone_number = models.CharField(null=True, max_length=16)
+	email = models.EmailField(null=True)
 
 
 class ProductsInOrder(models.Model):
