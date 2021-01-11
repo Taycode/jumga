@@ -7,6 +7,7 @@ from rest_framework.generics import (
 	DestroyAPIView,
 	UpdateAPIView
 )
+from rest_framework.views import APIView
 from .serializers import AddToCartSerializer, ViewCartSerializer, BasicCartSerializer, MakeOrderWithCardSerializer
 from .models import ProductsInCart
 
@@ -69,3 +70,12 @@ class MakeOrderWithCardAPIView(CreateAPIView):
 		"""Get Queryset"""
 
 		return ProductsInCart.objects.filter(user=self.request.user)
+
+	def perform_create(self, serializer):
+		"""Customize CReate"""
+		amount = serializer.calculate_total_price_for_orders(self.request.user)
+		serializer.save(user=self.request.user, amount=amount)
+
+
+class ConfirmCardPaymentAPIView(APIView):
+	"""Confirm Card Payment View"""

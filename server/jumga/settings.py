@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'products',
     'payment',
     'orders',
+    'rider',
     'cloudinary'
 ]
 

@@ -3,9 +3,11 @@
 
 from rest_framework import serializers
 from products.models import Product
-from orders.models import ProductsInCart
+from orders.models import ProductsInCart, Order
+from payment.models import Transaction
 from payment.serializers import CollectCardDetails
 from orders.mixins import OrderProductMixin
+from payment.flutterwave import Flutterwave
 
 
 class AddToCartSerializer(serializers.Serializer):
@@ -54,4 +56,29 @@ class MakeOrderWithCardSerializer(OrderProductMixin, CollectCardDetails):
 	"""Make Order with Card Serializer"""
 
 	address = serializers.CharField()
+
+	def create(self, validated_data):
+		"""Create Order"""
+		user = validated_data.get('user')
+		amount = int(validated_data.get('amount'))
+		payment_response = self.charge_card(amount)
+		jumga_reference = payment_response.get('data').get('tx_ref')
+		flutterwave_reference = payment_response.get('data').get('flw_ref')
+
+		transaction = Transaction.objects.create(
+			flutterwave_reference=flutterwave_reference,
+			jumga_reference=jumga_reference,
+			amount=amount,
+			transaction_type='product_purchase',
+			user_involved=user
+		)
+		order = Order.objects.create(
+			transaction=transaction,
+			address=validated_data.get('address'),
+			total_cost=amount,
+			user=user
+		)
+		self.create_product_in_orders(user, order)
+		return order
+
 
