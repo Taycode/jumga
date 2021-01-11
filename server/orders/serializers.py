@@ -7,6 +7,16 @@ from orders.models import Order, ProductsInOrder
 from payment.models import Transaction
 
 
+class ViewOrderSerializer(serializers.ModelSerializer):
+	"""Serializer for viewing details about an order"""
+
+	class Meta:
+		"""Meta Class"""
+		model = Order
+		fields = '__all__'
+		depth = 1
+
+
 class CreateProductInOrderSerializer(serializers.Serializer):
 	"""Serializer for creating products in orders"""
 	product_id = serializers.IntegerField(write_only=True)
