@@ -4,7 +4,7 @@ from rest_framework import serializers
 from .flutterwave import Flutterwave
 
 
-class CollectCardDetails(serializers.Serializer):
+class ChargeCardSerializer(serializers.Serializer):
 	"""Serializer for collecting card details"""
 
 	card_number = serializers.CharField(write_only=True)
@@ -12,13 +12,13 @@ class CollectCardDetails(serializers.Serializer):
 	expiry_month = serializers.CharField(write_only=True)
 	expiry_year = serializers.CharField(write_only=True)
 	currency = serializers.CharField(default='NGN', write_only=True)
-	amount = serializers.CharField(write_only=True, required=False)
+	amount = serializers.CharField(write_only=True)
 	fullname = serializers.CharField(write_only=True)
 	email = serializers.EmailField(write_only=True)
 	tx_ref = serializers.CharField(write_only=True)
 	pin = serializers.CharField(write_only=True)
 
-	def charge_card(self, amount):
+	def charge_card(self):
 		"""Charge Card"""
 		self.is_valid(raise_exception=True)
 		data = {
@@ -27,7 +27,7 @@ class CollectCardDetails(serializers.Serializer):
 			"expiry_month": self.validated_data.get('expiry_month'),
 			"expiry_year": self.validated_data.get('expiry_year'),
 			"currency": self.validated_data.get('currency'),
-			"amount": amount,
+			"amount": self.validated_data.get('amount'),
 			"fullname": self.validated_data.get('fullname'),
 			"email": self.validated_data.get('email'),
 			"tx_ref": self.validated_data.get('tx_ref'),
@@ -49,7 +49,7 @@ class CollectCardDetails(serializers.Serializer):
 		pass
 
 
-class ConfirmCardPaymentSerializer(serializers.Serializer):
+class ValidateCardChargeSerializer(serializers.Serializer):
 	"""Serializer for confirming payment"""
 
 	otp = serializers.CharField()

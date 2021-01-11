@@ -3,84 +3,14 @@
 
 from rest_framework.generics import (
 	CreateAPIView,
-	ListAPIView,
-	DestroyAPIView,
 	UpdateAPIView
 )
 from .serializers import (
-	AddToCartSerializer,
-	ViewCartSerializer,
-	BasicCartSerializer,
-	MakeOrderWithCardSerializer,
-	CreateOrderOnCheckoutSerializer
+	CreateOrderOnCheckoutSerializer,
+	ConfirmOrderPaymentSerializer
 )
-from .models import ProductsInCart
+from .models import Order
 from products.models import Product
-
-
-class AddToCartAPIView(CreateAPIView):
-	"""View for adding to cart"""
-
-	serializer_class = AddToCartSerializer
-
-	def get_queryset(self):
-		"""Get Queryset"""
-
-		return ProductsInCart.objects.filter(user=self.request.user)
-
-	def perform_create(self, serializer):
-		"""Customize Create"""
-
-		serializer.save(user=self.request.user)
-
-
-class ViewCartAPIView(ListAPIView):
-	"""View for viewing cart"""
-
-	serializer_class = ViewCartSerializer
-
-	def get_queryset(self):
-		"""Get Queryset"""
-
-		return ProductsInCart.objects.filter(user=self.request.user)
-
-
-class DeleteProductInCartAPIView(DestroyAPIView):
-	"""View for deleting products in cart"""
-
-	serializer_class = BasicCartSerializer
-
-	def get_queryset(self):
-		"""Get Queryset"""
-
-		return ProductsInCart.objects.filter(user=self.request.user)
-
-
-class UpdateProductInCartAPIView(UpdateAPIView):
-	"""View for Updating products in cart"""
-
-	serializer_class = ViewCartSerializer
-
-	def get_queryset(self):
-		"""Get Queryset"""
-
-		return ProductsInCart.objects.filter(user=self.request.user)
-
-
-class MakeOrderWithCardAPIView(CreateAPIView):
-	"""View for Making Order"""
-
-	serializer_class = MakeOrderWithCardSerializer
-
-	def get_queryset(self):
-		"""Get Queryset"""
-
-		return ProductsInCart.objects.filter(user=self.request.user)
-
-	def perform_create(self, serializer):
-		"""Customize CReate"""
-		amount = serializer.calculate_total_price_for_orders(self.request.user)
-		serializer.save(user=self.request.user, amount=amount)
 
 
 class CheckoutAPIView(CreateAPIView):
@@ -93,5 +23,18 @@ class CheckoutAPIView(CreateAPIView):
 
 		return Product.objects.all()
 
-# class ConfirmCardPaymentAPIView(APIView):
-# 	"""Confirm Card Payment View"""
+
+class ConfirmOrderPaymentAPIView(UpdateAPIView):
+	"""View for confirming the payment of an order"""
+
+	serializer_class = ConfirmOrderPaymentSerializer
+
+	def get_object(self):
+		"""Get Order Instance"""
+
+		return Order.objects.get(id=self.request.data.get('order_id'))
+
+	def get_queryset(self):
+		"""Get Queryset"""
+
+		return Order.objects.filter(id=self.request.data.get('order_id'))
