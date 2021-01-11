@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./styles.scss";
 import { Link, useRouter } from "../../util/router";
 import { getCurrency, formatMoney } from "../../util/helper-functions";
-import { getRating, handleDeleteProduct } from "./helper";
+import { handleDeleteProduct } from "./helper";
 import { ADD_PRODUCT, CLOUDINARY_IMAGE_PREPEND } from "../../util/constants";
 
 const ProductCard = ({ product, removeproduct, setShowModal }) => {
@@ -60,10 +60,13 @@ const ProductCard = ({ product, removeproduct, setShowModal }) => {
                 </span>
               </li>
             </ul>
-            {/* <span className="product-new-label">Sale</span> */}
+            <span className="product-new-label">
+              {" "}
+              {rating ? rating : 0} <li className="fa fa-star"></li>{" "}
+            </span>
             {/* <span className="product-discount-label">20%</span> */}
           </div>
-          <ul className="rating">{getRating(rating)}</ul>
+
           <div className="product-content">
             {loading ? (
               <div className="text-center p-5"> Please Wait</div>
