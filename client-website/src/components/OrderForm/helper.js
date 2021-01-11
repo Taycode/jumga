@@ -64,7 +64,9 @@ export const handleCreateOrder = async (
     const {
       data: { id },
     } = response;
+
     clearCartItems(id);
+
     router.push(`/pay/${id}`);
   }
 
