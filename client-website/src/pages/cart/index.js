@@ -5,12 +5,10 @@ import { Context as CartContext } from "./../../contexts/cartContext";
 import CartItems from "../../components/CartItems";
 import { useHistory } from "react-router-dom";
 import { useCountryData } from "../../util/useCountryData";
-import { useRouter } from "../../util/router";
-import { handleCheckout } from "./helper";
+import OrderForm from "../../components/OrderForm";
 
 const CartPage = () => {
   const history = useHistory();
-  const router = useRouter();
 
   const [country, setCountry] = useState();
 
@@ -18,6 +16,7 @@ const CartPage = () => {
     state: { cart },
     fetchCartItems,
     removeCartitem,
+    clearCartItems,
   } = useContext(CartContext);
 
   useEffect(() => {
@@ -35,15 +34,20 @@ const CartPage = () => {
       <span className=" go-back-icon" onClick={() => history.goBack()}>
         <i className="fa fa-arrow-left"></i> Back
       </span>
-      <h3 className="text-center mb-5"> Cart </h3>
+
       <Row className="p-5">
         <Col>
           <CartItems
             country={country}
             products={cart}
             removeCartitem={removeCartitem}
-            handleCheckout={handleCheckout}
-            router={router}
+          />
+        </Col>
+        <Col>
+          <OrderForm
+            orderItems={cart}
+            country={country}
+            clearCartItems={clearCartItems}
           />
         </Col>
       </Row>

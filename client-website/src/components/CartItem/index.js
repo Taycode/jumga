@@ -33,10 +33,6 @@ const CartItem = ({ product, removeCartitem }) => {
               src={`${CLOUDINARY_IMAGE_PREPEND}${images[0].image}`}
             />
           </div>
-          <div class="col-sm-10">
-            <h4 class="nomargin">{name} </h4>
-            <p>{description.slice(0, 100)}...</p>
-          </div>
         </div>
       </td>
       <td data-th="Price">

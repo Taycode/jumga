@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import Section from "../../components/Section";
 import { Row, Col } from "react-bootstrap";
-import { Context as OrderContext } from "./../../contexts/orderContext";
+import { Context as OrderContext } from "../../contexts/orderContext";
 
 import { useHistory } from "react-router-dom";
 // import { useRouter } from "../../util/router";
 
-const OrderPage = () => {
+const PaymentPage = ({}) => {
   const history = useHistory();
   //   const router = useRouter();
 
@@ -26,15 +26,13 @@ const OrderPage = () => {
       </span>
       <h3 className="text-center mb-5"> Order </h3>
       <Row className="p-5">
-        <Col>
-          {/* 
+        <Col>{/* 
             
-                Payment page / Delivery Details Page
-            */}
-        </Col>
+                Payment page 
+            */}</Col>
       </Row>
     </Section>
   );
 };
 
-export default OrderPage;
+export default PaymentPage;

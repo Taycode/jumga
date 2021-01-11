@@ -1,7 +1,7 @@
 import { apiRequest } from "../apiRequest";
 
 export const createOrder = (orderData) => {
-  return apiRequest(`/order/`, "POST", orderData);
+  return apiRequest(`/order/checkout/`, "POST", orderData);
 };
 
 export const fetchOrder = (orderId) => {

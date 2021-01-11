@@ -26,7 +26,6 @@ const ProductsPage = (props) => {
   return (
     <>
       <Section className="p-3">
-        <h3 className="text-center mb-5"> Products </h3>
         <Row>
           <Col md={2}>
             <div className="products-page-side">
