@@ -1,6 +1,22 @@
 import { createOrder } from "../../util/operations/order";
 import { notifyUser } from "../../util/helper-functions";
 
+const formatProductsData = (products) => {
+  const productsArray = [];
+  for (let i = 0; i < products.length; i++) {
+    const { id, quantity } = products[i];
+
+    const data = {
+      id,
+      quantity,
+    };
+
+    productsArray.push(data);
+  }
+
+  return productsArray;
+};
+
 export const handleCheckout = async (
   products,
   usersCountry,
@@ -8,7 +24,14 @@ export const handleCheckout = async (
   router
 ) => {
   setLoading(true);
-  const orderData = { products, country: usersCountry };
+
+  const formatedProductsData = await formatProductsData(products);
+
+  const orderData = {
+    products: formatedProductsData,
+    country: usersCountry.toLowerCase(),
+  };
+  console.log(orderData);
 
   const response = await createOrder(orderData);
 
@@ -16,6 +39,9 @@ export const handleCheckout = async (
 
   if (response.status) {
   }
+
+  //   Clear cart in localStorage
+  //    Save OrderId in localstorage;
   router.push(`/order/1`);
 
   setLoading(false);

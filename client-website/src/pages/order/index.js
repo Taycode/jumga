@@ -5,7 +5,6 @@ import { Context as OrderContext } from "./../../contexts/orderContext";
 
 import { useHistory } from "react-router-dom";
 // import { useRouter } from "../../util/router";
-import { handleCheckout } from "./helper";
 
 const OrderPage = () => {
   const history = useHistory();

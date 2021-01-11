@@ -15,8 +15,6 @@ export const useCountryData = () => {
         cancelToken: source.token,
       });
 
-      console.log(data.data);
-
       return data.data;
     } catch (err) {
       if (axios.isCancel(err)) {

@@ -8,6 +8,7 @@ import ProductsPage from "../products";
 import Footer from "../../components/Footer";
 import CartPage from "../cart";
 import SingleProduct from "../single-product";
+import Order from "../order";
 
 import logoBlue from "../../assets/img/logo-blue.png";
 import "../../util/analytics.js";
@@ -40,6 +41,8 @@ function App(props) {
             <Route path="/products" component={ProductsPage} />
 
             <Route path="/cart" component={CartPage} />
+
+            <Route path="/order" component={Order} />
 
             <Route path="/product/:productId" component={SingleProduct} />
 
