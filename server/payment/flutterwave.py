@@ -63,7 +63,7 @@ class Flutterwave(object):
 
 		response = self.make_request(endpoint, json.dumps(post_data))
 
-		return response.json()
+		return response
 
 	def validate_charge(self, flw_ref, otp):
 		"""
@@ -80,4 +80,4 @@ class Flutterwave(object):
 
 		response = self.make_request(endpoint, json.dumps(data))
 
-		return response.json()
+		return response

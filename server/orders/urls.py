@@ -7,7 +7,8 @@ from .views import (
 	ViewCartAPIView,
 	DeleteProductInCartAPIView,
 	UpdateProductInCartAPIView,
-	CheckoutAPIView
+	CheckoutAPIView,
+	ConfirmOrderPaymentAPIView
 )
 
 urlpatterns = [
@@ -15,5 +16,6 @@ urlpatterns = [
 	path('cart/add/', AddToCartAPIView.as_view()),
 	path('cart/delete/<int:pk>/', DeleteProductInCartAPIView.as_view()),
 	path('cart/update/<int:pk>/', UpdateProductInCartAPIView.as_view()),
-	path('cart/checkout/', CheckoutAPIView.as_view())
+	path('cart/checkout/', CheckoutAPIView.as_view()),
+	path('cart/checkout/confirm/', ConfirmOrderPaymentAPIView.as_view())
 ]

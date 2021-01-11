@@ -5,7 +5,7 @@ from rest_framework import serializers
 from products.models import Product
 from orders.models import ProductsInCart, Order, ProductsInOrder
 from payment.models import Transaction
-from payment.serializers import CollectCardDetails
+from payment.serializers import ChargeCardSerializer
 from orders.mixins import OrderProductMixin
 from payment.flutterwave import Flutterwave
 
@@ -52,7 +52,7 @@ class BasicCartSerializer(serializers.ModelSerializer):
 		fields = '__all__'
 
 
-class MakeOrderWithCardSerializer(OrderProductMixin, CollectCardDetails):
+class MakeOrderWithCardSerializer(OrderProductMixin, ChargeCardSerializer):
 	"""Make Order with Card Serializer"""
 
 	address = serializers.CharField()
@@ -61,7 +61,7 @@ class MakeOrderWithCardSerializer(OrderProductMixin, CollectCardDetails):
 		"""Create Order"""
 		user = validated_data.get('user')
 		amount = int(validated_data.get('amount'))
-		payment_response = self.charge_card(amount)
+		payment_response = self.charge_card()
 		jumga_reference = payment_response.get('data').get('tx_ref')
 		flutterwave_reference = payment_response.get('data').get('flw_ref')
 
@@ -136,3 +136,48 @@ class CreateOrderOnCheckoutSerializer(serializers.Serializer):
 	def update(self, instance, validated_data):
 		"""Update Method"""
 		pass
+
+
+class ViewTransactionSerializer(serializers.ModelSerializer):
+	"""Serializer for Viewing Transactions"""
+
+	class Meta:
+		"""MEta Class"""
+		model = Transaction
+		fields = ('flutterwave_reference', 'jumga_reference', 'amount', 'date', 'transaction_type', )
+
+
+class ConfirmOrderPaymentSerializer(serializers.Serializer):
+	"""Serializer for confirming an order has been paid for"""
+
+	transaction = serializers.PrimaryKeyRelatedField(read_only=True)
+	order_id = serializers.IntegerField(write_only=True)
+	flutterwave_reference = serializers.CharField(write_only=True)
+	jumga_reference = serializers.CharField(write_only=True)
+
+	def to_representation(self, instance):
+		"""Customize response"""
+		data = super(ConfirmOrderPaymentSerializer, self).to_representation(instance)
+		return ViewTransactionSerializer(Transaction.objects.get(id=data.get('transaction'))).data
+
+	def create(self, validated_data):
+		"""Create Method"""
+		pass
+
+	def update(self, instance, validated_data):
+		"""Update method"""
+
+		flutterwave_reference = validated_data.get('flutterwave_reference')
+		jumga_reference = validated_data.get('jumga_reference')
+		order = Order.objects.get(id=validated_data.get('order_id'))
+
+		transaction = Transaction.objects.create(
+			flutterwave_reference=flutterwave_reference,
+			jumga_reference=jumga_reference,
+			amount=order.total_cost,
+			transaction_type='product_purchase',
+		)
+
+		instance.transaction = transaction
+		instance.save()
+		return instance

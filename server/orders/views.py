@@ -12,9 +12,10 @@ from .serializers import (
 	ViewCartSerializer,
 	BasicCartSerializer,
 	MakeOrderWithCardSerializer,
-	CreateOrderOnCheckoutSerializer
+	CreateOrderOnCheckoutSerializer,
+	ConfirmOrderPaymentSerializer
 )
-from .models import ProductsInCart
+from .models import ProductsInCart, Order
 from products.models import Product
 
 
@@ -93,5 +94,18 @@ class CheckoutAPIView(CreateAPIView):
 
 		return Product.objects.all()
 
-# class ConfirmCardPaymentAPIView(APIView):
-# 	"""Confirm Card Payment View"""
+
+class ConfirmOrderPaymentAPIView(UpdateAPIView):
+	"""View for confirming the payment of an order"""
+
+	serializer_class = ConfirmOrderPaymentSerializer
+
+	def get_object(self):
+		"""Get Order Instance"""
+
+		return Order.objects.get(id=self.request.data.get('order_id'))
+
+	def get_queryset(self):
+		"""Get Queryset"""
+
+		return Order.objects.filter(id=self.request.data.get('order_id'))
