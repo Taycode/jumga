@@ -37,16 +37,19 @@ class CreateOrderOnCheckoutSerializer(serializers.Serializer):
 	phone_number = serializers.CharField()
 	email = serializers.CharField()
 	total_cost = serializers.IntegerField(read_only=True)
+	name = serializers.CharField()
 
 	def create(self, validated_data):
 		"""Create Method"""
 		address = validated_data.get('address')
 		email = validated_data.get('email')
 		phone_number = validated_data.get('phone_number')
+		name = validated_data.get('name')
 		order = Order.objects.create(
 			address=address,
 			phone_number=phone_number,
-			email=email
+			email=email,
+			name=name
 		)
 		orders = validated_data.get('orders')
 		product_in_order_serializer = CreateProductInOrderSerializer(data=orders, many=True)
