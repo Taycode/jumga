@@ -85,7 +85,7 @@ class MakeOrderWithCardSerializer(OrderProductMixin, CollectCardDetails):
 class CreateProductInOrderSerializer(serializers.Serializer):
 	"""Serializer for creating products in orders"""
 	product_id = serializers.IntegerField(write_only=True)
-	product = serializers.PrimaryKeyRelatedField(queryset=ProductsInOrder.objects.all(), read_only=True)
+	product = serializers.PrimaryKeyRelatedField(read_only=True)
 	quantity = serializers.IntegerField()
 	order_id = serializers.IntegerField(write_only=True, required=False)
 	order = serializers.PrimaryKeyRelatedField(read_only=True)
