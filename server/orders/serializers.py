@@ -3,7 +3,7 @@
 
 from rest_framework import serializers
 from products.models import Product
-from orders.models import ProductsInCart, Order
+from orders.models import ProductsInCart, Order, ProductsInOrder
 from payment.models import Transaction
 from payment.serializers import CollectCardDetails
 from orders.mixins import OrderProductMixin
@@ -82,3 +82,51 @@ class MakeOrderWithCardSerializer(OrderProductMixin, CollectCardDetails):
 		return order
 
 
+class CreateProductInOrderSerializer(serializers.Serializer):
+	"""Serializer for creating products in orders"""
+	product_id = serializers.IntegerField(write_only=True)
+	product = serializers.PrimaryKeyRelatedField(queryset=ProductsInOrder.objects.all(), read_only=True)
+	quantity = serializers.IntegerField()
+	order_id = serializers.IntegerField(write_only=True, required=False)
+	order = serializers.PrimaryKeyRelatedField(read_only=True)
+
+	def create(self, validated_data):
+		"""Create Method"""
+		order = Order.objects.get(id=validated_data.get('order_id'))
+		product = Product.objects.get(id=validated_data.get('product_id'))
+		quantity = validated_data.get('quantity')
+		return ProductsInOrder.objects.create(product=product, order=order, quantity=quantity)
+
+	def update(self, instance, validated_data):
+		"""Update Method"""
+		pass
+
+
+class CreateOrderOnCheckoutSerializer(serializers.Serializer):
+	"""Serializer for making orders"""
+
+	orders = serializers.ListField(child=serializers.DictField())
+	country = serializers.CharField()
+	address = serializers.CharField()
+	phone_number = serializers.CharField()
+	email = serializers.CharField()
+
+	def create(self, validated_data):
+		"""Create Method"""
+		address = validated_data.get('address')
+		email = validated_data.get('email')
+		phone_number = validated_data.get('phone_number')
+		order = Order.objects.create(
+			address=address,
+			phone_number=phone_number,
+			email=email
+		)
+		orders = validated_data.get('orders')
+		product_in_order_serializer = CreateProductInOrderSerializer(data=orders, many=True)
+		product_in_order_serializer.is_valid(raise_exception=True)
+		product_in_order_serializer.save(order_id=order.id)
+		return order
+
+	def update(self, instance, validated_data):
+		"""Update Method"""
+		pass

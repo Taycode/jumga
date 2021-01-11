@@ -57,7 +57,7 @@ class UserEditSerializer(serializers.ModelSerializer):
 	class Meta:
 		"""Meta Class"""
 		model = User
-		fields = ('username', 'email', 'role', 'first_name', 'last_name', )
+		fields = ('username', 'email', 'role', 'first_name', 'last_name', 'country')
 
 
 class CustomRegisterSerializer(RegisterSerializer):
@@ -66,6 +66,7 @@ class CustomRegisterSerializer(RegisterSerializer):
 	role = serializers.ChoiceField(role_choices, default=DEFAULT_USER_ROLE)
 	first_name = serializers.CharField(max_length=255, required=True)
 	last_name = serializers.CharField(max_length=255, required=True)
+	country = serializers.CharField(max_length=255, required=False)
 
 	def update(self, instance, validated_data):
 		"""
@@ -94,7 +95,8 @@ class CustomRegisterSerializer(RegisterSerializer):
 		data = {
 			'role': self.validated_data.get('role'),
 			'first_name': self.validated_data.get('first_name'),
-			'last_name': self.validated_data.get('last_name')
+			'last_name': self.validated_data.get('last_name'),
+			'country': self.validated_data.get('country')
 		}
 		serializer = UserEditSerializer(instance=user, data=data)
 		serializer.is_valid(raise_exception=True)
