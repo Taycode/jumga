@@ -8,6 +8,6 @@ from .views import (
 )
 
 urlpatterns = [
-	path('cart/checkout/', CheckoutAPIView.as_view()),
-	path('cart/checkout/confirm/', ConfirmOrderPaymentAPIView.as_view())
+	path('checkout/', CheckoutAPIView.as_view()),
+	path('checkout/confirm/', ConfirmOrderPaymentAPIView.as_view())
 ]
