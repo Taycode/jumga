@@ -1,6 +1,4 @@
 import createDataContext from "./createContext";
-import { notifyUser } from "../util/helper-functions";
-// import { fetchCartItems } from "../util/operations/cart";
 
 const reducer = (state, action) => {
   switch (action.type) {

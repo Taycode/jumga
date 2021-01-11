@@ -3,8 +3,8 @@ import Section from "../../components/Section";
 import SingleProduct from "../../components/SingleProduct";
 import { sampleProducts } from "../../util/static-data";
 import PageLoader from "../../components/PageLoader";
-import { Context as ProductsContext } from "./../../contexts/productsContext";
-import { Context as CartContext } from "./../../contexts/cartContext";
+import { Context as ProductsContext } from "../../contexts/productsContext";
+import { Context as CartContext } from "../../contexts/cartContext";
 
 const SingleProductPage = ({
   match: {

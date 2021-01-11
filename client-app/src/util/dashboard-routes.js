@@ -13,6 +13,8 @@ import userActiveIcon from "../assets/icons/user-active.png";
 import userIcon from "../assets/icons/user.png";
 import supportActiveIcon from "../assets/icons/support-active.png";
 import supportIcon from "../assets/icons/support.png";
+import deliverActiveIcon from "../assets/icons/delivery-active.png";
+import deliveryIcon from "../assets/icons/delivery.png";
 
 const Overview = lazy(() => import("../dashboard-pages/Overview"));
 const Stores = lazy(() => import("../dashboard-pages/Stores"));
@@ -22,6 +24,7 @@ const SingleStore = lazy(() => import("../dashboard-pages/SingleStore"));
 const Orders = lazy(() => import("../dashboard-pages/Orders"));
 const SingleProduct = lazy(() => import("../dashboard-pages/SingleProduct"));
 const Support = lazy(() => import("../dashboard-pages/Support"));
+const Delivery = lazy(() => import("../dashboard-pages/Delivery"));
 
 const routes = {
   SELLER: [
@@ -92,6 +95,13 @@ const routes = {
       component: Overview,
       getLinkIcon: (selected) =>
         selected === "sidebar-active" ? dashboardActiveIcon : dashboardIcon,
+    },
+    {
+      path: "/deliveries",
+      name: "Deliveries",
+      component: Delivery,
+      getLinkIcon: (selected) =>
+        selected === "sidebar-active" ? deliverActiveIcon : deliveryIcon,
     },
     {
       path: "/account",
