@@ -105,11 +105,13 @@ class CreateProductInOrderSerializer(serializers.Serializer):
 class CreateOrderOnCheckoutSerializer(serializers.Serializer):
 	"""Serializer for making orders"""
 
-	orders = serializers.ListField(child=serializers.DictField())
+	id = serializers.IntegerField(read_only=True)
+	orders = serializers.ListField(child=serializers.DictField(), write_only=True)
 	country = serializers.CharField()
 	address = serializers.CharField()
 	phone_number = serializers.CharField()
 	email = serializers.CharField()
+	total_cost = serializers.IntegerField(read_only=True)
 
 	def create(self, validated_data):
 		"""Create Method"""
@@ -125,6 +127,10 @@ class CreateOrderOnCheckoutSerializer(serializers.Serializer):
 		product_in_order_serializer = CreateProductInOrderSerializer(data=orders, many=True)
 		product_in_order_serializer.is_valid(raise_exception=True)
 		product_in_order_serializer.save(order_id=order.id)
+
+		# calculates total cost and saves
+		order.get_total_cost()
+
 		return order
 
 	def update(self, instance, validated_data):
