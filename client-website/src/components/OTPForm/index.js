@@ -3,12 +3,17 @@ import { FormGroup, Button, Spinner } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { handlePaymentVefirication } from "./helper";
 
-const OTPForm = ({}) => {
+const OTPForm = ({ orderDetails, setPaymentStep }) => {
   const { register, handleSubmit, errors } = useForm();
   const [loading, setLoading] = useState(false);
 
   const submit = (formData) => {
-    return handlePaymentVefirication(formData, setLoading);
+    return handlePaymentVefirication(
+      formData,
+      setLoading,
+      orderDetails,
+      setPaymentStep
+    );
   };
 
   return (
@@ -27,6 +32,7 @@ const OTPForm = ({}) => {
             className="form-control"
             type="number"
             name="otp"
+            defaultValue="12345"
           />
         </FormGroup>
 

@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import { formatMoney, getCurrency } from "../../util/helper-functions";
 import "./styles.scss";
 
-const OrderDetails = ({ order, handleCancleOrder }) => {
+const OrderDetails = ({ order, handleCancleOrder, paymentStep }) => {
   const { address, email, name, phone_number, total_cost, country } = order;
   return (
     <>
@@ -33,21 +33,24 @@ const OrderDetails = ({ order, handleCancleOrder }) => {
         </div>
 
         <div className="total-cost">
+          <sup className="total text-secondary"> Total</sup>{" "}
           {getCurrency(country)} {formatMoney(total_cost)}
         </div>
 
-        <div className="m-auto text-center">
-          <Button
-            onClick={() => {
-              handleCancleOrder();
-            }}
-            variant="link"
-            className="text-danger text-center cancle-order-btn text-decoration-none btn-sm"
-          >
-            {" "}
-            Cancel Order
-          </Button>
-        </div>
+        {paymentStep < 3 && (
+          <div className="m-auto text-center">
+            <Button
+              onClick={() => {
+                handleCancleOrder();
+              }}
+              variant="link"
+              className="text-danger text-center cancle-order-btn text-decoration-none btn-sm"
+            >
+              {" "}
+              Cancel Order
+            </Button>
+          </div>
+        )}
       </div>
     </>
   );

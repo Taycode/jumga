@@ -7,3 +7,7 @@ export const createOrder = (orderData) => {
 export const fetchOrder = (orderId) => {
   return apiRequest(`/order/${orderId}`, "GET");
 };
+
+export const confirmOrder = (orderData) => {
+  return apiRequest(`/order/checkout/confirm/`, "PATCH", orderData);
+};

@@ -9,6 +9,7 @@ import { useRouter } from "../../util/router";
 
 const PaymentPage = (props) => {
   const [loading, setLoading] = useState(false);
+  const [paymentStep, setPaymentStep] = useState(1);
   const { match } = props;
   const router = useRouter();
 
@@ -23,7 +24,6 @@ const PaymentPage = (props) => {
 
   const handleCancleOrder = () => {
     localStorage.removeItem("orderId");
-    alert(111);
     router.push("/products");
   };
 
@@ -41,10 +41,15 @@ const PaymentPage = (props) => {
               <OrderDetails
                 handleCancleOrder={handleCancleOrder}
                 order={order}
+                paymentStep={paymentStep}
               />
             </Col>
             <Col>
-              <PaymentCard order={order} />
+              <PaymentCard
+                order={order}
+                paymentStep={paymentStep}
+                setPaymentStep={setPaymentStep}
+              />
             </Col>
           </>
         )}
