@@ -6,9 +6,12 @@ import CartItems from "../../components/CartItems";
 import { useHistory } from "react-router-dom";
 import { useCountryData } from "../../util/useCountryData";
 import OrderForm from "../../components/OrderForm";
+import { useRouter } from "../../util/router";
+import { handleExistingOrder } from "./helper";
 
 const CartPage = () => {
   const history = useHistory();
+  const router = useRouter();
 
   const [country, setCountry] = useState();
 
@@ -21,6 +24,9 @@ const CartPage = () => {
 
   useEffect(() => {
     fetchCartItems();
+    const existingOrderId = localStorage.getItem("orderId");
+
+    existingOrderId && handleExistingOrder(existingOrderId, router);
   }, []);
 
   const countryData = useCountryData();

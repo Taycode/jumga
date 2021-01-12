@@ -42,7 +42,7 @@ function App(props) {
 
             <Route path="/cart" component={CartPage} />
 
-            <Route path="/pay" component={PaymentPage} />
+            <Route path="/pay/:orderId" component={PaymentPage} />
 
             <Route path="/product/:productId" component={SingleProduct} />
 

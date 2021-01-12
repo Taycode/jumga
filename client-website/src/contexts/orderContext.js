@@ -11,8 +11,8 @@ const reducer = (state, action) => {
   }
 };
 
-const fetchOrderDetails = (dispatch) => async () => {
-  const { status, data, message } = await fetchOrder();
+const fetchOrderDetails = (dispatch) => async (orderID) => {
+  const { status, data, message } = await fetchOrder(orderID);
 
   !status && notifyUser({ status, message });
 

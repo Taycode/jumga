@@ -11,3 +11,10 @@ export const currencyMap = {
 };
 
 export const CLOUDINARY_IMAGE_PREPEND = "https://res.cloudinary.com/taycode/";
+
+export const currencyCodes = {
+  nigeria: "NGN",
+  ghana: "GHS",
+  kenya: "KES",
+  uk: "USD",
+};
