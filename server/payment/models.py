@@ -23,4 +23,5 @@ class Transaction(models.Model):
 	)
 	user_involved = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 
-
+	def __str__(self):
+		return self.jumga_reference

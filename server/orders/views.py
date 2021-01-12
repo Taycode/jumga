@@ -3,69 +3,52 @@
 
 from rest_framework.generics import (
 	CreateAPIView,
-	ListAPIView,
-	DestroyAPIView,
-	UpdateAPIView
+	UpdateAPIView,
+	RetrieveAPIView
 )
-from .serializers import AddToCartSerializer, ViewCartSerializer, BasicCartSerializer, MakeOrderWithCardSerializer
-from .models import ProductsInCart
+from .serializers import (
+	CreateOrderOnCheckoutSerializer,
+	ConfirmOrderPaymentSerializer,
+	ViewOrderSerializer
+)
+from .models import Order
+from products.models import Product
+from orders.models import Order
 
 
-class AddToCartAPIView(CreateAPIView):
-	"""View for adding to cart"""
+class CheckoutAPIView(CreateAPIView):
+	"""View for Checkout"""
 
-	serializer_class = AddToCartSerializer
-
-	def get_queryset(self):
-		"""Get Queryset"""
-
-		return ProductsInCart.objects.filter(user=self.request.user)
-
-	def perform_create(self, serializer):
-		"""Customize Create"""
-
-		serializer.save(user=self.request.user)
-
-
-class ViewCartAPIView(ListAPIView):
-	"""View for viewing cart"""
-
-	serializer_class = ViewCartSerializer
+	serializer_class = CreateOrderOnCheckoutSerializer
 
 	def get_queryset(self):
 		"""Get Queryset"""
 
-		return ProductsInCart.objects.filter(user=self.request.user)
+		return Product.objects.all()
 
 
-class DeleteProductInCartAPIView(DestroyAPIView):
-	"""View for deleting products in cart"""
+class ConfirmOrderPaymentAPIView(UpdateAPIView):
+	"""View for confirming the payment of an order"""
 
-	serializer_class = BasicCartSerializer
+	serializer_class = ConfirmOrderPaymentSerializer
 
-	def get_queryset(self):
-		"""Get Queryset"""
+	def get_object(self):
+		"""Get Order Instance"""
 
-		return ProductsInCart.objects.filter(user=self.request.user)
-
-
-class UpdateProductInCartAPIView(UpdateAPIView):
-	"""View for Updating products in cart"""
-
-	serializer_class = ViewCartSerializer
+		return Order.objects.get(id=self.request.data.get('order_id'))
 
 	def get_queryset(self):
 		"""Get Queryset"""
 
-		return ProductsInCart.objects.filter(user=self.request.user)
+		return Order.objects.filter(id=self.request.data.get('order_id'))
 
 
-class MakeOrderWithCardAPIView(CreateAPIView):
-	"""View for Making Order"""
+class RetrieveOrderAPIView(RetrieveAPIView):
+	"""View for retrieving Order"""
 
-	serializer_class = MakeOrderWithCardSerializer
+	serializer_class = ViewOrderSerializer
 
 	def get_queryset(self):
 		"""Get Queryset"""
 
-		return ProductsInCart.objects.filter(user=self.request.user)
+		return Order.objects.all()

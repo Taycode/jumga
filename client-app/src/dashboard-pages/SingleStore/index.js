@@ -7,8 +7,10 @@ import ProductList from "../../components/ProductList";
 import SearchProducts from "../../components/SearchProducts";
 import { ADD_PRODUCT } from "../../util/constants";
 import "./styles.scss";
+import { useHistory } from "react-router-dom";
 
 const SingleStore = (props) => {
+  const history = useHistory();
   const {
     setShowModal,
     match: {
@@ -49,9 +51,13 @@ const SingleStore = (props) => {
         <Container className="mb-5">
           <Row>
             <Col>
+              {" "}
               <h5 className="dashboard-header mb-5"> {store.name} </h5>
             </Col>
           </Row>
+          <span onClick={() => history.goBack()} className="go-back-icon">
+            <i className="fa fa-arrow-left"></i> Back
+          </span>{" "}
           <Row>
             <Col>
               <div className="products-top-section">
@@ -77,7 +83,6 @@ const SingleStore = (props) => {
               </div>
             </Col>
           </Row>
-
           <ProductList
             products={storeProducts}
             setShowModal={setShowModal}

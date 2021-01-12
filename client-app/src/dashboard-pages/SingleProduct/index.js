@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Container, Col, Row } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 import PageLoader from "../../components/PageLoader";
 import SingleProductComp from "../../components/SingleProductcard";
 import { Context as ProductsContext } from "./../../contexts/productContext";
 
 const SingleProduct = (props) => {
+  const history = useHistory();
   const [product, setProduct] = useState();
   const {
     setShowModal,
@@ -35,10 +37,12 @@ const SingleProduct = (props) => {
       <Container className="mb-5">
         <Row>
           <Col>
-            <h5 className="dashboard-header mb-5"> Single product</h5>
+            <h5 className="dashboard-header mb-5"> {product?.name} </h5>
           </Col>
         </Row>
-
+        <span onClick={() => history.goBack()} className="go-back-icon">
+          <i className="fa fa-arrow-left"></i> Back
+        </span>{" "}
         {product && (
           <SingleProductComp
             setShowModal={setShowModal}

@@ -63,4 +63,21 @@ class Flutterwave(object):
 
 		response = self.make_request(endpoint, json.dumps(post_data))
 
-		return response.json()
+		return response
+
+	def validate_charge(self, flw_ref, otp):
+		"""
+		:param flw_ref: string
+		:param otp: string
+		"""
+
+		data = {
+			'flw_ref': flw_ref,
+			'otp': otp
+		}
+
+		endpoint = self.base_url + '/validate-charge'
+
+		response = self.make_request(endpoint, json.dumps(data))
+
+		return response

@@ -89,9 +89,9 @@ const CartItem = ({ product, removeCartitem }) => {
           onClick={() => {
             removeCartitem(id);
           }}
-          class="btn btn-outline-danger btn-sm"
+          class="btn btn-link text-danger btn-sm"
         >
-          <i class="fa fa-delete"></i>
+          <i class="fa fa-trash"></i>
         </button>
       </td>
     </tr>
