@@ -8,7 +8,7 @@ import { useRouter } from "../../util/router";
 import { Context as ProductsContext } from "./../../contexts/productsContext";
 import { Context as CartContext } from "./../../contexts/cartContext";
 
-const ProductsPage = (props) => {
+const ProductsPage = ({ mediaQuery }) => {
   const router = useRouter();
 
   const {
@@ -30,12 +30,11 @@ const ProductsPage = (props) => {
           <Col md={2}>
             <div className="products-page-side">
               <SearchProducts />
-              <div className="filter-section">
-                <span className="filter-section__title"> Filter by</span>
-                <div>
-                  <div className="filter-section__filter"></div>
+              {mediaQuery !== "isMobile" && (
+                <div className="filter-section">
+                  <span className="filter-section__title"> Filter by</span>
                 </div>
-              </div>
+              )}
               <Button
                 onClick={() => router.push("/cart")}
                 className="btn-sm btm-btn"

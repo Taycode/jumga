@@ -8,8 +8,9 @@ import { useCountryData } from "../../util/useCountryData";
 import OrderForm from "../../components/OrderForm";
 import { useRouter } from "../../util/router";
 import { handleExistingOrder } from "./helper";
+import "./styles.scss";
 
-const CartPage = () => {
+const CartPage = ({ mediaQuery }) => {
   const history = useHistory();
   const router = useRouter();
 
@@ -41,8 +42,8 @@ const CartPage = () => {
         <i className="fa fa-arrow-left"></i> Back
       </span>
 
-      <Row className="p-5">
-        <Col>
+      <Row className={`${mediaQuery === "isMobile" ? "p-2 mt-3" : "p-5"}`}>
+        <Col md={6} className="cart-column">
           <CartItems
             country={country}
             products={cart}
@@ -50,7 +51,7 @@ const CartPage = () => {
           />
         </Col>
         {cart && cart.length > 0 && (
-          <Col>
+          <Col md={6} sm={12} xs={12}>
             <OrderForm
               orderItems={cart}
               country={country}

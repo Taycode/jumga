@@ -16,6 +16,7 @@ import "../../styles/global.scss";
 import ContextProvider from "../../contexts/ContextProviders";
 
 import { toast } from "react-toastify";
+import useMedia from "../../util/useQuery";
 
 toast.configure({
   autoClose: 3000,
@@ -23,6 +24,14 @@ toast.configure({
 });
 
 function App(props) {
+  const queries = [
+    "(min-width: 1024px)", // isDesktop
+    "(min-width: 768px)", // isTab
+    "(min-width: 310px)", // isMobile
+  ];
+  const queryValues = ["isDesktop", "isTab", "isMobile"];
+  const mediaQuery = useMedia(queries, queryValues, "isDesktop");
+
   return (
     <ContextProvider>
       <Router>
@@ -38,11 +47,26 @@ function App(props) {
 
             <Route exact path="/rider" component={RidersHomePage} />
 
-            <Route path="/products" component={ProductsPage} />
+            <Route
+              path="/products"
+              render={(routerProps) => (
+                <ProductsPage {...routerProps} mediaQuery={mediaQuery} />
+              )}
+            />
 
-            <Route path="/cart" component={CartPage} />
+            <Route
+              path="/cart"
+              render={(routerProps) => (
+                <CartPage {...routerProps} mediaQuery={mediaQuery} />
+              )}
+            />
 
-            <Route path="/pay/:orderId" component={PaymentPage} />
+            <Route
+              path="/pay/:orderId"
+              render={(routerProps) => (
+                <PaymentPage {...routerProps} mediaQuery={mediaQuery} />
+              )}
+            />
 
             <Route path="/product/:productId" component={SingleProduct} />
 

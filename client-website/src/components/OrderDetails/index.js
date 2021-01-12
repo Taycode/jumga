@@ -3,11 +3,16 @@ import { Button } from "react-bootstrap";
 import { formatMoney, getCurrency } from "../../util/helper-functions";
 import "./styles.scss";
 
-const OrderDetails = ({ order, handleCancleOrder, paymentStep }) => {
+const OrderDetails = ({
+  order,
+  handleCancleOrder,
+  paymentStep,
+  mediaQuery,
+}) => {
   const { address, email, name, phone_number, total_cost, country } = order;
   return (
     <>
-      <div className="p-5">
+      <div className={mediaQuery === "isMobile" ? "p-1 mb-5" : "p-4"}>
         <div className=" mb-4 order-details-header">
           {" "}
           <h5 className="text-secondary"> Order Details</h5>

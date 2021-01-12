@@ -6,7 +6,6 @@ import {
   getCurrency,
 } from "../../util/helper-functions";
 import PageLoader from "../PageLoader";
-import { Button } from "react-bootstrap";
 
 const CartItems = ({ products, removeCartitem, country }) => {
   const [total, setTotal] = useState([[], []]);
@@ -47,11 +46,11 @@ const CartItems = ({ products, removeCartitem, country }) => {
           </tbody>
           <tfoot>
             <tr>
-              <td></td>
-              <td colspan="2">
+              {/* <td></td> */}
+              <td colspan="1">
                 <strong> Total </strong>
               </td>
-              <td colspan="" class=" text-center">
+              <td colspan="3" class="text-right">
                 <strong>
                   {total[0].map((countryName, i) => (
                     <>

@@ -10,7 +10,8 @@ import { useRouter } from "../../util/router";
 const PaymentPage = (props) => {
   const [loading, setLoading] = useState(false);
   const [paymentStep, setPaymentStep] = useState(1);
-  const { match } = props;
+
+  const { match, mediaQuery } = props;
   const router = useRouter();
 
   const {
@@ -29,7 +30,7 @@ const PaymentPage = (props) => {
 
   return (
     <Section className="p-3">
-      <Row className="p-5">
+      <Row className={mediaQuery === "isMobile" ? "p-1" : "p-4"}>
         {loading ? (
           <Col>
             {" "}
@@ -42,6 +43,7 @@ const PaymentPage = (props) => {
                 handleCancleOrder={handleCancleOrder}
                 order={order}
                 paymentStep={paymentStep}
+                mediaQuery={mediaQuery}
               />
             </Col>
             <Col>
