@@ -12,6 +12,7 @@ import { useHistory } from "react-router-dom";
 const SingleStore = (props) => {
   const history = useHistory();
   const {
+    mediaQuery,
     setShowModal,
     match: {
       params: { id },
@@ -52,7 +53,14 @@ const SingleStore = (props) => {
           <Row>
             <Col>
               {" "}
-              <h5 className="dashboard-header mb-5"> {store.name} </h5>
+              <h5
+                className={`${
+                  mediaQuery === "isMobile" && "ml-4"
+                } dashboard-header mb-5`}
+              >
+                {" "}
+                {store.name}{" "}
+              </h5>
             </Col>
           </Row>
           <span onClick={() => history.goBack()} className="go-back-icon">

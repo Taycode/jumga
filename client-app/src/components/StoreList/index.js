@@ -5,16 +5,18 @@ import { storeListTableHeader } from "./helper";
 import { ADD_STORE } from "../../util/constants";
 import StoreItem from "../StoreItem";
 
-const StoreList = ({ setShowModal, stores, removeStore }) => {
+const StoreList = ({ setShowModal, stores, removeStore, mediaQuery }) => {
   return (
     <>
       <Row>
         <Col>
-          <Card className=" store-list shadow">
+          <Card className="  store-list shadow">
             <div className="search-section">
-              <div>
-                <span> All Stores</span>
-              </div>
+              {mediaQuery === "isDesktop" && (
+                <div>
+                  <span> All Stores</span>
+                </div>
+              )}
               <div>
                 <Button
                   onClick={() => {
@@ -29,24 +31,32 @@ const StoreList = ({ setShowModal, stores, removeStore }) => {
                   {" "}
                   + Add Store{" "}
                 </Button>
-                <input placeholder="Search..." name="search" />
+                {mediaQuery === "isDesktop" && (
+                  <input
+                    className="d-block"
+                    placeholder="Search..."
+                    name="search"
+                  />
+                )}
               </div>
             </div>
 
-            <Row>
-              {storeListTableHeader.map((tableHeader) => (
-                <Col
-                  className="store-list__header"
-                  key={tableHeader.id}
-                  md={tableHeader.width}
-                >
-                  {" "}
-                  {tableHeader.title}
-                </Col>
-              ))}
-            </Row>
+            {mediaQuery !== "isMobile" && (
+              <Row className="overflow-auto">
+                {storeListTableHeader.map((tableHeader) => (
+                  <Col
+                    className="store-list__header"
+                    key={tableHeader.id}
+                    md={tableHeader.width}
+                  >
+                    {" "}
+                    {tableHeader.title}
+                  </Col>
+                ))}
+              </Row>
+            )}
 
-            <Row className="store-list__items-section">
+            <Row className="  store-list__items-section">
               {stores && stores.length > 0 ? (
                 <>
                   {stores.map((store) => (

@@ -83,6 +83,7 @@ const DashboardPage = () => {
                               setShowModal={setShowModal}
                               {...routeProps}
                               user={user}
+                              mediaQuery={mediaQuery}
                             />
                           )}
                         />

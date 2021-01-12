@@ -9,6 +9,7 @@ const SingleProduct = (props) => {
   const history = useHistory();
   const [product, setProduct] = useState();
   const {
+    mediaQuery,
     setShowModal,
     match: {
       params: { productId },
@@ -37,7 +38,14 @@ const SingleProduct = (props) => {
       <Container className="mb-5">
         <Row>
           <Col>
-            <h5 className="dashboard-header mb-5"> {product?.name} </h5>
+            <h5
+              className={`${
+                mediaQuery === "isMobile" && "ml-4"
+              } dashboard-header mb-5`}
+            >
+              {" "}
+              {product?.name}{" "}
+            </h5>
           </Col>
         </Row>
         <span onClick={() => history.goBack()} className="go-back-icon">

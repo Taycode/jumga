@@ -6,7 +6,7 @@ import "./styles.scss";
 import ProductList from "../../components/ProductList";
 import { Context as ProductsContext } from "./../../contexts/productContext";
 
-const Products = ({ setShowModal }) => {
+const Products = ({ setShowModal, mediaQuery }) => {
   const {
     state: { products },
     fetchAllProducts,
@@ -22,13 +22,20 @@ const Products = ({ setShowModal }) => {
       <Container className="mb-5">
         <Row>
           <Col>
-            <h5 className="dashboard-header mb-5"> Products</h5>
+            <h5
+              className={`${
+                mediaQuery === "isMobile" && "ml-4"
+              } dashboard-header mb-5`}
+            >
+              {" "}
+              Products
+            </h5>
           </Col>
         </Row>
         <Row>
           <Col>
             <div className="products-top-section">
-              <SearchProducts />
+              {mediaQuery !== "isMobile" && <SearchProducts />}
               <div>
                 <Button
                   onClick={() => {
