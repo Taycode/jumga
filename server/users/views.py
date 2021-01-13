@@ -71,3 +71,7 @@ class VerifyUserAPIView(UpdateAPIView):
 	def get_queryset(self):
 		"""Get Queryset"""
 		return User.objects.filter(id=self.request.user.id)
+
+	def post(self, request, *args, **kwargs):
+		"""Post Method"""
+		return self.patch(request, *args, **kwargs)

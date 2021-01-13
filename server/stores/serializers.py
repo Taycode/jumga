@@ -50,3 +50,18 @@ class CreateStoreSerializer(serializers.Serializer):
 		"""Creates Store"""
 		store = Store.objects.create(**validated_data)
 		return store
+
+
+class AssignRiderToStoreSerializer(serializers.Serializer):
+	"""Serializer for assigning Rider to Store"""
+
+	store_id = serializers.IntegerField(write_only=True)
+	rider_email = serializers.EmailField(write_only=True)
+
+	def create(self, validated_data):
+		"""Create Method"""
+		pass
+
+	def update(self, instance, validated_data):
+		"""Update Method"""
+		pass

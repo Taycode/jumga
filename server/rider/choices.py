@@ -3,7 +3,8 @@
 
 status_choices = (
 	('in_shop', 'In Shop'),
-	('enroute_destination', 'Enroute destination')
+	('enroute_destination', 'Enroute destination'),
+	('delivered', 'Delivered')
 )
 
-DEFAULT_STATUS = 'in_shop'
+IN_SHOP = 'in_shop'
