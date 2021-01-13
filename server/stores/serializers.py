@@ -32,7 +32,7 @@ class ListStoresSerializer(serializers.ModelSerializer):
 	class Meta:
 		"""Meta class"""
 		model = Store
-		fields = ('id', 'name', )
+		fields = ('id', 'name', 'rider', )
 
 
 class CreateStoreSerializer(serializers.Serializer):
@@ -64,4 +64,11 @@ class AssignRiderToStoreSerializer(serializers.Serializer):
 
 	def update(self, instance, validated_data):
 		"""Update Method"""
-		pass
+		email = validated_data.get('rider_email')
+		rider = User.objects.filter(email=email)
+
+		if not rider.exists():
+			raise User.DoesNotExist('Rider Not on Jumga')
+		instance.rider = rider.first()
+		instance.save()
+		return instance

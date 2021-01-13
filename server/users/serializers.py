@@ -4,7 +4,7 @@
 from rest_framework import serializers
 from dj_rest_auth.registration.serializers import RegisterSerializer
 from .models import User
-from .choices import role_choices, DEFAULT_USER_ROLE
+from .choices import role_choices, DEFAULT_USER_ROLE, country_choices, DEFAULT_COUNTRY_CHOICE
 from products.models import Product
 from payment.flutterwave import Flutterwave
 
@@ -67,7 +67,7 @@ class CustomRegisterSerializer(RegisterSerializer):
 	role = serializers.ChoiceField(role_choices, default=DEFAULT_USER_ROLE)
 	first_name = serializers.CharField(max_length=255, required=True)
 	last_name = serializers.CharField(max_length=255, required=True)
-	country = serializers.CharField(max_length=255, required=False)
+	country = serializers.ChoiceField(country_choices, default=DEFAULT_COUNTRY_CHOICE)
 
 	def update(self, instance, validated_data):
 		"""
