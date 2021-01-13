@@ -4,16 +4,17 @@
 from rest_framework.generics import (
 	CreateAPIView,
 	UpdateAPIView,
-	RetrieveAPIView
+	RetrieveAPIView,
+	ListAPIView
 )
 from .serializers import (
 	CreateOrderOnCheckoutSerializer,
 	ConfirmOrderPaymentSerializer,
-	ViewOrderSerializer
+	ViewOrderSerializer,
+	RetrieveAndListProductsInOrderSerializer
 )
-from .models import Order
 from products.models import Product
-from orders.models import Order
+from orders.models import Order, ProductsInOrder
 
 
 class CheckoutAPIView(CreateAPIView):
@@ -52,3 +53,25 @@ class RetrieveOrderAPIView(RetrieveAPIView):
 		"""Get Queryset"""
 
 		return Order.objects.all()
+
+
+class ListProductsInOrderAPIView(ListAPIView):
+	"""View for retrieving list of orders"""
+
+	serializer_class = RetrieveAndListProductsInOrderSerializer
+
+	def get_queryset(self):
+		"""Get Queryset"""
+
+		return ProductsInOrder.objects.filter(product__store__owner=self.request.user)
+
+
+class RetrieveProductsInOrderAPIView(RetrieveAPIView):
+	"""API View for retrieving PRoducts in Order"""
+
+	serializer_class = RetrieveAndListProductsInOrderSerializer
+
+	def get_queryset(self):
+		"""Get Queryset"""
+
+		return ProductsInOrder.objects.filter(product__store__owner=self.request.user)

@@ -33,3 +33,4 @@ class ValidateCardChargeAPIView(APIView):
 			return Response(response.json(), status=response.status_code)
 		else:
 			return Response(serializer.errors, status=400)
+

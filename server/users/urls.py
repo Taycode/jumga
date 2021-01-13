@@ -2,8 +2,8 @@
 
 
 from django.urls import path, include
-from .views import CreateSuperUserView, CustomRegisterView, UserDetailsView, CollectUserDetailsView
-from products.views import SellerListProductsView, GlobalListProductsView
+from .views import CreateSuperUserView, CustomRegisterView, UserDetailsView, CollectUserDetailsView, VerifyUserAPIView
+from products.views import SellerListProductsView
 
 
 urlpatterns = [
@@ -13,4 +13,5 @@ urlpatterns = [
 	path('details/', UserDetailsView.as_view()),
 	path('details/update/', CollectUserDetailsView.as_view()),
 	path('my-products/', SellerListProductsView.as_view()),
+	path('verify/', VerifyUserAPIView.as_view())
 ]

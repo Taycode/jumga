@@ -12,3 +12,5 @@ class User(AbstractUser):
 	account_bank = models.CharField(max_length=8, blank=True, null=True)
 	account_name = models.CharField(max_length=64, blank=True, null=True)
 	account_number = models.CharField(max_length=16, blank=True, null=True)
+	verified = models.BooleanField(default=False)
+

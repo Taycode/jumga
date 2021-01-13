@@ -1,7 +1,12 @@
 """Views for Stores"""
 
 from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView, DestroyAPIView, UpdateAPIView
-from .serializers import ListStoresSerializer, CreateStoreSerializer, BasicStoreModelSerializer
+from .serializers import (
+	ListStoresSerializer,
+	CreateStoreSerializer,
+	BasicStoreModelSerializer,
+	AssignRiderToStoreSerializer
+)
 from .models import Store
 from rest_framework.permissions import IsAuthenticated
 
@@ -49,6 +54,20 @@ class RetrieveStoreView(RetrieveAPIView):
 	"""Retrieve Stores"""
 
 	serializer_class = ListStoresSerializer
+
+	def get_queryset(self):
+		"""Gets Queryset"""
+		return Store.objects.filter(owner=self.request.user)
+
+
+class AssignRiderToStoreAPIView(UpdateAPIView):
+	"""View for assigning rider to store"""
+
+	serializer_class = AssignRiderToStoreSerializer
+
+	def get_object(self):
+		"""Get Store instance"""
+		return Store.objects.get(id=self.request.data.get('store_id'))
 
 	def get_queryset(self):
 		"""Gets Queryset"""
