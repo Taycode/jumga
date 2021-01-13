@@ -81,3 +81,15 @@ class Flutterwave(object):
 		response = self.make_request(endpoint, json.dumps(data))
 
 		return response
+
+	def verify_transaction(self, transaction_id):
+		"""
+		:param transaction_id: integer
+		:return response object
+		"""
+
+		endpoint = self.base_url + f'/transactions/{transaction_id}/verify/'
+
+		response = self.make_request(endpoint, method="GET")
+
+		return response

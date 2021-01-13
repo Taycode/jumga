@@ -6,7 +6,8 @@ from .serializers import (
 	SuperUserCreateSerializer,
 	CustomRegisterSerializer,
 	UserDetailsSerializer,
-	UpdateBankDetailSerializer
+	UpdateBankDetailSerializer,
+	VerifyUserSerializer
 )
 from dj_rest_auth.registration.views import RegisterView
 from rest_framework.views import APIView
@@ -48,6 +49,20 @@ class CollectUserDetailsView(UpdateAPIView):
 
 	serializer_class = UpdateBankDetailSerializer
 	permission_classes = (IsAuthenticated, )
+
+	def get_object(self):
+		"""Get Queryset"""
+		return self.request.user
+
+	def get_queryset(self):
+		"""Get Queryset"""
+		return User.objects.filter(id=self.request.user.id)
+
+
+class VerifyUserAPIView(UpdateAPIView):
+	"""View for verifying users"""
+
+	serializer_class = VerifyUserSerializer
 
 	def get_object(self):
 		"""Get Queryset"""

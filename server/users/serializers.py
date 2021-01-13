@@ -6,6 +6,7 @@ from dj_rest_auth.registration.serializers import RegisterSerializer
 from .models import User
 from .choices import role_choices, DEFAULT_USER_ROLE
 from products.models import Product
+from payment.flutterwave import Flutterwave
 
 
 class SuperUserCreateSerializer(serializers.Serializer):
@@ -149,3 +150,31 @@ class UpdateBankDetailSerializer(serializers.ModelSerializer):
 			'account_name',
 			'account_number',
 		)
+
+
+class VerifyUserSerializer(serializers.Serializer):
+	"""Serializer for Verifying a user"""
+
+	transaction_id = serializers.IntegerField(write_only=True)
+	id = serializers.IntegerField(read_only=True)
+	verified = serializers.BooleanField(read_only=True)
+
+	def create(self, validated_data):
+		"""Create Method"""
+		pass
+
+	def update(self, instance, validated_data):
+		"""Update Method"""
+		flutterwave = Flutterwave()
+
+		transaction_id = validated_data.get('transaction_id')
+
+		response = flutterwave.verify_transaction(transaction_id)
+
+		if response.status_code == 200:
+			response = response.json()
+			if response.get('data').get('status') == 'successful':
+				instance.verified = True
+				instance.save()
+
+		return instance
