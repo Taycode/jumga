@@ -133,7 +133,8 @@ class UserDetailsSerializer(serializers.ModelSerializer):
 			'country',
 			'account_name',
 			'account_bank',
-			'account_number'
+			'account_number',
+			'verified'
 		)
 
 

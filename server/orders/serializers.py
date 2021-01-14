@@ -126,7 +126,7 @@ class ConfirmOrderPaymentSerializer(serializers.Serializer):
 
 		for _ in products_in_order:
 
-			rider = products_in_order.product.store.rider
+			rider = _.product.store.rider
 
 			if rider:
 				Delivery.objects.create(
