@@ -4,8 +4,9 @@
 from rest_framework import serializers
 from dj_rest_auth.registration.serializers import RegisterSerializer
 from .models import User
-from .choices import role_choices, DEFAULT_USER_ROLE
+from .choices import role_choices, DEFAULT_USER_ROLE, country_choices, DEFAULT_COUNTRY_CHOICE
 from products.models import Product
+from payment.flutterwave import Flutterwave
 
 
 class SuperUserCreateSerializer(serializers.Serializer):
@@ -66,7 +67,7 @@ class CustomRegisterSerializer(RegisterSerializer):
 	role = serializers.ChoiceField(role_choices, default=DEFAULT_USER_ROLE)
 	first_name = serializers.CharField(max_length=255, required=True)
 	last_name = serializers.CharField(max_length=255, required=True)
-	country = serializers.CharField(max_length=255, required=False)
+	country = serializers.ChoiceField(country_choices, default=DEFAULT_COUNTRY_CHOICE)
 
 	def update(self, instance, validated_data):
 		"""
@@ -149,3 +150,31 @@ class UpdateBankDetailSerializer(serializers.ModelSerializer):
 			'account_name',
 			'account_number',
 		)
+
+
+class VerifyUserSerializer(serializers.Serializer):
+	"""Serializer for Verifying a user"""
+
+	transaction_id = serializers.IntegerField(write_only=True)
+	id = serializers.IntegerField(read_only=True)
+	verified = serializers.BooleanField(read_only=True)
+
+	def create(self, validated_data):
+		"""Create Method"""
+		pass
+
+	def update(self, instance, validated_data):
+		"""Update Method"""
+		flutterwave = Flutterwave()
+
+		transaction_id = validated_data.get('transaction_id')
+
+		response = flutterwave.verify_transaction(transaction_id)
+
+		if response.status_code == 200:
+			response = response.json()
+			if response.get('data').get('status') == 'successful':
+				instance.verified = True
+				instance.save()
+
+		return instance

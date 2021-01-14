@@ -16,8 +16,6 @@ export const handlePaymentVefirication = async (
     ...formData,
   });
 
-  response && notifyUser(response);
-
   if (response.status) {
     const { tx_ref } = response.data.data;
 
@@ -28,6 +26,7 @@ export const handlePaymentVefirication = async (
     };
     const confirmOrderResponse = await confirmOrder(orderConfirmData);
 
+    notifyUser(response);
     confirmOrderResponse && notifyUser(confirmOrderResponse);
 
     confirmOrderResponse.status && setPaymentStep(3);

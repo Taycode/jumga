@@ -5,6 +5,7 @@ from rest_framework import serializers
 from products.models import Product
 from orders.models import Order, ProductsInOrder
 from payment.models import Transaction
+from rider.models import Delivery
 
 
 class ViewOrderSerializer(serializers.ModelSerializer):
@@ -118,4 +119,30 @@ class ConfirmOrderPaymentSerializer(serializers.Serializer):
 
 		instance.transaction = transaction
 		instance.save()
+
+		# Create Delivery for rider
+
+		products_in_order = ProductsInOrder.objects.filter(order=instance)
+
+		for _ in products_in_order:
+
+			rider = products_in_order.product.store.rider
+
+			if rider:
+				Delivery.objects.create(
+					rider=rider,
+					order=_,
+				)
+
 		return instance
+
+
+class RetrieveAndListProductsInOrderSerializer(serializers.ModelSerializer):
+	"""Serializer for List of products in orders"""
+
+	class Meta:
+		"""Meta Class"""
+
+		model = ProductsInOrder
+		fields = '__all__'
+		depth = 1

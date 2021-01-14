@@ -23,6 +23,7 @@ export const handlePayment = async (
   const response = await initiatePayment(paymentDetails);
 
   response && notifyUser(response);
+  setLoading(false);
 
   if (response.status) {
     const { flw_ref } = response.data.data;
