@@ -1,20 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import successPayment from "../../assets/img/success_payment.svg";
 
 import "./styles.scss";
 
-const SuccessPayment = () => {
+const SuccessPayment = ({ userDetails, setshowModal, setUserDetails }) => {
+  useEffect(() => {
+    setUserDetails({ ...userDetails, verified: true });
+  }, []);
   return (
     <div className="text-center">
       <h3> Thank You ! </h3>
-      <h6> Your order is being processed ! </h6>
+      <h6> Your can now sell on jumga ! </h6>
       <img className="success-img" src={successPayment} />
-      <Link to="/products">
-        {" "}
-        <Button variant="primary"> Continue Shoping </Button>
-      </Link>
+      <Button
+        onClick={() =>
+          setshowModal({
+            show: false,
+          })
+        }
+        variant="primary"
+      >
+        Start Selling
+      </Button>
     </div>
   );
 };

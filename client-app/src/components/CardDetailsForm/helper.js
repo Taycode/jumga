@@ -11,7 +11,6 @@ export const handlePayment = async (
   setLoading(true);
   const { email, first_name, last_name } = userDetails;
 
-  alert(first_name);
   const paymentDetails = {
     ...formData,
     amount: SELLER_VERIFY_AMOUNT,

@@ -22,7 +22,7 @@ toast.configure({
 });
 
 const DashboardPage = () => {
-  const { user, logout } = useAuth();
+  const { user, setUser, logout } = useAuth();
   const { verified } = user;
 
   const [showModal, setShowModal] = useState({
@@ -47,6 +47,7 @@ const DashboardPage = () => {
         modalId: MAKE_PAYMENT,
         data: {
           userData: user,
+          setUser,
         },
       });
   }, [user]);
@@ -107,6 +108,7 @@ const DashboardPage = () => {
                             modalId: MAKE_PAYMENT,
                             data: {
                               userData: user,
+                              setUser,
                             },
                           })
                         }

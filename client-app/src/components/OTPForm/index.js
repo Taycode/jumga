@@ -13,6 +13,7 @@ const OTPForm = ({ userDetails, setPaymentStep }) => {
 
   return (
     <>
+      <h5 className="text-center mb-3"> Verify Payment </h5>
       <form onSubmit={handleSubmit(submit)}>
         <FormGroup>
           <label

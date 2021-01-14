@@ -16,6 +16,7 @@ const CardDetailsForm = ({ userDetails, setPaymentStep }) => {
 
   return (
     <>
+      <h5 className="text-center mb-3">Get Verified</h5>
       <form onSubmit={handleSubmit(submit)}>
         <FormGroup>
           <label

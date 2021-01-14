@@ -19,14 +19,26 @@ const paymentSteps = {
       setshowModal={setshowModal}
     />
   ),
-  3: () => <SuccessPayment />,
+  3: (userDetails, setPaymentStep, setshowModal, setUserDetails) => (
+    <SuccessPayment
+      userDetails={userDetails}
+      setshowModal={setshowModal}
+      setUserDetails={setUserDetails}
+    />
+  ),
 };
 
 export const getPaymentview = (
   paymentStep,
   userDetails,
   setPaymentStep,
-  setshowModal
+  setshowModal,
+  setUserDetails
 ) => {
-  return paymentSteps[paymentStep](userDetails, setPaymentStep, setshowModal);
+  return paymentSteps[paymentStep](
+    userDetails,
+    setPaymentStep,
+    setshowModal,
+    setUserDetails
+  );
 };
