@@ -25,7 +25,7 @@ const OTPForm = ({ userDetails, setPaymentStep }) => {
           <input
             ref={register({ required: true })}
             className="form-control"
-            type="number"
+            type="password"
             name="otp"
             defaultValue="12345"
           />
