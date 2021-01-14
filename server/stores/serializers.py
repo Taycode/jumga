@@ -49,6 +49,10 @@ class CreateStoreSerializer(serializers.Serializer):
 	def create(self, validated_data):
 		"""Creates Store"""
 		store = Store.objects.create(**validated_data)
+		riders = User.objects.filter(role='rider')
+		if riders.exists:
+			store.rider = riders.first()
+			store.save()
 		return store
 
 
