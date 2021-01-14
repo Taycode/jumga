@@ -24,7 +24,7 @@ const OverviewCard = ({ user }) => {
             {statHeadings[role.toUpperCase()].map((heading, i) => {
               return (
                 <StatCard
-                  stat={stats ? stats[i] : 0}
+                  stat={stats[i] ? stats[i] : 0}
                   heading={heading}
                   key={i}
                 />

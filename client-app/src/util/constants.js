@@ -25,6 +25,8 @@ export const ADD_PRODUCT = "ADD_PRODUCT";
 export const VIEW_ORDER = "VIEW_ORDER";
 export const MAKE_PAYMENT = "MAKE_PAYMENT";
 
+export const SELLER_VERIFY_AMOUNT = 20;
+
 export const SUPPORTED_COUNTRIES = [
   {
     country: "Nigeria",
@@ -63,3 +65,10 @@ export const COUNTRY_CODE_MAP = {
 };
 
 export const CLOUDINARY_IMAGE_PREPEND = "https://res.cloudinary.com/taycode/";
+
+export const currencyCodes = {
+  nigeria: "NGN",
+  ghana: "GHS",
+  kenya: "KES",
+  uk: "USD",
+};

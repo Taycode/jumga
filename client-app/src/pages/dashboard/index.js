@@ -11,19 +11,19 @@ import PageLoader from "../../components/PageLoader";
 import appRoutes from "../../util/dashboard-routes";
 import useMedia from "../../util/useQuery";
 import allModals from "./helper";
-import { MAKE_PAYMENT } from "../../util/constants";
+import { MAKE_PAYMENT, SELLER_VERIFY_AMOUNT } from "../../util/constants";
 
 import { toast } from "react-toastify";
+import { getCurrency } from "../../util/helper-functions";
 
 toast.configure({
   autoClose: 3000,
   hideProgressBar: true,
 });
 
-const verified = true;
-
 const DashboardPage = () => {
   const { user, logout } = useAuth();
+  const { verified } = user;
 
   const [showModal, setShowModal] = useState({
     modalId: " ",
@@ -93,9 +93,10 @@ const DashboardPage = () => {
                   {user.role === "seller" && !verified && (
                     <div className="m-5 text-center alert-warning alert">
                       <p>
-                        You account has not been verified. You need to pay $20
-                        to get your account verified, so you could start
-                        sellingt your products. <br />
+                        You account has not been verified. You need to pay{" "}
+                        {getCurrency("uk")}
+                        {SELLER_VERIFY_AMOUNT} to get your account verified, so
+                        you could start sellingt your products. <br />
                       </p>
                       <Button
                         className="text-dark text-decoration-none"
