@@ -52,7 +52,7 @@ const ProductsPage = ({ mediaQuery }) => {
             ) : (
               <>
                 {products && products.length === 0 ? (
-                  <Emptycomponent />
+                  <Emptycomponent type="PRODUCTS" />
                 ) : (
                   <AllProducts
                     products={products.sort((a, b) => b.id - a.id)}

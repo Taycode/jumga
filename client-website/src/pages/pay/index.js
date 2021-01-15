@@ -6,16 +6,16 @@ import PageLoader from "../../components/PageLoader";
 import PaymentCard from "../../components/PaymentCard";
 import OrderDetails from "../../components/OrderDetails";
 import { useRouter } from "../../util/router";
+import Emptycomponent from "../../components/Empty";
 
 const PaymentPage = (props) => {
-  const [loading, setLoading] = useState(false);
   const [paymentStep, setPaymentStep] = useState(1);
 
   const { match, mediaQuery } = props;
   const router = useRouter();
 
   const {
-    state: { order },
+    state: { order, loading },
     fetchOrderDetails,
   } = useContext(OrderContext);
 
@@ -23,6 +23,7 @@ const PaymentPage = (props) => {
     match.params.orderId && fetchOrderDetails(match.params.orderId);
   }, [match?.params?.orderId]);
 
+  // Pull this outta here later
   const handleCancleOrder = () => {
     localStorage.removeItem("orderId");
     router.push("/products");
@@ -38,21 +39,26 @@ const PaymentPage = (props) => {
           </Col>
         ) : (
           <>
-            <Col>
-              <OrderDetails
-                handleCancleOrder={handleCancleOrder}
-                order={order}
-                paymentStep={paymentStep}
-                mediaQuery={mediaQuery}
-              />
-            </Col>
-            <Col>
-              <PaymentCard
-                order={order}
-                paymentStep={paymentStep}
-                setPaymentStep={setPaymentStep}
-              />
-            </Col>
+            {!order && <Emptycomponent type="ORDER" />}
+            {order && (
+              <>
+                <Col>
+                  <OrderDetails
+                    handleCancleOrder={handleCancleOrder}
+                    order={order}
+                    paymentStep={paymentStep}
+                    mediaQuery={mediaQuery}
+                  />
+                </Col>
+                <Col>
+                  <PaymentCard
+                    order={order}
+                    paymentStep={paymentStep}
+                    setPaymentStep={setPaymentStep}
+                  />
+                </Col>
+              </>
+            )}
           </>
         )}
       </Row>
