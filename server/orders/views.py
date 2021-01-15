@@ -43,6 +43,10 @@ class ConfirmOrderPaymentAPIView(UpdateAPIView):
 
 		return Order.objects.filter(id=self.request.data.get('order_id'))
 
+	def post(self, request, *args, **kwargs):
+		"""Post Request"""
+		return self.patch(request, *args, **kwargs)
+
 
 class RetrieveOrderAPIView(RetrieveAPIView):
 	"""View for retrieving Order"""

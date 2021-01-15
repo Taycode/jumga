@@ -116,7 +116,7 @@ class ConfirmOrderPaymentSerializer(serializers.Serializer):
 			amount=order.total_cost,
 			transaction_type='product_purchase',
 		)
-
+		instance.paid = True
 		instance.transaction = transaction
 		instance.save()
 
