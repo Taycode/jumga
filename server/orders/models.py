@@ -21,6 +21,7 @@ class Order(models.Model):
 	email = models.EmailField(null=True)
 	country = models.CharField(max_length=16, choices=country_choices, default=DEFAULT_COUNTRY_CHOICE)
 	name = models.CharField(max_length=255, null=True)
+	paid = models.BooleanField(default=False)
 
 	def get_total_cost(self):
 		"""Gets total cost of order"""
