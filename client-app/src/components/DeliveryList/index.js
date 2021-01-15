@@ -10,9 +10,7 @@ const DeliveryList = ({ setShowModal, deliveries }) => {
         <Col>
           <Card className=" store-list shadow">
             <div className="search-section">
-              <div>
-                <span> All Deliveries </span>
-              </div>
+              <span> All Deliveries </span>
             </div>
             <Row>
               {deliveryListTableHeader.map((tableHeader) => (

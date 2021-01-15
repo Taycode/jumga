@@ -5,8 +5,8 @@ import { Context as CartContext } from "./../../contexts/cartContext";
 import CartItems from "../../components/CartItems";
 import { useHistory } from "react-router-dom";
 import { useCountryData } from "../../util/useCountryData";
-import OrderForm from "../../components/OrderForm";
 import { useRouter } from "../../util/router";
+import OrderForm from "../../components/OrderForm";
 import { handleExistingOrder } from "./helper";
 import "./styles.scss";
 
