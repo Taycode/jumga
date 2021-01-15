@@ -50,9 +50,11 @@ const StoreItem = ({ store, setShowModal, removeStore }) => {
                       roundShape="true"
                       textColor="#fff"
                       bgColor="#061123"
-                      initials={rider.trim()[0]}
+                      // initials={rider.trim()[0]}
+                      initials={"U"}
                     ></Avatar>{" "}
-                    {rider}{" "}
+                    Unassigned
+                    {/* {rider}{" "} */}
                   </>
                 ) : (
                   <>Unassigned</>
