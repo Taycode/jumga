@@ -71,6 +71,7 @@ function useProvideAuth() {
     register,
     login,
     logout,
+    setUser,
   };
 }
 

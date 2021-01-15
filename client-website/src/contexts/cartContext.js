@@ -3,9 +3,13 @@ import createDataContext from "./createContext";
 const reducer = (state, action) => {
   switch (action.type) {
     case "ADD_PRODUCT_TO_CART":
-      return { cart: [...state.cart, action.payload] };
+      return {
+        cart: state.cart ? [...state.cart, action.payload] : [action.payload],
+      };
     case "FETCH_CART_ITEMS":
       return { cart: action.payload };
+    case "CLEAR_CART":
+      return { cart: [] };
     default:
       return state;
   }
@@ -43,6 +47,12 @@ const updateCartItems = (dispatch) => async (newCart) => {
   dispatch({ type: "FETCH_CART_ITEMS", payload: newCart });
 };
 
+const clearCartItems = (dispatch) => async (orderId) => {
+  localStorage.removeItem("cart");
+  dispatch({ type: "CLEAR_CART" });
+  localStorage.setItem("orderId", orderId);
+};
+
 export const { Context, Provider } = createDataContext(
   reducer,
   {
@@ -50,6 +60,7 @@ export const { Context, Provider } = createDataContext(
     addItemToCart,
     updateCartItems,
     removeCartitem,
+    clearCartItems,
   },
   {
     cart: [],

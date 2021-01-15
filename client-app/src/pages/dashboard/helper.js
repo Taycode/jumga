@@ -12,8 +12,12 @@ const allModals = {
   [ADD_PRODUCT]: (setShowModal, data) => (
     <AddProduct setShowModal={setShowModal} data={data} />
   ),
-  [MAKE_PAYMENT]: (setShowModal, data) => (
-    <MakePayment setShowModal={setShowModal} data={data} />
+  [MAKE_PAYMENT]: (setShowModal, data, setUserDetails) => (
+    <MakePayment
+      setShowModal={setShowModal}
+      data={data}
+      setUserDetails={setUserDetails}
+    />
   ),
 };
 

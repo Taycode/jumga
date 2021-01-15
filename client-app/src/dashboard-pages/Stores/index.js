@@ -4,7 +4,7 @@ import StoreList from "../../components/StoreList";
 
 import { Context as StoresContext } from "./../../contexts/storeContext";
 
-const Stores = ({ setShowModal }) => {
+const Stores = ({ setShowModal, mediaQuery }) => {
   const {
     state: { stores },
     fetchAllStores,
@@ -20,7 +20,14 @@ const Stores = ({ setShowModal }) => {
       <Container className="mb-5">
         <Row>
           <Col>
-            <h5 className="dashboard-header mb-5"> Stores</h5>
+            <h5
+              className={`${
+                mediaQuery === "isMobile" && "ml-4"
+              } dashboard-header mb-5`}
+            >
+              {" "}
+              Stores
+            </h5>
           </Col>
         </Row>
 
@@ -28,6 +35,7 @@ const Stores = ({ setShowModal }) => {
           stores={stores.sort((a, b) => a.id - b.id)}
           setShowModal={setShowModal}
           removeStore={removeStore}
+          mediaQuery={mediaQuery}
         />
       </Container>
     </>

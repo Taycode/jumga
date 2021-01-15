@@ -6,15 +6,8 @@ import {
   getCurrency,
 } from "../../util/helper-functions";
 import PageLoader from "../PageLoader";
-import { Button } from "react-bootstrap";
 
-const CartItems = ({
-  products,
-  removeCartitem,
-  country,
-  handleCheckout,
-  router,
-}) => {
+const CartItems = ({ products, removeCartitem, country }) => {
   const [total, setTotal] = useState([[], []]);
   const [loading, setLoading] = useState(false);
 
@@ -29,8 +22,8 @@ const CartItems = ({
         <table class="table table-condensed">
           <thead>
             <tr>
-              <th style={{ width: "50%" }}>Product</th>
-              <th style={{ width: "10%" }}>Price</th>
+              <th style={{ width: "25%" }}>Product</th>
+              <th style={{ width: "35%" }}>Price</th>
               <th style={{ width: "8%" }}>Quantity</th>
               <th style={{ width: "22%" }} className="text-center">
                 Subtotal
@@ -53,11 +46,11 @@ const CartItems = ({
           </tbody>
           <tfoot>
             <tr>
-              <td></td>
-              <td colspan="2">
+              {/* <td></td> */}
+              <td colspan="1">
                 <strong> Total </strong>
               </td>
-              <td class=" text-center">
+              <td colspan="3" class="text-right">
                 <strong>
                   {total[0].map((countryName, i) => (
                     <>
@@ -69,16 +62,6 @@ const CartItems = ({
                     </>
                   ))}{" "}
                 </strong>
-              </td>
-              <td>
-                <Button
-                  variant="success"
-                  onClick={() =>
-                    handleCheckout(products, country, setLoading, router)
-                  }
-                >
-                  Checkout
-                </Button>
               </td>
             </tr>
           </tfoot>

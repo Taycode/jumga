@@ -5,7 +5,7 @@ import "./styles.scss";
 import StatCard from "../StatCard";
 
 const OverviewCard = ({ user }) => {
-  const { first_name } = user;
+  const { first_name, role } = user;
   const [stats, setStats] = useState(false);
 
   useEffect(() => {
@@ -21,10 +21,10 @@ const OverviewCard = ({ user }) => {
           </div>
 
           <div className="overview-card__stats-section">
-            {statHeadings.map((heading, i) => {
+            {statHeadings[role.toUpperCase()].map((heading, i) => {
               return (
                 <StatCard
-                  stat={stats ? stats[i] : 0}
+                  stat={stats[i] ? stats[i] : 0}
                   heading={heading}
                   key={i}
                 />

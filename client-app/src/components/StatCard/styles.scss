@@ -9,3 +9,9 @@
   font-weight: 600;
   display: block;
 }
+
+@media screen and (max-width: 480px) {
+  .stat-card__title {
+    font-size: 40%;
+  }
+}

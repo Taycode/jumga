@@ -62,7 +62,7 @@ const ProductCard = ({ product }) => {
             </span>
             {/* <span className="product-discount-label">20%</span> */}
           </div>
-          {/* <ul className="rating">{getRating(rating)}</ul> */}
+
           <div className="product-content pb-5">
             <h3 className="title">
               <Link to={`/product/${id}`}>{name}</Link>

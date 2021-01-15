@@ -5,10 +5,12 @@ import { Context as CartContext } from "./../../contexts/cartContext";
 import CartItems from "../../components/CartItems";
 import { useHistory } from "react-router-dom";
 import { useCountryData } from "../../util/useCountryData";
+import OrderForm from "../../components/OrderForm";
 import { useRouter } from "../../util/router";
-import { handleCheckout } from "./helper";
+import { handleExistingOrder } from "./helper";
+import "./styles.scss";
 
-const CartPage = () => {
+const CartPage = ({ mediaQuery }) => {
   const history = useHistory();
   const router = useRouter();
 
@@ -18,10 +20,14 @@ const CartPage = () => {
     state: { cart },
     fetchCartItems,
     removeCartitem,
+    clearCartItems,
   } = useContext(CartContext);
 
   useEffect(() => {
     fetchCartItems();
+    const existingOrderId = localStorage.getItem("orderId");
+
+    existingOrderId && handleExistingOrder(existingOrderId, router);
   }, []);
 
   const countryData = useCountryData();
@@ -35,17 +41,24 @@ const CartPage = () => {
       <span className=" go-back-icon" onClick={() => history.goBack()}>
         <i className="fa fa-arrow-left"></i> Back
       </span>
-      <h3 className="text-center mb-5"> Cart </h3>
-      <Row className="p-5">
-        <Col>
+
+      <Row className={`${mediaQuery === "isMobile" ? "p-2 mt-3" : "p-5"}`}>
+        <Col md={6} className="cart-column">
           <CartItems
             country={country}
             products={cart}
             removeCartitem={removeCartitem}
-            handleCheckout={handleCheckout}
-            router={router}
           />
         </Col>
+        {cart && cart.length > 0 && (
+          <Col md={6} sm={12} xs={12}>
+            <OrderForm
+              orderItems={cart}
+              country={country}
+              clearCartItems={clearCartItems}
+            />
+          </Col>
+        )}
       </Row>
     </Section>
   );

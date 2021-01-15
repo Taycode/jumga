@@ -43,3 +43,9 @@
   color: map-get($theme-colors, "secondary");
   padding: 0% 3% !important;
 }
+
+@media screen and (max-width: 480px) {
+  .store-list {
+    padding: 4%;
+  }
+}
