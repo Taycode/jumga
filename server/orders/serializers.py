@@ -6,6 +6,7 @@ from products.models import Product
 from orders.models import Order, ProductsInOrder
 from payment.models import Transaction
 from rider.models import Delivery
+from .services import OrderServices
 
 
 class ViewOrderSerializer(serializers.ModelSerializer):
@@ -123,10 +124,13 @@ class ConfirmOrderPaymentSerializer(serializers.Serializer):
 		# Create Delivery for rider
 
 		products_in_order = ProductsInOrder.objects.filter(order=instance)
+		order_services = OrderServices()
 
 		for _ in products_in_order:
 
 			rider = _.product.store.rider
+
+			order_services.process_transaction_for_each_product_order(_)
 
 			if rider:
 				Delivery.objects.create(
