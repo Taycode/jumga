@@ -179,3 +179,14 @@ class VerifyUserSerializer(serializers.Serializer):
 				instance.save()
 
 		return instance
+
+
+class UserProfileSerializer(serializers.ModelSerializer):
+	"""Serializer for getting User Profile"""
+
+	name = serializers.ReadOnlyField(source='get_full_name')
+
+	class Meta:
+		"""MEta Class"""
+		model = User
+		fields = ('id', 'name', 'role', 'country', )

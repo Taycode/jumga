@@ -93,3 +93,32 @@ class Flutterwave(object):
 		response = self.make_request(endpoint, method="GET")
 
 		return response
+
+	def create_a_transfer(self, data):
+		"""
+		:param data: dictionary
+
+		{
+			'account_bank': '',
+			'account_number': '',
+			'amount': '',
+			'currency': ''
+		}
+		"""
+
+		endpoint = self.base_url + '/transfers'
+
+		response = self.make_request(endpoint, json.dumps(data))
+
+		return response
+
+	def get_a_transfer(self, transfer_id):
+		"""
+		:param transfer_id: integer, ID of transfer
+		"""
+
+		endpoint = self.base_url + f'/transfers/{transfer_id}'
+
+		response = self.make_request(endpoint, method='GET')
+
+		return response
