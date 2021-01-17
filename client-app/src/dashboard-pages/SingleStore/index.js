@@ -33,6 +33,7 @@ const SingleStore = (props) => {
   useEffect(() => {
     fetchAllProducts(products);
     fetchAllStores(stores);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

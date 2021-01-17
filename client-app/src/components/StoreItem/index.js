@@ -8,7 +8,7 @@ import { ADD_STORE } from "../../util/constants";
 
 import { handleDeleteStore } from "./helper";
 
-import { Link, useRouter } from "../../util/router";
+import { useRouter } from "../../util/router";
 
 const StoreItem = ({ store, setShowModal, removeStore }) => {
   const router = useRouter();

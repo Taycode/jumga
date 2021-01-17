@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import StoreList from "../../components/StoreList";
 
@@ -13,6 +13,7 @@ const Stores = ({ setShowModal, mediaQuery }) => {
 
   useEffect(() => {
     fetchAllStores();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

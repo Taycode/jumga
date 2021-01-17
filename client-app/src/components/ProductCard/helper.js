@@ -1,4 +1,3 @@
-import React from "react";
 import { notifyUser } from "../../util/helper-functions";
 import { deleteProduct } from "../../util/operations/product";
 

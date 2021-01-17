@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import DeliveryList from "../../components/DeliveryList";
 import { Context as DeliveryContext } from "./../../contexts/deliveryContext";
@@ -12,6 +12,7 @@ const Delivery = ({ setShowModal, mediaQuery }) => {
 
   useEffect(() => {
     fetchAllDeliveries();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

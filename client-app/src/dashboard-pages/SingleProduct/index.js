@@ -24,6 +24,7 @@ const SingleProduct = (props) => {
 
   useEffect(() => {
     fetchAllProducts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -31,7 +32,7 @@ const SingleProduct = (props) => {
       setProduct(
         products.find((product) => parseInt(product.id) === parseInt(productId))
       );
-  }, [products]);
+  }, [products, productId]);
 
   return (
     <>

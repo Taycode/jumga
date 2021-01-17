@@ -1,7 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import OrderList from "../../components/OrderList";
-import { sampleOrders } from "../../util/static-data";
 
 const Orders = ({ setShowModal, mediaQuery }) => {
   return (

@@ -9,7 +9,7 @@ const DeliveryItem = ({ delivery, setShowModal }) => {
   const {
     store_name,
     product_name,
-    id,
+
     order: { address },
     status,
   } = delivery;

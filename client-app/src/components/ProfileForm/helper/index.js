@@ -40,6 +40,5 @@ export const renderProfileComponent = (active, user) => {
 
     default:
       return <> NOT FOUND </>;
-      break;
   }
 };

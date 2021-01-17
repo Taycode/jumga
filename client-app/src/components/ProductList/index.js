@@ -2,7 +2,6 @@ import React from "react";
 import { Col, Row } from "react-bootstrap";
 import "./styles.scss";
 import ProductCard from "./../ProductCard";
-import { sampleProducts } from "../../util/static-data";
 
 const ProductList = ({ products, removeproduct, setShowModal }) => {
   return (

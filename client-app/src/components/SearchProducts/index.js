@@ -4,10 +4,10 @@ import { useForm } from "react-hook-form";
 import FormField from "../../components/FormField";
 
 const SearchProducts = () => {
-  const { handleSubmit, register, errors, getValues } = useForm();
+  const { handleSubmit, register } = useForm();
 
   const onSubmit = (formData) => {
-    console.log(formData);
+    return alert("This feature is not active yet !");
   };
 
   return (
