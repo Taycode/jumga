@@ -29,6 +29,7 @@ const CartPage = ({ mediaQuery }) => {
     const existingOrderId = localStorage.getItem("orderId");
 
     existingOrderId && handleExistingOrder(existingOrderId, router);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const countryData = useCountryData();

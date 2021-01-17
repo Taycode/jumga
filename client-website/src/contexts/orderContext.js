@@ -1,5 +1,4 @@
 import createDataContext from "./createContext";
-import { notifyUser } from "../util/helper-functions";
 import { fetchOrder } from "../util/operations/order";
 
 const reducer = (state, action) => {

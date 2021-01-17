@@ -10,7 +10,11 @@ const SuccessPayment = () => {
     <div className="text-center">
       <h3> Thank You ! </h3>
       <h6> Your order is being processed ! </h6>
-      <img className="success-img" src={successPayment} />
+      <img
+        alt="Successful Payment"
+        className="success-img"
+        src={successPayment}
+      />
       <Link to="/products">
         {" "}
         <Button variant="primary"> Continue Shoping </Button>

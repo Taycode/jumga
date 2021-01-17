@@ -22,6 +22,7 @@ const PaymentPage = (props) => {
 
   useEffect(() => {
     match.params.orderId && fetchOrderDetails(match.params.orderId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [match?.params?.orderId]);
 
   // Pull this outta here later

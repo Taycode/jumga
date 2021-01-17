@@ -158,7 +158,7 @@ const AddStore = ({ setShowModal, data }) => {
                   if (value && value.length > 1) {
                     return true;
                   } else {
-                    return false;
+                    return "Select an image";
                   }
                 },
               })}
