@@ -1,9 +1,15 @@
 import React, { lazy } from "react";
-import { ADD_STORE, ADD_PRODUCT, MAKE_PAYMENT } from "../../util/constants";
+import {
+  ADD_STORE,
+  ADD_PRODUCT,
+  MAKE_PAYMENT,
+  SHOW_DELIVERY,
+} from "../../util/constants";
 
 const AddStore = lazy(() => import("../../modals/AddStore"));
 const AddProduct = lazy(() => import("../../modals/AddProduct"));
 const MakePayment = lazy(() => import("../../modals/MakePayment"));
+const ShowDelivery = lazy(() => import("../../modals/ShowDelivery"));
 
 const allModals = {
   [ADD_STORE]: (setShowModal, data) => (
@@ -18,6 +24,9 @@ const allModals = {
       data={data}
       setUserDetails={setUserDetails}
     />
+  ),
+  [SHOW_DELIVERY]: (setShowModal, data) => (
+    <ShowDelivery setShowModal={setShowModal} data={data} />
   ),
 };
 

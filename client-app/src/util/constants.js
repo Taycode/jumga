@@ -24,6 +24,7 @@ export const ADD_STORE = "ADD_STORE";
 export const ADD_PRODUCT = "ADD_PRODUCT";
 export const VIEW_ORDER = "VIEW_ORDER";
 export const MAKE_PAYMENT = "MAKE_PAYMENT";
+export const SHOW_DELIVERY = "SHOW_DELIVERY";
 
 export const SELLER_VERIFY_AMOUNT = 20;
 
@@ -71,4 +72,10 @@ export const currencyCodes = {
   ghana: "GHS",
   kenya: "KES",
   uk: "USD",
+};
+
+export const deliveryStatusMap = {
+  in_shop: "With Seller",
+  enroute_destination: "Enroute Destination",
+  delivered: "Delivered",
 };

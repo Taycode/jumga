@@ -53,6 +53,7 @@ export const handleCreateOrder = async (
   const orderData = {
     orders: formatedProductsData,
     country: usersCountry.toLowerCase(),
+    // country: "ghana",
     ...formdata,
   };
 
