@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
+import PageLoader from "../../components/PageLoader";
+import ProductList from "../../components/ProductList";
+import SearchProducts from "../../components/SearchProducts";
 import { Container, Col, Row, Button } from "react-bootstrap";
 import { Context as ProductsContext } from "./../../contexts/productContext";
 import { Context as StoreContext } from "./../../contexts/storeContext";
 import { getStoreProducts, getStoreName } from "./helper";
-import ProductList from "../../components/ProductList";
-import SearchProducts from "../../components/SearchProducts";
 import { ADD_PRODUCT } from "../../util/constants";
-import "./styles.scss";
 import { useHistory } from "react-router-dom";
+import "./styles.scss";
 
 const SingleStore = (props) => {
   const history = useHistory();
@@ -26,7 +27,7 @@ const SingleStore = (props) => {
   } = useContext(ProductsContext);
 
   const {
-    state: { stores },
+    state: { stores, loading },
     fetchAllStores,
   } = useContext(StoreContext);
 
@@ -49,63 +50,69 @@ const SingleStore = (props) => {
 
   return (
     <>
-      {store ? (
-        <Container className="mb-5">
-          <Row>
-            <Col>
-              {" "}
-              <h5
-                className={`${
-                  mediaQuery === "isMobile" && "ml-4"
-                } dashboard-header mb-5`}
-              >
-                {" "}
-                {store.name}{" "}
-              </h5>
-            </Col>
-          </Row>
-          <span onClick={() => history.goBack()} className="go-back-icon">
-            <i className="fa fa-arrow-left"></i> Back
-          </span>{" "}
-          <Row>
-            <Col>
-              <div className="products-top-section">
-                <SearchProducts />
-                <div>
-                  <Button
-                    onClick={() => {
-                      setShowModal({
-                        show: true,
-                        modalId: ADD_PRODUCT,
-                        data: {
-                          productData: {
-                            storeId: id,
-                          },
-                        },
-                      });
-                    }}
-                    className="btn-info btn-sm d-block"
-                  >
-                    + Add Product
-                  </Button>
-                </div>
-              </div>
-            </Col>
-          </Row>
-          <ProductList
-            products={storeProducts}
-            setShowModal={setShowModal}
-            removeproduct={removeProduct}
-          />
-        </Container>
+      {loading ? (
+        <PageLoader />
       ) : (
-        <Container>
-          <Row>
-            <Col>
-              <p className="p-5  mt-5"> Store does not exist</p>
-            </Col>
-          </Row>
-        </Container>
+        <>
+          {store ? (
+            <Container className="mb-5">
+              <Row>
+                <Col>
+                  {" "}
+                  <h5
+                    className={`${
+                      mediaQuery === "isMobile" && "ml-4"
+                    } dashboard-header mb-5`}
+                  >
+                    {" "}
+                    {store.name}{" "}
+                  </h5>
+                </Col>
+              </Row>
+              <span onClick={() => history.goBack()} className="go-back-icon">
+                <i className="fa fa-arrow-left"></i> Back
+              </span>{" "}
+              <Row>
+                <Col>
+                  <div className="products-top-section">
+                    <SearchProducts />
+                    <div>
+                      <Button
+                        onClick={() => {
+                          setShowModal({
+                            show: true,
+                            modalId: ADD_PRODUCT,
+                            data: {
+                              productData: {
+                                storeId: id,
+                              },
+                            },
+                          });
+                        }}
+                        className="btn-info btn-sm d-block"
+                      >
+                        + Add Product
+                      </Button>
+                    </div>
+                  </div>
+                </Col>
+              </Row>
+              <ProductList
+                products={storeProducts}
+                setShowModal={setShowModal}
+                removeproduct={removeProduct}
+              />
+            </Container>
+          ) : (
+            <Container>
+              <Row>
+                <Col>
+                  <p className="p-5  mt-5"> Store does not exist</p>
+                </Col>
+              </Row>
+            </Container>
+          )}
+        </>
       )}
     </>
   );

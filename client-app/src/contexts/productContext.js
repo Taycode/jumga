@@ -7,9 +7,10 @@ const reducer = (state, action) => {
     case "ADD_NEW_PRODUCT":
       return { ...state, products: [...state.products, action.payload] };
     case "FETCH_PRODUCTS_SUCCESSFULLY":
-      return { products: action.payload };
+      return { products: action.payload, loading: false };
     case "EDIT_A_PRODUCT":
       return {
+        ...state,
         products: [
           ...state.products.filter(
             (product) => product.id !== action.payload.id
@@ -19,6 +20,7 @@ const reducer = (state, action) => {
       };
     case "REMOVE_A_PRODUCT":
       return {
+        ...state,
         products: [
           ...state.products.filter(
             (product) => product.id !== action.payload.id
@@ -64,5 +66,6 @@ export const { Context, Provider } = createDataContext(
   },
   {
     products: [],
+    loading: true,
   }
 );

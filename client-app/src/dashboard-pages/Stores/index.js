@@ -6,13 +6,13 @@ import { Context as StoresContext } from "./../../contexts/storeContext";
 
 const Stores = ({ setShowModal, mediaQuery }) => {
   const {
-    state: { stores },
+    state: { stores, loading },
     fetchAllStores,
     removeStore,
   } = useContext(StoresContext);
 
   useEffect(() => {
-    fetchAllStores();
+    fetchAllStores(stores);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -37,6 +37,7 @@ const Stores = ({ setShowModal, mediaQuery }) => {
           setShowModal={setShowModal}
           removeStore={removeStore}
           mediaQuery={mediaQuery}
+          loading={loading}
         />
       </Container>
     </>

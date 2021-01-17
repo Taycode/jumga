@@ -17,13 +17,13 @@ const SingleProduct = (props) => {
   } = props;
 
   const {
-    state: { products },
+    state: { products, loading },
     fetchAllProducts,
     removeProduct,
   } = useContext(ProductsContext);
 
   useEffect(() => {
-    fetchAllProducts();
+    fetchAllProducts(products);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -62,7 +62,7 @@ const SingleProduct = (props) => {
         {products && products.length > 0 && !product && (
           <>This Product cannot be found, or does not exist</>
         )}
-        {!products && <PageLoader />}
+        {loading && <PageLoader />}
       </Container>
     </>
   );
