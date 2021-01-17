@@ -150,3 +150,12 @@ class RetrieveAndListProductsInOrderSerializer(serializers.ModelSerializer):
 		model = ProductsInOrder
 		fields = '__all__'
 		depth = 1
+
+
+class RetrieveOrderSerializer(serializers.ModelSerializer):
+	"""Serializer for retrieving data for an order"""
+
+	class Meta:
+		"""Meta Class"""
+		model = Order
+		fields = '__all__'

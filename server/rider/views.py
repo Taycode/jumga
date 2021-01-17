@@ -2,7 +2,7 @@
 
 
 from rest_framework.generics import ListAPIView, RetrieveAPIView, UpdateAPIView
-from .serializers import ListDeliverySerializer, UpdateDeliveryStatusSerializer
+from .serializers import ListDeliverySerializer, UpdateDeliveryStatusSerializer, RetrieveDeliverySerializer
 from .models import Delivery
 
 
@@ -19,7 +19,7 @@ class ListDeliveryAPIView(ListAPIView):
 class RetrieveDeliveryAPIView(RetrieveAPIView):
 	"""View for retrieving Delivery data"""
 
-	serializer_class = ListDeliverySerializer
+	serializer_class = RetrieveDeliverySerializer
 
 	def get_queryset(self):
 		"""Returns Queryset"""
