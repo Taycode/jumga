@@ -9,7 +9,7 @@ const reducer = (state, action) => {
     case "UPDATE_DELIVERY":
       return {
         deliveries: [
-          ...state.stores.filter(
+          ...state.deliveries.filter(
             (delivery) => delivery.id !== action.payload.id
           ),
           action.payload,

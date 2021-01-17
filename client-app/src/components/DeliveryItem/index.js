@@ -2,11 +2,10 @@ import React from "react";
 import { Col, Card, Row } from "react-bootstrap";
 import Avatar from "react-string-avatar";
 import { deliveryStatusMap, SHOW_DELIVERY } from "../../util/constants";
-import { useRouter } from "../../util/router";
+
 import "../StoreItem/styles.scss";
 
 const DeliveryItem = ({ delivery, setShowModal }) => {
-  const router = useRouter();
   const {
     store_name,
     product_name,
@@ -43,21 +42,13 @@ const DeliveryItem = ({ delivery, setShowModal }) => {
             <Col className="is-clickable" md={3}>
               <span> {product_name} </span>
             </Col>
-            <Col
-              onClick={() => router.push(`/dashboard/stores/${id}`)}
-              className="text-center is-clickable"
-              md={3}
-            >
+            <Col className="text-center is-clickable" md={3}>
               <span className="store-item__name">
                 {" "}
                 {address?.slice(0, 100)}...
               </span>
             </Col>
-            <Col
-              onClick={() => router.push(`/dashboard/stores/${id}`)}
-              className="text-center is-clickable"
-              md={3}
-            >
+            <Col className="text-center is-clickable" md={3}>
               <span className="store-item__name">
                 {" "}
                 {deliveryStatusMap[status]}

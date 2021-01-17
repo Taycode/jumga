@@ -23,10 +23,12 @@ export const handleUpdateDelivery = async (
   setShowModal
 ) => {
   setLoading(true);
-  const { id, delivery_status } = delivery;
+  const { id, status } = delivery;
+  const nextStatus = await getNextStatus(status);
+
   const updatedata = {
     id,
-    status: getNextStatus(delivery_status),
+    status: nextStatus,
   };
 
   const response = await updateDeliveryStatus(updatedata);
@@ -34,10 +36,10 @@ export const handleUpdateDelivery = async (
   response && notifyUser(response);
 
   if (response.status) {
+    await updateDeliveries({ ...delivery, ...updatedata });
     setShowModal({
       show: false,
     });
-    // Update delivery in context here;
   }
 
   setLoading(false);

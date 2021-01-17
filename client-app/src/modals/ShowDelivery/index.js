@@ -3,12 +3,15 @@ import { updateTextMap, handleUpdateDelivery } from "./helper";
 import { Button, Spinner, Row, Col, Badge } from "react-bootstrap";
 import { Context as DeliveryContext } from "../../contexts/deliveryContext";
 import "./styles.scss";
+import { formatMoney, getCurrency } from "../../util/helper-functions";
 
 const ShowDelivery = ({ setShowModal, data }) => {
   const { delivery } = data;
   const {
     status,
     store_name,
+    rider_commision,
+    rider: { country },
     order: { address, name, phone_number, id },
   } = delivery;
   const [loading, setLoading] = useState(false);
@@ -20,9 +23,19 @@ const ShowDelivery = ({ setShowModal, data }) => {
       <section>
         <h5 className="text-center"> Delivery details</h5>
         <div className="d-block m-auto text-center mb-5">
-          <Badge variant="dark"> #{id} </Badge>
+          <Badge variant={status === "delivered" ? "success" : "dark"}>
+            {" "}
+            #{id}{" "}
+          </Badge>
         </div>
         <Row>
+          <Col className="mt-3" md={4}>
+            <span className="dd-title"> Commision </span>
+            <span className="dd-data ">
+              {" "}
+              {getCurrency(country)} {formatMoney(rider_commision)}{" "}
+            </span>
+          </Col>
           <Col className="mt-3" md={4}>
             <span className="dd-title"> Delivery Address</span>
             <span className="dd-data ">{address} </span>
@@ -41,38 +54,40 @@ const ShowDelivery = ({ setShowModal, data }) => {
           </Col>
         </Row>
 
-        <div>
-          <Button
-            onClick={() =>
-              handleUpdateDelivery(
-                delivery,
-                setLoading,
-                updateDelivery,
-                setShowModal
-              )
-            }
-            variant="primary"
-            block={true}
-            size={"md"}
-            type="submit"
-            disabled={loading}
-            className="mt-4"
-          >
-            {!loading && <span>{updateTextMap[status]}</span>}
+        {status !== "delivered" && (
+          <div>
+            <Button
+              onClick={() =>
+                handleUpdateDelivery(
+                  delivery,
+                  setLoading,
+                  updateDelivery,
+                  setShowModal
+                )
+              }
+              variant="primary"
+              block={true}
+              size={"md"}
+              type="submit"
+              disabled={loading}
+              className="mt-4"
+            >
+              {!loading && <span>{updateTextMap[status]}</span>}
 
-            {loading && (
-              <Spinner
-                animation="border"
-                size="sm"
-                role="status"
-                aria-hidden={true}
-                className="align-baseline"
-              >
-                <span className="sr-only">Loading...</span>
-              </Spinner>
-            )}
-          </Button>
-        </div>
+              {loading && (
+                <Spinner
+                  animation="border"
+                  size="sm"
+                  role="status"
+                  aria-hidden={true}
+                  className="align-baseline"
+                >
+                  <span className="sr-only">Loading...</span>
+                </Spinner>
+              )}
+            </Button>
+          </div>
+        )}
       </section>
     </>
   );
