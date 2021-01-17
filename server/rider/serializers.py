@@ -20,7 +20,7 @@ class ListDeliverySerializer(serializers.ModelSerializer):
 	class Meta:
 		"""Meta Class"""
 		model = Delivery
-		fields = ('id', 'order', 'store_name', 'address', 'product_name', 'rider')
+		fields = ('id', 'order', 'store_name', 'address', 'product_name', 'rider', 'status')
 
 
 class RetrieveDeliverySerializer(serializers.ModelSerializer):
@@ -35,7 +35,7 @@ class RetrieveDeliverySerializer(serializers.ModelSerializer):
 	class Meta:
 		"""Meta Class"""
 		model = Delivery
-		fields = ('id', 'order', 'store_name', 'product_name', 'rider')
+		fields = ('id', 'order', 'store_name', 'product_name', 'rider', 'status')
 
 
 class UpdateDeliveryStatusSerializer(serializers.Serializer):
