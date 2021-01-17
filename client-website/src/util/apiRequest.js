@@ -17,8 +17,6 @@ const logRequests = () => {
 logRequests();
 
 export async function apiRequest(path, method = "GET", data, params) {
-  const accessToken = localStorage.getItem("token");
-
   const { CancelToken } = axios;
   const source = CancelToken.source();
 
@@ -26,9 +24,6 @@ export async function apiRequest(path, method = "GET", data, params) {
     const response = await axios({
       url: `${process.env.REACT_APP_API_BASEURL}${path}`,
       method,
-      headers: {
-        Authorization: accessToken ? `token ${accessToken}` : null,
-      },
       params: {
         ...params,
       },
@@ -45,7 +40,6 @@ export async function apiRequest(path, method = "GET", data, params) {
       message,
     };
   } catch (err) {
-    // console.log(err);
     return {
       status: false,
       message: err.response ? err.response.data.message : err.message,

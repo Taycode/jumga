@@ -24,25 +24,25 @@ function TestimonialsSection(props) {
         <Testimonials
           items={[
             {
+              avatar: "https://randomuser.me/api/portraits/men/16.jpg",
+              name: "Iyobosa Jefferson",
+              testimonial:
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum consequatur numquam aliquam tenetur ad amet inventore hic beatae.",
+              company: "Jeffa Stores (GH)",
+            },
+            {
               avatar: "https://uploads.divjoy.com/pravatar-150x-5.jpeg",
               name: "Sarah Kline",
               testimonial:
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-              company: "Company",
+              company: "Get Fit (UK)",
             },
             {
-              avatar: "https://uploads.divjoy.com/pravatar-150x-48.jpeg",
-              name: "Shawna Murray",
+              avatar: "https://randomuser.me/api/portraits/men/30.jpg",
+              name: "Ajayi  Jeremiah",
               testimonial:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum consequatur numquam aliquam tenetur ad amet inventore hic beatae, quas accusantium perferendis sapiente explicabo, corporis totam!",
-              company: "Company",
-            },
-            {
-              avatar: "https://uploads.divjoy.com/pravatar-150x-12.jpeg",
-              name: "Blake Elder",
-              testimonial:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum consequatur numquam aliquam tenetur ad amet inventore hic beatae.",
-              company: "Company",
+                "Lorem ipsum dolor sit amet,  aliquam tenetur ad amet inventore hic beatae, quas accusantium perferendis sapiente explicabo, corporis totam!",
+              company: "Jerrified (NG)",
             },
           ]}
         />
