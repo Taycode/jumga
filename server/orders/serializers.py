@@ -7,6 +7,7 @@ from orders.models import Order, ProductsInOrder
 from payment.models import Transaction
 from rider.models import Delivery
 from .services import OrderServices
+from users.choices import country_choices, DEFAULT_COUNTRY_CHOICE
 
 
 class ViewOrderSerializer(serializers.ModelSerializer):
@@ -44,7 +45,7 @@ class CreateOrderOnCheckoutSerializer(serializers.Serializer):
 
 	id = serializers.IntegerField(read_only=True)
 	orders = serializers.ListField(child=serializers.DictField(), write_only=True)
-	country = serializers.CharField()
+	country = serializers.ChoiceField(country_choices, default=DEFAULT_COUNTRY_CHOICE)
 	address = serializers.CharField()
 	phone_number = serializers.CharField()
 	email = serializers.CharField()

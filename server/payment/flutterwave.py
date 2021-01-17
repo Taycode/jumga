@@ -130,14 +130,8 @@ class Flutterwave(object):
 		:param amount: int, the amount of the from_current to convert to to_currency
 		"""
 
-		endpoint = self.base_url + '/rates'
+		endpoint = self.base_url + f'/rates?from={from_currency}&to={to_currency}&amount={amount}'
 
-		data = {
-			'from': from_currency,
-			'to': to_currency,
-			'amount': amount
-		}
-
-		response = self.make_request(endpoint, data)
+		response = self.make_request(endpoint, method='GET')
 
 		return response

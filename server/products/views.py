@@ -5,6 +5,7 @@ from .serializers import CreateProductSerializer, ListAndViewProductSerializer, 
 from .models import Product, ProductImage
 from stores.models import Store
 from rest_framework.permissions import IsAuthenticated
+from payment.services import PaymentService
 
 
 class CreateProductView(CreateAPIView):
@@ -69,6 +70,16 @@ class GlobalListProductsView(ListAPIView):
 	"""View for listing Products"""
 	serializer_class = ListAndViewProductSerializer
 	queryset = Product.objects.all()
+
+	def get_serializer_context(self):
+		"""Add extra context to serializer"""
+		context = super(GlobalListProductsView, self).get_serializer_context()
+		country = self.request.query_params.get('country') or 'nigeria'
+		context.update({"country": country})
+		payment_service = PaymentService()
+		rates = payment_service.get_rates(country)
+		context.update({"rates": rates})
+		return context
 
 
 class SellerListProductsView(ListAPIView):
