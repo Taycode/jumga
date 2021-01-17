@@ -1,18 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Col, Card, Row } from "react-bootstrap";
 import Avatar from "react-string-avatar";
 import { deliveryStatusMap, SHOW_DELIVERY } from "../../util/constants";
 import { useRouter } from "../../util/router";
 import "../StoreItem/styles.scss";
-
-const sampleDeliverydata = {
-  store_name: "Slot.NG",
-  product_name: "Oppo reno 3",
-  delivery_address: "20 Jogunosimi Street, Alausa, Ikeja, Lagos",
-  delivery_status: "in_shop",
-  reciever_name: "Olar Gold",
-  reciever_phoneNumber: "090989898788",
-};
 
 const DeliveryItem = ({ delivery, setShowModal }) => {
   const router = useRouter();
@@ -20,10 +11,8 @@ const DeliveryItem = ({ delivery, setShowModal }) => {
     store_name,
     product_name,
     id,
-    address,
-    reciever_name,
-    reciever_phoneNumber,
-    delivery_status,
+    order: { address },
+    status,
   } = delivery;
 
   return (
@@ -34,7 +23,7 @@ const DeliveryItem = ({ delivery, setShowModal }) => {
             setShowModal({
               show: true,
               data: {
-                delivery: sampleDeliverydata,
+                delivery,
               },
               modalId: SHOW_DELIVERY,
             })
@@ -61,7 +50,7 @@ const DeliveryItem = ({ delivery, setShowModal }) => {
             >
               <span className="store-item__name">
                 {" "}
-                {address.slice(0, 100)}...
+                {address?.slice(0, 100)}...
               </span>
             </Col>
             <Col
@@ -71,7 +60,7 @@ const DeliveryItem = ({ delivery, setShowModal }) => {
             >
               <span className="store-item__name">
                 {" "}
-                {deliveryStatusMap["in_shop"]}
+                {deliveryStatusMap[status]}
               </span>
             </Col>
           </Row>

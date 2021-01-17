@@ -25,7 +25,7 @@ export const handleUpdateDelivery = async (
   setLoading(true);
   const { id, delivery_status } = delivery;
   const updatedata = {
-    id: 3,
+    id,
     status: getNextStatus(delivery_status),
   };
 
