@@ -122,3 +122,22 @@ class Flutterwave(object):
 		response = self.make_request(endpoint, method='GET')
 
 		return response
+
+	def get_fx_rates(self, from_currency, to_currency, amount):
+		"""
+		:param from_currency: string, the currency we are converting from
+		:param to_currency: string, the currency we are converting to
+		:param amount: int, the amount of the from_current to convert to to_currency
+		"""
+
+		endpoint = self.base_url + '/rates'
+
+		data = {
+			'from': from_currency,
+			'to': to_currency,
+			'amount': amount
+		}
+
+		response = self.make_request(endpoint, data)
+
+		return response
