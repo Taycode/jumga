@@ -2,6 +2,7 @@ import React from "react";
 import { Card, Row, Col } from "react-bootstrap";
 import { deliveryListTableHeader } from "./helper";
 import "./../StoreList/styles.scss";
+import DeliveryItem from "../DeliveryItem";
 
 const DeliveryList = ({ setShowModal, deliveries }) => {
   return (
@@ -10,9 +11,7 @@ const DeliveryList = ({ setShowModal, deliveries }) => {
         <Col>
           <Card className=" store-list shadow">
             <div className="search-section">
-              <div>
-                <span> All Deliveries </span>
-              </div>
+              <span> All Deliveries </span>
             </div>
             <Row>
               {deliveryListTableHeader.map((tableHeader) => (
@@ -29,8 +28,12 @@ const DeliveryList = ({ setShowModal, deliveries }) => {
             <Row className="store-list__items-section">
               {deliveries && deliveries.length > 0 ? (
                 <>
-                  {deliveries.map((store) => (
-                    <span> Hi </span>
+                  {deliveries.map((delivery) => (
+                    <DeliveryItem
+                      key={delivery.id}
+                      delivery={delivery}
+                      setShowModal={setShowModal}
+                    />
                   ))}
                 </>
               ) : (

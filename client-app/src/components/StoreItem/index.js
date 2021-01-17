@@ -50,14 +50,12 @@ const StoreItem = ({ store, setShowModal, removeStore }) => {
                       roundShape="true"
                       textColor="#fff"
                       bgColor="#061123"
-                      // initials={rider.trim()[0]}
-                      initials={"U"}
+                      initials={rider.name ? rider.name.trim()[0] : "U"}
                     ></Avatar>{" "}
-                    Unassigned
-                    {/* {rider}{" "} */}
+                    {rider.name ? rider.name : "Unassigned"}
                   </>
                 ) : (
-                  <>Unassigned</>
+                  <> Unassigned </>
                 )}
               </Col>
               <Col

@@ -7,12 +7,14 @@ import "./styles.scss";
 import { useRouter } from "../../util/router";
 import { Context as ProductsContext } from "./../../contexts/productsContext";
 import { Context as CartContext } from "./../../contexts/cartContext";
+import PageLoader from "../../components/PageLoader";
+import Emptycomponent from "../../components/Empty";
 
 const ProductsPage = ({ mediaQuery }) => {
   const router = useRouter();
 
   const {
-    state: { products },
+    state: { products, loading },
     fetchAllProducts,
   } = useContext(ProductsContext);
 
@@ -45,7 +47,19 @@ const ProductsPage = ({ mediaQuery }) => {
             </div>
           </Col>
           <Col md={10}>
-            <AllProducts products={products.sort((a, b) => b.id - a.id)} />
+            {loading ? (
+              <PageLoader />
+            ) : (
+              <>
+                {products && products.length === 0 ? (
+                  <Emptycomponent type="PRODUCTS" />
+                ) : (
+                  <AllProducts
+                    products={products.sort((a, b) => b.id - a.id)}
+                  />
+                )}
+              </>
+            )}
           </Col>
         </Row>
       </Section>

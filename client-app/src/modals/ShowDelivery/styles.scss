@@ -1,0 +1,11 @@
+@import "../../styles/global.scss";
+
+.dd-title {
+  font-weight: 600;
+  font-size: 50%;
+  color: map-get($theme-colors, "secondary");
+  display: block;
+}
+.dd-data {
+  font-size: 70%;
+}

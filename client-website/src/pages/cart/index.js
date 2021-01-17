@@ -5,10 +5,11 @@ import { Context as CartContext } from "./../../contexts/cartContext";
 import CartItems from "../../components/CartItems";
 import { useHistory } from "react-router-dom";
 import { useCountryData } from "../../util/useCountryData";
-import OrderForm from "../../components/OrderForm";
 import { useRouter } from "../../util/router";
+import OrderForm from "../../components/OrderForm";
 import { handleExistingOrder } from "./helper";
 import "./styles.scss";
+import PageLoader from "../../components/PageLoader";
 
 const CartPage = ({ mediaQuery }) => {
   const history = useHistory();
@@ -17,7 +18,7 @@ const CartPage = ({ mediaQuery }) => {
   const [country, setCountry] = useState();
 
   const {
-    state: { cart },
+    state: { cart, loading },
     fetchCartItems,
     removeCartitem,
     clearCartItems,
@@ -43,21 +44,30 @@ const CartPage = ({ mediaQuery }) => {
       </span>
 
       <Row className={`${mediaQuery === "isMobile" ? "p-2 mt-3" : "p-5"}`}>
-        <Col md={6} className="cart-column">
-          <CartItems
-            country={country}
-            products={cart}
-            removeCartitem={removeCartitem}
-          />
-        </Col>
-        {cart && cart.length > 0 && (
-          <Col md={6} sm={12} xs={12}>
-            <OrderForm
-              orderItems={cart}
-              country={country}
-              clearCartItems={clearCartItems}
-            />
+        {loading ? (
+          <Col>
+            {" "}
+            <PageLoader />
           </Col>
+        ) : (
+          <>
+            <Col md={6} className="cart-column">
+              <CartItems
+                country={country}
+                products={cart}
+                removeCartitem={removeCartitem}
+              />
+            </Col>
+            {cart && cart.length > 0 && (
+              <Col md={6} sm={12} xs={12}>
+                <OrderForm
+                  orderItems={cart}
+                  country={country}
+                  clearCartItems={clearCartItems}
+                />
+              </Col>
+            )}
+          </>
         )}
       </Row>
     </Section>

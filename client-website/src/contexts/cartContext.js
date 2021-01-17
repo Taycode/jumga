@@ -7,7 +7,7 @@ const reducer = (state, action) => {
         cart: state.cart ? [...state.cart, action.payload] : [action.payload],
       };
     case "FETCH_CART_ITEMS":
-      return { cart: action.payload };
+      return { cart: action.payload, loading: false };
     case "CLEAR_CART":
       return { cart: [] };
     default:
@@ -64,5 +64,6 @@ export const { Context, Provider } = createDataContext(
   },
   {
     cart: [],
+    loading: true,
   }
 );

@@ -9,7 +9,15 @@ const OrderDetails = ({
   paymentStep,
   mediaQuery,
 }) => {
-  const { address, email, name, phone_number, total_cost, country } = order;
+  const {
+    address,
+    email,
+    name,
+    phone_number,
+    total_cost,
+    country,
+    paid,
+  } = order;
   return (
     <>
       <div className={mediaQuery === "isMobile" ? "p-1 mb-5" : "p-4"}>
@@ -42,7 +50,7 @@ const OrderDetails = ({
           {getCurrency(country)} {formatMoney(total_cost)}
         </div>
 
-        {paymentStep < 3 && (
+        {!paid && paymentStep < 3 && (
           <div className="m-auto text-center">
             <Button
               onClick={() => {

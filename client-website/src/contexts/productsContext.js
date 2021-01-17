@@ -5,7 +5,7 @@ import { fetchProducts } from "../util/operations/product";
 const reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_PRODUCTS_SUCCESSFULLY":
-      return { products: action.payload };
+      return { products: action.payload, loading: false };
     default:
       return state;
   }
@@ -30,5 +30,6 @@ export const { Context, Provider } = createDataContext(
   },
   {
     products: [],
+    loading: true,
   }
 );
