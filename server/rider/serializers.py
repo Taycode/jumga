@@ -5,16 +5,21 @@ from rest_framework import serializers
 from .models import Delivery
 from .choices import status_choices
 import datetime
+from users.serializers import UserProfileSerializer
 
 
 class ListDeliverySerializer(serializers.ModelSerializer):
 	"""Serializer for listing Deliveries"""
 
+	store_name = serializers.ReadOnlyField(source='order.product.store.name')
+	address = serializers.ReadOnlyField(source='order.order.address')
+	product_name = serializers.ReadOnlyField(source='order.product.name')
+	rider = UserProfileSerializer()
+
 	class Meta:
 		"""Meta Class"""
 		model = Delivery
-		exclude = ('rider', )
-		depth = 1
+		fields = ('order', 'store_name', 'address', 'product_name', 'rider')
 
 
 class UpdateDeliveryStatusSerializer(serializers.Serializer):
