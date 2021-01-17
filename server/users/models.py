@@ -13,4 +13,5 @@ class User(AbstractUser):
 	account_name = models.CharField(max_length=64, blank=True, null=True)
 	account_number = models.CharField(max_length=16, blank=True, null=True)
 	verified = models.BooleanField(default=False)
-
+	withdrawn = models.BigIntegerField(default=0)
+	balance = models.BigIntegerField(default=0)

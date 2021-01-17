@@ -4,6 +4,7 @@
 from rest_framework import serializers
 from .models import Store
 from django.contrib.auth import get_user_model
+from users.serializers import UserProfileSerializer
 
 
 User = get_user_model()
@@ -27,6 +28,11 @@ class ListStoresSerializer(serializers.ModelSerializer):
 		data.update({
 			'product_count': instance.product_set.count()
 		})
+		rider = data.get('rider')
+		if rider:
+			data.update({
+				'rider': UserProfileSerializer(User.objects.get(id=rider)).data
+			})
 		return data
 
 	class Meta:

@@ -14,4 +14,4 @@ class Delivery(models.Model):
 	rider = models.ForeignKey(User, on_delete=models.CASCADE)
 	order = models.ForeignKey(ProductsInOrder, on_delete=models.CASCADE)
 	status = models.CharField(max_length=32, choices=status_choices, default=IN_SHOP)
-	delivered_time = models.DateTimeField(blank=True)
+	delivered_time = models.DateTimeField(blank=True, null=True)
