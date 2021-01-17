@@ -9,7 +9,7 @@ from .models import Delivery
 class ListDeliveryAPIView(ListAPIView):
 	"""View for listing Delivery"""
 
-	serializer_class = ListDeliverySerializer
+	serializer_class = RetrieveDeliverySerializer
 
 	def get_queryset(self):
 		"""Returns Queryset"""
