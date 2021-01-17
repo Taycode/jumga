@@ -6,5 +6,5 @@ export const fetchDeliveries = () => {
 
 export const updateDeliveryStatus = (deliveryData) => {
   const { id } = deliveryData;
-  return apiRequest(`/delivery/status/${id}/`, "PATCH", deliveryData);
+  return apiRequest(`/rider/delivery/status/${id}/`, "PATCH", deliveryData);
 };

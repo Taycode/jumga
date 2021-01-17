@@ -20,11 +20,11 @@ const DeliveryItem = ({ delivery, setShowModal }) => {
     store_name,
     product_name,
     id,
-    delivery_address,
+    address,
     reciever_name,
     reciever_phoneNumber,
     delivery_status,
-  } = sampleDeliverydata;
+  } = delivery;
 
   return (
     <>
@@ -61,7 +61,7 @@ const DeliveryItem = ({ delivery, setShowModal }) => {
             >
               <span className="store-item__name">
                 {" "}
-                {delivery_address.slice(0, 100)}...
+                {address.slice(0, 100)}...
               </span>
             </Col>
             <Col
@@ -71,7 +71,7 @@ const DeliveryItem = ({ delivery, setShowModal }) => {
             >
               <span className="store-item__name">
                 {" "}
-                {deliveryStatusMap[delivery_status]}
+                {deliveryStatusMap["in_shop"]}
               </span>
             </Col>
           </Row>
