@@ -37,5 +37,5 @@ class UpdateDeliveryStatusAPIView(UpdateAPIView):
 
 	def get_object(self):
 		"""Returns object to be updated"""
-		delivery = Delivery.objects.get(id=self.request.GET.get('pk'))
+		delivery = Delivery.objects.get(id=self.kwargs.get('pk'))
 		return delivery
