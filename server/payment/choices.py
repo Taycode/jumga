@@ -14,3 +14,11 @@ transaction_type_choices = (
 )
 
 DEFAULT_TRANSACTION_TYPE = 'order'
+
+
+countries_to_currencies = {
+	'ghana': 'GHS',
+	'nigeria': 'NGN',
+	'kenya': 'KES',
+	'us': 'USD'
+}
