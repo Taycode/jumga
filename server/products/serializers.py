@@ -35,15 +35,6 @@ class ListAndViewProductSerializer(serializers.ModelSerializer):
 			'country': instance.store.owner.country,
 			'images': ProductImageSerializer(ProductImage.objects.filter(product=instance), many=True).data
 		})
-
-		country = self.context.get('country')
-		rates = self.context.get('rates')
-
-		if country and rates:
-			price = instance.price
-			price = int(price) * rates[country]
-			data['price'] = price
-
 		return data
 
 	class Meta:

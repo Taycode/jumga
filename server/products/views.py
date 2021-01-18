@@ -71,15 +71,10 @@ class GlobalListProductsView(ListAPIView):
 	serializer_class = ListAndViewProductSerializer
 	queryset = Product.objects.all()
 
-	def get_serializer_context(self):
+	def get_queryset(self):
 		"""Add extra context to serializer"""
-		context = super(GlobalListProductsView, self).get_serializer_context()
 		country = self.request.query_params.get('country') or 'nigeria'
-		context.update({"country": country})
-		payment_service = PaymentService()
-		rates = payment_service.get_rates(country)
-		context.update({"rates": rates})
-		return context
+		return Product.objects.filter(store__owner__country=country)
 
 
 class SellerListProductsView(ListAPIView):
