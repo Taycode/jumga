@@ -19,16 +19,57 @@ The project folder directory is divided into
 
 ## Running this project
 
-<!-- Explain how to run the project here  -->
+We used docker during development, so it should be pretty easy to run this project if you have docker installed on your local machine. If not, you would have to run each service independently.
+
+Both processes involve cloning this repositry, so go ahead with that first.
+
+### Running with docker
+
+After cloning this repository,
+
+navigate into the project directory and run the command below
+
+```bash
+docker-compose up
+```
+
+On your browser, open up
+
+=> `http://localhost:3000` - To view the jumga website
+=> `http://localhost:3001` - To view the jumga app
+
+Easy yeah ?
+
+### Running each service independently
+
+Hmmmmm....
+
+- Running the client-app: Navigate into the client directory and run
+  ```bash
+  npm install && npm start
+  ```
+- Running the client-website : Navigate into the client directory and run
+
+  ```bash
+  npm install && npm start
+  ```
+
+- Running the server :
+
+The commands you ran should install the necessary dependencies and run each service.
+
+On your browser, open up
+
+=> `http://localhost:3000` - To view the jumga website
+=> `http://localhost:3001` - To view the jumga app
 
 ## Problem Solving Approach
 
-<!-- How we approached the problem -->
+Taking a stern look into the problem statement provided by the flutterwave team,
 
 ## What we have been able to achieve.
 
-    In the space of three weeks, we have been able to build out the MVP required for
-
+In the space of three weeks, we have been able to build out the MVP required for
 this challenge which includes the following:
 
 - Sellers ...
@@ -42,7 +83,7 @@ Due to the fact that we had only about 3 weeks to run through this project, we w
 
 ## Team behind this project
 
-    The team that worked on this project consists of
+The team that worked on this project consists of
 
 - Tairu Abdulmateen - Backend Engineer.
 - Samuel Olamide - Frontend engineer.
