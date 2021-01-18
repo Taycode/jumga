@@ -73,14 +73,17 @@ const StoreList = ({
                 <>
                   {stores && stores.length > 0 ? (
                     <>
-                      {stores.map((store) => (
-                        <StoreItem
-                          setShowModal={setShowModal}
-                          key={store.id}
-                          store={store}
-                          removeStore={removeStore}
-                        />
-                      ))}
+                      {stores.map((store) => {
+                        return (
+                          <StoreItem
+                            setShowModal={setShowModal}
+                            key={store.id}
+                            store={store}
+                            removeStore={removeStore}
+                            mediaQuery={mediaQuery}
+                          />
+                        );
+                      })}
                     </>
                   ) : (
                     <Col className="text-center p-5">

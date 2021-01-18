@@ -76,7 +76,6 @@ const AddStore = ({ setShowModal, data }) => {
             ref={register({ required: true })}
             className="form-control"
             name="storeId"
-            // disabled={productData.storeId && true}
           >
             {stores.map((store) => (
               <option

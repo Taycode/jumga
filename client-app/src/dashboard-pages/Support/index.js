@@ -17,6 +17,15 @@ const Orders = ({ setShowModal, mediaQuery }) => {
             </h5>
           </Col>
         </Row>
+
+        <Row>
+          <Col>
+            <p className="text-center text-muted ">
+              {" "}
+              This feature is not ready yet !{" "}
+            </p>
+          </Col>
+        </Row>
       </Container>
     </>
   );

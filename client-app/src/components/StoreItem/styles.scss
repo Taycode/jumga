@@ -28,3 +28,48 @@
 .store-item-loading {
   height: 60px;
 }
+.mobile-store-item {
+  display: flex;
+  padding: 3%;
+  width: 100%;
+}
+.store-initials-mob {
+  flex: 1;
+  padding: auto;
+  text-align: center;
+}
+.store-details-mob {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+}
+.store-item-mob-title {
+  font-size: 60%;
+  display: block;
+  color: map-get($theme-colors, "secondary");
+  text-align: left;
+}
+.mob-data-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 3%;
+}
+.store-item__actions-section-mob {
+  display: flex;
+  padding: 5%;
+  justify-content: space-evenly !important;
+  margin-top: 20%;
+  img {
+    width: 15px;
+    cursor: pointer;
+    height: auto;
+    &:hover {
+      transform: scale(1.1);
+      transition: all 0.3s;
+    }
+    &:active {
+      transform: scale(0.8);
+      transition: all 0.3s;
+    }
+  }
+}

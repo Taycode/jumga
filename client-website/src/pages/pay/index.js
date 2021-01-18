@@ -62,7 +62,15 @@ const PaymentPage = (props) => {
                         {" "}
                         This order has been paid for !{" "}
                       </p>
-                      <Button variant="primary"> Track order</Button>
+                      <Button
+                        onClick={() =>
+                          alert("This feature is not available yet !")
+                        }
+                        variant="primary"
+                      >
+                        {" "}
+                        Track order
+                      </Button>
                     </div>
                   ) : (
                     <PaymentCard

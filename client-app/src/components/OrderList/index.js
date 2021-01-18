@@ -4,7 +4,7 @@ import OrderItem from "../OrderItem";
 import { Row, Card, Col } from "react-bootstrap";
 import "../StoreList/styles.scss";
 
-const OrderList = ({ orders, setShowModal }) => {
+const OrderList = ({ orders, setShowModal, mediaQuery }) => {
   return (
     <>
       <Row>
@@ -15,19 +15,20 @@ const OrderList = ({ orders, setShowModal }) => {
                 <span> All Orders</span>
               </div>
             </div>
-
-            <Row>
-              {orderListTableHeaders.map((tableHeader) => (
-                <Col
-                  className="store-list__header"
-                  key={tableHeader.id}
-                  md={tableHeader.width}
-                >
-                  {" "}
-                  {tableHeader.title}
-                </Col>
-              ))}
-            </Row>
+            {mediaQuery !== "isMobile" && (
+              <Row>
+                {orderListTableHeaders.map((tableHeader) => (
+                  <Col
+                    className="store-list__header"
+                    key={tableHeader.id}
+                    md={tableHeader.width}
+                  >
+                    {" "}
+                    {tableHeader.title}
+                  </Col>
+                ))}
+              </Row>
+            )}
 
             <Row className="store-list__items-section">
               {orders && orders.length > 0 ? (
@@ -36,7 +37,8 @@ const OrderList = ({ orders, setShowModal }) => {
                     <OrderItem
                       setShowModal={setShowModal}
                       key={orders.id}
-                      order={order}
+                      orderData={order}
+                      mediaQuery={mediaQuery}
                     />
                   ))}
                 </>
