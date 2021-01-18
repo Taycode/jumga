@@ -34,6 +34,7 @@ const Delivery = ({ setShowModal, mediaQuery }) => {
           updateDelivery={updateDelivery}
           deliveries={deliveries}
           setShowModal={setShowModal}
+          mediaQuery={mediaQuery}
         />
       </Container>
     </>
