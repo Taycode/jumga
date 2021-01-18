@@ -1,5 +1,7 @@
 export const handleFormSubmission = (formData, setLoading) => {
   setLoading(true);
+  alert("This Feature is not available yet !");
+  setLoading(false);
 };
 
 export const privacyDetails = [

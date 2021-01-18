@@ -17,7 +17,7 @@ const OverviewCard = ({ user }) => {
         <Card className="overview-card shadow">
           <div className="overview-card__header">
             <h6>Hi {first_name},</h6>{" "}
-            <span> This is your summary for November</span>
+            <span> This is your account summary since you joined us. </span>
           </div>
 
           <div className="overview-card__stats-section">
