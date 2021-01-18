@@ -17,7 +17,7 @@ const OrderItem = ({ orderData, setShowModal, mediaQuery }) => {
             setShowModal({
               show: true,
               data: {
-                order: orderData,
+                orderData,
               },
               modalId: VIEW_ORDER,
             });
