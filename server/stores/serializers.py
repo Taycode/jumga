@@ -61,6 +61,12 @@ class CreateStoreSerializer(serializers.Serializer):
 			store.save()
 		return store
 
+	def to_representation(self, instance):
+		"""Customize response"""
+		super(CreateStoreSerializer, self).to_representation(instance)
+		data = ListStoresSerializer(instance).data
+		return data
+
 
 class AssignRiderToStoreSerializer(serializers.Serializer):
 	"""Serializer for assigning Rider to Store"""
