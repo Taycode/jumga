@@ -3,6 +3,7 @@ import Section from "../../components/Section";
 import SingleProduct from "../../components/SingleProduct";
 import { Context as ProductsContext } from "../../contexts/productsContext";
 import { Context as CartContext } from "../../contexts/cartContext";
+import PageLoader from "../../components/PageLoader";
 
 const SingleProductPage = ({
   match: {
@@ -10,7 +11,7 @@ const SingleProductPage = ({
   },
 }) => {
   const {
-    state: { products },
+    state: { products, loading },
     fetchAllProducts,
   } = useContext(ProductsContext);
 
@@ -35,6 +36,7 @@ const SingleProductPage = ({
 
   return (
     <Section className="p-3">
+      {loading && <PageLoader />}
       {product && <SingleProduct product={product} />}
     </Section>
   );

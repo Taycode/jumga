@@ -40,7 +40,7 @@ function NavbarCustom(props) {
                       process.env.NODE_ENV === "development"
                         ? WEBSITE_DEV_URL
                         : WEBSITE_PROD_URL
-                    }/products`
+                    }`
                   );
                 }}
               >
