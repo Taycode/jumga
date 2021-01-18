@@ -130,7 +130,7 @@ class ConfirmOrderPaymentSerializer(serializers.Serializer):
 		for _ in products_in_order:
 
 			rider = _.product.store.rider
-
+			order_services.calculate_commissions(_)
 			order_services.process_transaction_for_each_product_order(_)
 
 			if rider:

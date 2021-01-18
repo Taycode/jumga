@@ -27,15 +27,15 @@ class RetrieveDeliverySerializer(serializers.ModelSerializer):
 	"""Serializer for listing Deliveries"""
 
 	store_name = serializers.ReadOnlyField(source='order.product.store.name')
-	# address = serializers.ReadOnlyField(source='order.order.address')
 	product_name = serializers.ReadOnlyField(source='order.product.name')
 	rider = UserProfileSerializer()
 	order = RetrieveOrderSerializer(source='order.order')
+	rider_commission = serializers.ReadOnlyField(source='order.rider_commission')
 
 	class Meta:
 		"""Meta Class"""
 		model = Delivery
-		fields = ('id', 'order', 'store_name', 'product_name', 'rider', 'status')
+		fields = ('id', 'order', 'store_name', 'product_name', 'rider', 'status', 'rider_commission')
 
 
 class UpdateDeliveryStatusSerializer(serializers.Serializer):
