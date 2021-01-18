@@ -2,6 +2,7 @@ import React from "react";
 import { Col, Card, Row } from "react-bootstrap";
 import Avatar from "react-string-avatar";
 import { deliveryStatusMap, SHOW_DELIVERY } from "../../util/constants";
+import { getCurrency, formatMoney } from "../../util/helper-functions";
 
 import "../StoreItem/styles.scss";
 
@@ -9,7 +10,8 @@ const DeliveryItem = ({ mediaQuery, delivery, setShowModal }) => {
   const {
     store_name,
     product_name,
-
+    rider: { country },
+    rider_commision,
     order: { address },
     status,
   } = delivery;
@@ -97,7 +99,11 @@ const DeliveryItem = ({ mediaQuery, delivery, setShowModal }) => {
                           <span className="store-item-mob-title">
                             Delivery Commision
                           </span>
-                          <span> N 300,000 </span>
+                          <span>
+                            {" "}
+                            {getCurrency(country)}{" "}
+                            {formatMoney(rider_commision)}{" "}
+                          </span>
                         </div>
                       </div>
                     </div>
