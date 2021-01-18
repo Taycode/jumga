@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
+import PageLoader from "../../components/PageLoader";
 import { Container, Row, Col } from "react-bootstrap";
 import OrderList from "../../components/OrderList";
-import { sampleOrders } from "../../util/static-data";
+import { Context as OrdersContext } from "../../contexts/orderContext";
 
 const Orders = ({ setShowModal, mediaQuery }) => {
+  const {
+    state: { orders, loading },
+    fetchAllOrders,
+  } = useContext(OrdersContext);
+
+  useEffect(() => {
+    fetchAllOrders(orders);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <Container className="mb-5">
@@ -20,7 +31,15 @@ const Orders = ({ setShowModal, mediaQuery }) => {
           </Col>
         </Row>
 
-        <OrderList orders={[]} setShowModal={setShowModal} />
+        {loading ? (
+          <PageLoader />
+        ) : (
+          <OrderList
+            mediaQuery={mediaQuery}
+            orders={orders}
+            setShowModal={setShowModal}
+          />
+        )}
       </Container>
     </>
   );

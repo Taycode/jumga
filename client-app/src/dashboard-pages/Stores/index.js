@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import StoreList from "../../components/StoreList";
 
@@ -6,13 +6,14 @@ import { Context as StoresContext } from "./../../contexts/storeContext";
 
 const Stores = ({ setShowModal, mediaQuery }) => {
   const {
-    state: { stores },
+    state: { stores, loading },
     fetchAllStores,
     removeStore,
   } = useContext(StoresContext);
 
   useEffect(() => {
-    fetchAllStores();
+    fetchAllStores(stores);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -36,6 +37,7 @@ const Stores = ({ setShowModal, mediaQuery }) => {
           setShowModal={setShowModal}
           removeStore={removeStore}
           mediaQuery={mediaQuery}
+          loading={loading}
         />
       </Container>
     </>

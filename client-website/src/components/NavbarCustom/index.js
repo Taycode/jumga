@@ -23,8 +23,13 @@ function NavbarCustom(props) {
         <Navbar.Collapse id="navbar-nav" className="justify-content-end">
           <Nav>
             <Nav.Item>
-              <LinkContainer to="/products">
+              <LinkContainer to="/">
                 <Nav.Link>Products</Nav.Link>
+              </LinkContainer>
+            </Nav.Item>
+            <Nav.Item>
+              <LinkContainer to="/seller">
+                <Nav.Link>Sellers</Nav.Link>
               </LinkContainer>
             </Nav.Item>
             <Nav.Item>

@@ -43,12 +43,12 @@ function App(props) {
             logo={logoBlue}
           />
           <Switch>
-            <Route exact path="/" component={IndexPage} />
+            <Route exact path="/seller" component={IndexPage} />
 
             <Route exact path="/rider" component={RidersHomePage} />
 
             <Route
-              path="/products"
+              path="/"
               render={(routerProps) => (
                 <ProductsPage {...routerProps} mediaQuery={mediaQuery} />
               )}

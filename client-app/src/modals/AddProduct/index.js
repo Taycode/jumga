@@ -28,6 +28,7 @@ const AddStore = ({ setShowModal, data }) => {
 
   useEffect(() => {
     fetchAllStores();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const submit = (formData) => {
@@ -75,7 +76,6 @@ const AddStore = ({ setShowModal, data }) => {
             ref={register({ required: true })}
             className="form-control"
             name="storeId"
-            // disabled={productData.storeId && true}
           >
             {stores.map((store) => (
               <option
@@ -158,7 +158,7 @@ const AddStore = ({ setShowModal, data }) => {
                   if (value && value.length > 1) {
                     return true;
                   } else {
-                    return false;
+                    return "Select an image";
                   }
                 },
               })}

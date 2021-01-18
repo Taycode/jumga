@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import Section from "../../components/Section";
 import SingleProduct from "../../components/SingleProduct";
-import { sampleProducts } from "../../util/static-data";
-import PageLoader from "../../components/PageLoader";
 import { Context as ProductsContext } from "../../contexts/productsContext";
 import { Context as CartContext } from "../../contexts/cartContext";
 
@@ -23,6 +21,7 @@ const SingleProductPage = ({
   useEffect(() => {
     fetchAllProducts(products);
     fetchCartItems();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -31,6 +30,7 @@ const SingleProductPage = ({
       setProduct(
         products.find((product) => parseInt(product.id) === parseInt(productId))
       );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [products]);
 
   return (

@@ -22,7 +22,19 @@ const GraphSection = ({ graphData, role }) => {
           <Col md={12}>
             <div className="chart-area">
               <Line
-                data={(c) => data(c, [200, 100, 300, 3000])}
+                data={(c) =>
+                  data(c, [
+                    20000,
+                    17000,
+                    33000,
+                    30000,
+                    25000,
+                    15000,
+                    30000,
+                    31000,
+                    33000,
+                  ])
+                }
                 options={chartOptions}
               />
             </div>

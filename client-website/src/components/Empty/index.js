@@ -8,6 +8,7 @@ const Emptycomponent = ({ type }) => {
     <div className="m-auto text-center p-4">
       <img
         className="empty"
+        alt="Empty here "
         src={type === "ORDER" ? emptyOrder : emptyProducts}
       />
       <div className="empty-text">

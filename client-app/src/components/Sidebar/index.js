@@ -56,7 +56,7 @@ const SideBar = ({ role, mediaQuery, logout }) => {
             </div>
             <Nav className="sidebar-nav flex-column">
               {routes[role.toUpperCase()].map((route, i) => (
-                <React.Fragment key={route.name}>
+                <React.Fragment key={route.path}>
                   {!route.slug ? (
                     <NavItem
                       onClick={() =>

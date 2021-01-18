@@ -43,6 +43,7 @@ const routes = {
       getLinkIcon: (selected) =>
         selected === "sidebar-active" ? storeactiveIcon : storeIcon,
     },
+
     {
       path: "/stores",
       name: "Stores",

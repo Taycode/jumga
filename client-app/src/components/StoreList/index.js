@@ -1,11 +1,18 @@
 import React from "react";
 import { Card, Row, Col, Button } from "react-bootstrap";
-import "./styles.scss";
 import { storeListTableHeader } from "./helper";
 import { ADD_STORE } from "../../util/constants";
 import StoreItem from "../StoreItem";
+import PageLoader from "../PageLoader";
+import "./styles.scss";
 
-const StoreList = ({ setShowModal, stores, removeStore, mediaQuery }) => {
+const StoreList = ({
+  loading,
+  setShowModal,
+  stores,
+  removeStore,
+  mediaQuery,
+}) => {
   return (
     <>
       <Row>
@@ -57,21 +64,33 @@ const StoreList = ({ setShowModal, stores, removeStore, mediaQuery }) => {
             )}
 
             <Row className="  store-list__items-section">
-              {stores && stores.length > 0 ? (
-                <>
-                  {stores.map((store) => (
-                    <StoreItem
-                      setShowModal={setShowModal}
-                      key={store.id}
-                      store={store}
-                      removeStore={removeStore}
-                    />
-                  ))}
-                </>
-              ) : (
-                <Col className="text-center p-5">
-                  Create a store to get started
+              {loading ? (
+                <Col>
+                  {" "}
+                  <PageLoader />{" "}
                 </Col>
+              ) : (
+                <>
+                  {stores && stores.length > 0 ? (
+                    <>
+                      {stores.map((store) => {
+                        return (
+                          <StoreItem
+                            setShowModal={setShowModal}
+                            key={store.id}
+                            store={store}
+                            removeStore={removeStore}
+                            mediaQuery={mediaQuery}
+                          />
+                        );
+                      })}
+                    </>
+                  ) : (
+                    <Col className="text-center p-5">
+                      Create a store to get started !
+                    </Col>
+                  )}
+                </>
               )}
             </Row>
           </Card>

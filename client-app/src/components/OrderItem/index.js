@@ -1,73 +1,102 @@
-import React, { useState } from "react";
-import { Col, Card, Row } from "react-bootstrap";
+import React from "react";
+import { Col, Card, Row, Badge } from "react-bootstrap";
 import { VIEW_ORDER } from "../../util/constants";
-
-import trash from "../../assets/icons/trash.png";
-import edit from "../../assets/icons/edit.png";
-import { useRouter } from "../../util/router";
 import "../StoreItem/styles.scss";
 
-const OrderItem = ({ order, setShowModal }) => {
-  const router = useRouter();
-  const { product_name, rider, id, delivery_address, delivery_status } = order;
-  const [loading, setLoading] = useState(false);
+const OrderItem = ({ orderData, setShowModal, mediaQuery }) => {
+  const {
+    product: { name },
+    order: { paid, rider },
+  } = orderData;
 
   return (
     <>
       <Col md={12}>
-        <Card className="shadow store-item-card">
-          {loading ? (
-            <div className="store-item-loading text-center">
-              {" "}
-              Please wait...{" "}
-            </div>
-          ) : (
-            <Row>
-              <Col
-                onClick={() => router.push(`/dashboard/stores/${id}`)}
-                className="is-clickable"
-                md={4}
-              >
-                <span> product name</span>
-              </Col>
-              <Col
-                onClick={() => router.push(`/dashboard/stores/${id}`)}
-                className="is-clickable"
-                md={3}
-              >
-                Hi
-              </Col>
-              <Col
-                onClick={() => router.push(`/dashboard/stores/${id}`)}
-                className="text-center is-clickable"
-                md={2}
-              >
-                <span className="store-item__name"> Blaaah</span>
-              </Col>
-              <Col className="" md={3}>
-                <div className="store-item__actions-section">
-                  <img
-                    onClick={() => {
-                      setShowModal({
-                        show: true,
-                        modalId: VIEW_ORDER,
-                        data: {},
-                      });
-                    }}
-                    alt="view order "
-                    src={edit}
-                  />
-                  {/* <img
-                    onClick={() =>
-                      handleDeleteStore(store, setLoading, removeStore)
-                    }
-                    alt="Delete icon"
-                    src={trash}
-                  /> */}
+        <Card
+          onClick={() => {
+            setShowModal({
+              show: true,
+              data: {
+                orderData,
+              },
+              modalId: VIEW_ORDER,
+            });
+          }}
+          className="shadow store-item-card"
+        >
+          <Row>
+            {mediaQuery !== "isMobile" ? (
+              <>
+                <Col className="is-clickable" md={3}>
+                  <span> {name}</span>
+                </Col>
+                <Col className="is-clickable" md={3}>
+                  Unassigned
+                </Col>
+                <Col className="text-center is-clickable" md={2}>
+                  <span className="store-item__name"> Enroute Delivery </span>
+                </Col>
+                <Col className="" md={2}>
+                  <div className="store-item__actions-section">
+                    {" "}
+                    <Badge variant={paid ? "success" : "dark"}>
+                      {paid ? "Paid" : "Pending"}{" "}
+                    </Badge>{" "}
+                  </div>
+                </Col>
+                <Col className="text-center" md={2}>
+                  <span className="store-item__name"> N 300,000 </span>
+                </Col>
+              </>
+            ) : (
+              <Col>
+                {" "}
+                <div className="mobile-store-item">
+                  <div className="store-details-mob">
+                    <div className="mob-data-row">
+                      <div className="mb-1 ">
+                        <span className="store-item-mob-title"> Product</span>
+                        <span> {name}</span>
+                      </div>
+                      <div className="mb-1">
+                        <span className="store-item-mob-title">
+                          {" "}
+                          Dispatch Rider
+                        </span>
+                        <span> {rider?.name ? rider.name : "Unassigned"}</span>
+                      </div>
+                    </div>
+
+                    <div className="mob-data-row">
+                      <div className="mb-1">
+                        <span className="store-item-mob-title">
+                          Delivery status
+                        </span>
+                        <span> Enroute delivery </span>
+                      </div>
+                      <div className="mb-1">
+                        <span className="store-item-mob-title">
+                          Payment status
+                        </span>
+                        <span>
+                          {" "}
+                          <Badge variant={paid ? "success" : "dark"}>
+                            {paid ? "Paid" : "Pending"}{" "}
+                          </Badge>{" "}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="mob-data-row">
+                      <div className="mb-1">
+                        <span className="store-item-mob-title">Commision</span>
+                        <span> N 300,000 </span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </Col>
-            </Row>
-          )}
+            )}
+          </Row>
         </Card>
       </Col>
     </>

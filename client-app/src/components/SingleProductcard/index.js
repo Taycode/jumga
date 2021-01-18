@@ -8,7 +8,7 @@ import { formatGalleryimages, handleDeleteProduct } from "./helper";
 import "./styles.scss";
 
 const SingleProduct = ({ product, removeProduct, setShowModal }) => {
-  const { name, price, description, rating, country } = product;
+  const { name, price, description, country } = product;
   const router = useRouter();
 
   const [loading, setLoading] = useState(false);
@@ -59,8 +59,7 @@ const SingleProduct = ({ product, removeProduct, setShowModal }) => {
               variant="link"
               className="text-danger text-decoration-none"
             >
-              {" "}
-              Delete
+              {loading ? "Please Wait " : "Delete"}
             </Button>
           </div>
         </Col>

@@ -27,7 +27,9 @@ const handleAuthh = async (
 
   return setAuthMessage({
     type: "error",
-    message: response.message,
+    message: response.message
+      ? response.message
+      : "There seems to be a problem, Please try again !",
   });
 };
 

@@ -15,7 +15,7 @@ import "./styles.scss";
 import { useHistory } from "react-router-dom";
 
 const SingleProduct = ({ product }) => {
-  const { name, price, description, rating, country } = product;
+  const { name, price, description, country } = product;
   const history = useHistory();
   const {
     state: { cart },

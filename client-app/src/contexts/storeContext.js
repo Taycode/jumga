@@ -10,9 +10,10 @@ const reducer = (state, action) => {
         stores: [...state.stores, { ...action.payload, product_count: 0 }],
       };
     case "FETCH_STORES_SUCCESSFULLY":
-      return { stores: action.payload };
+      return { stores: action.payload, loading: false };
     case "EDIT_A_STORE":
       return {
+        ...state,
         stores: [
           ...state.stores.filter((store) => store.id !== action.payload.id),
           action.payload,
@@ -20,6 +21,7 @@ const reducer = (state, action) => {
       };
     case "REMOVE_A_STORE":
       return {
+        ...state,
         stores: [
           ...state.stores.filter((store) => store.id !== action.payload.id),
         ],
@@ -63,5 +65,6 @@ export const { Context, Provider } = createDataContext(
   },
   {
     stores: [],
+    loading: true,
   }
 );

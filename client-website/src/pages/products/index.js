@@ -23,6 +23,7 @@ const ProductsPage = ({ mediaQuery }) => {
   useEffect(() => {
     fetchAllProducts(products);
     fetchCartItems();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -8,13 +8,14 @@ import { Context as ProductsContext } from "./../../contexts/productContext";
 
 const Products = ({ setShowModal, mediaQuery }) => {
   const {
-    state: { products },
+    state: { products, loading },
     fetchAllProducts,
     removeProduct,
   } = useContext(ProductsContext);
 
   useEffect(() => {
-    fetchAllProducts();
+    fetchAllProducts(products);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -57,6 +58,7 @@ const Products = ({ setShowModal, mediaQuery }) => {
           products={products.sort((a, b) => a.id - b.id)}
           setShowModal={setShowModal}
           removeproduct={removeProduct}
+          loading={loading}
         />
       </Container>
     </>
