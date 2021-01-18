@@ -48,13 +48,6 @@ function App(props) {
             <Route exact path="/rider" component={RidersHomePage} />
 
             <Route
-              path="/"
-              render={(routerProps) => (
-                <ProductsPage {...routerProps} mediaQuery={mediaQuery} />
-              )}
-            />
-
-            <Route
               path="/cart"
               render={(routerProps) => (
                 <CartPage {...routerProps} mediaQuery={mediaQuery} />
@@ -69,6 +62,14 @@ function App(props) {
             />
 
             <Route path="/product/:productId" component={SingleProduct} />
+
+            <Route
+              path="/"
+              exact
+              render={(routerProps) => (
+                <ProductsPage {...routerProps} mediaQuery={mediaQuery} />
+              )}
+            />
 
             <Route component={NotFoundPage} />
           </Switch>
