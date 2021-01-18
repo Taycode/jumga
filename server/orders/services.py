@@ -38,7 +38,29 @@ class OrderServices(object):
 
     def process_transaction_for_each_product_order(self, product_order):
         """Allocate commissions and transfer"""
+        rider_commission = product_order.rider_commission
+        seller_commission = product_order.seller_commission
 
+        # Get Rider
+        rider = product_order.product.store.rider
+
+        rider.balance += rider_commission
+        rider.save()
+
+        self.transfer_to_user(rider, rider_commission)
+
+        # Transfer to seller
+
+        seller = product_order.product.store.owner
+
+        seller.balance += seller_commission
+        seller.save()
+
+        self.transfer_to_user(seller, seller_commission)
+
+    @staticmethod
+    def calculate_commissions(product_order):
+        """Calculate Jumga and Rider Commissions"""
         cost = product_order.product.price * product_order.quantity
 
         # Seller gets 97.5 percent of the total cost of the product
@@ -58,23 +80,9 @@ class OrderServices(object):
         # rider gets the other 80 percent
 
         rider_commission = delivery_fee - jumga_delivery_commission
-
-        rider = product_order.product.store.rider
-
-        rider.balance += rider_commission
-        rider.save()
-
-        self.transfer_to_user(rider, rider_commission)
-
-        # Transfer to seller
-
-        seller = product_order.product.store.owner
-
-        seller.balance += seller_commission
-        seller.save()
-
-        self.transfer_to_user(seller, seller_commission)
-
         total_jumga_commissions = jumga_sale_commission + jumga_delivery_commission
 
-        return None
+        product_order.rider_commission = rider_commission
+        product_order.seller_commission = seller_commission
+        product_order.jumga_commission = total_jumga_commissions
+        product_order.save()

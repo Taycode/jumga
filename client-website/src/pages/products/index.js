@@ -9,9 +9,11 @@ import { Context as ProductsContext } from "./../../contexts/productsContext";
 import { Context as CartContext } from "./../../contexts/cartContext";
 import PageLoader from "../../components/PageLoader";
 import Emptycomponent from "../../components/Empty";
+import { useCountryData } from "../../util/useCountryData";
 
 const ProductsPage = ({ mediaQuery }) => {
   const router = useRouter();
+  const countryData = useCountryData();
 
   const {
     state: { products, loading },
@@ -21,10 +23,10 @@ const ProductsPage = ({ mediaQuery }) => {
   const { fetchCartItems } = useContext(CartContext);
 
   useEffect(() => {
-    fetchAllProducts(products);
+    fetchAllProducts(products, countryData.country_name);
     fetchCartItems();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [countryData]);
 
   return (
     <>

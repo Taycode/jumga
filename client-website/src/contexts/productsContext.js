@@ -11,16 +11,19 @@ const reducer = (state, action) => {
   }
 };
 
-const fetchAllProducts = (dispatch) => async (products) => {
+const fetchAllProducts = (dispatch) => async (products, country) => {
   if (products && products.length > 0) {
     return;
   }
-  const { status, data, message } = await fetchProducts();
+  if (country) {
+    const { status, data, message } = await fetchProducts(country);
 
-  !status && notifyUser({ status, message });
+    !status && notifyUser({ status, message });
 
-  data &&
-    (await dispatch({ type: "FETCH_PRODUCTS_SUCCESSFULLY", payload: data }));
+    data &&
+      (await dispatch({ type: "FETCH_PRODUCTS_SUCCESSFULLY", payload: data }));
+  }
+  return;
 };
 
 export const { Context, Provider } = createDataContext(
