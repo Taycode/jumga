@@ -4,7 +4,7 @@ import { deliveryListTableHeader } from "./helper";
 import "./../StoreList/styles.scss";
 import DeliveryItem from "../DeliveryItem";
 
-const DeliveryList = ({ setShowModal, deliveries }) => {
+const DeliveryList = ({ mediaQuery, setShowModal, deliveries }) => {
   return (
     <>
       <Row>
@@ -13,17 +13,19 @@ const DeliveryList = ({ setShowModal, deliveries }) => {
             <div className="search-section">
               <span> All Deliveries </span>
             </div>
-            <Row>
-              {deliveryListTableHeader.map((tableHeader) => (
-                <Col
-                  className="store-list__header"
-                  key={tableHeader.id}
-                  md={tableHeader.width}
-                >
-                  {tableHeader.title}
-                </Col>
-              ))}
-            </Row>
+            {mediaQuery !== "isMobile" && (
+              <Row>
+                {deliveryListTableHeader.map((tableHeader) => (
+                  <Col
+                    className="store-list__header"
+                    key={tableHeader.id}
+                    md={tableHeader.width}
+                  >
+                    {tableHeader.title}
+                  </Col>
+                ))}
+              </Row>
+            )}
 
             <Row className="store-list__items-section">
               {deliveries && deliveries.length > 0 ? (
@@ -33,6 +35,7 @@ const DeliveryList = ({ setShowModal, deliveries }) => {
                       key={delivery.id}
                       delivery={delivery}
                       setShowModal={setShowModal}
+                      mediaQuery={mediaQuery}
                     />
                   ))}
                 </>

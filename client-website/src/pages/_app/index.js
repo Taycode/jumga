@@ -65,7 +65,6 @@ function App(props) {
 
             <Route
               path="/"
-              exact
               render={(routerProps) => (
                 <ProductsPage {...routerProps} mediaQuery={mediaQuery} />
               )}
