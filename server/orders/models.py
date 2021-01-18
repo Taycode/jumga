@@ -37,3 +37,6 @@ class ProductsInOrder(models.Model):
 	product = models.ForeignKey(Product, on_delete=models.CASCADE)
 	quantity = models.IntegerField(default=0)
 	order = models.ForeignKey(Order, on_delete=models.CASCADE)
+	jumga_commission = models.BigIntegerField(default=0)
+	rider_commission = models.BigIntegerField(default=0)
+	seller_commission = models.BigIntegerField(default=0)
