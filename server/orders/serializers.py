@@ -56,8 +56,9 @@ class CreateOrderOnCheckoutSerializer(serializers.Serializer):
 	address = serializers.CharField()
 	phone_number = serializers.CharField()
 	email = serializers.CharField()
-	total_cost = serializers.IntegerField(read_only=True)
+	total_cost = serializers.DecimalField(read_only=True)
 	name = serializers.CharField()
+	delivery_fee = serializers.DecimalField(read_only=True)
 
 	def create(self, validated_data):
 		"""Create Method"""
