@@ -63,6 +63,13 @@ Hmmmmm, this is how to run the app if you do not wish to run it using Docker....
   ```
 
 - Running the server :
+  ```bash
+  python3 -m venv env # Create Virtual Environment
+  source env/bin/activate # activate Virtual environment
+  pip install -r requirements.txt # install all requirements
+  python manage.py migrate # migrate all data in DB
+  
+  ```
 
 The commands you ran should install the necessary dependencies and run each service.
 
