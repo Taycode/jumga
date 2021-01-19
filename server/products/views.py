@@ -76,6 +76,8 @@ class GlobalListProductsView(ListAPIView):
 		ip = self.request.query_params.get('ip')
 		product_service = ProductService()
 		country = product_service.get_country(ip) if ip else 'nigeria'
+		if country.lower() == 'united kingdom':
+			country = 'uk'
 		return Product.objects.filter(store__owner__country__iexact=country)
 
 

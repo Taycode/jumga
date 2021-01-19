@@ -63,6 +63,13 @@ Hmmmmm, this is how to run the app if you do not wish to run it using Docker....
   ```
 
 - Running the server :
+  ```bash
+  python3 -m venv env # Create Virtual Environment
+  source env/bin/activate # activate Virtual environment
+  pip install -r requirements.txt # install all requirements
+  python manage.py migrate # migrate all data in DB
+  python manage.py runserver 8000 # runs the server
+  ```
 
 The commands you ran should install the necessary dependencies and run each service.
 
@@ -75,12 +82,70 @@ On your browser, open up
 
 Taking a stern look into the problem statement provided by the flutterwave team,
 
+We were told to build an application where a seller can create stores, and each stores are assigned
+to a rider. 
+
+Sellers can also create products from each stores. 
+
+The app should also be able to receive payment from UK, Kenya, Ghana and Nigeria. 
+
+
 ## What we have been able to achieve.
 
 In the space of three weeks, we have been able to build out the MVP required for
 this challenge which includes the following:
 
-- Sellers ...
+- Sellers App
+
+We have a dashboard for sellers where they can create stores, create products, check orders that have been made and see 
+how much they have made
+
+- Rider App 
+
+We have a dashboard for Riders too where they register on the platform, see the list of deliveries they have been assigned.
+One special feature on this rider app is the ability to update the status of a delivery [in shop, enroute destination, delivered]
+
+They can also check how much they have made so far on their dashboard
+
+- Website
+
+This is the part that shows the list of the products on the app, we return products based on location (we used IP address to determine the location of a user)
+
+A user in Nigeria can only receive products in Nigeria, same as Ghana and other countries
+
+## How the application works
+
+First, we need Riders on the app so we can automatically assign riders to a store when a store is created.
+
+`http://localhost:3000/rider` is the url for the rider app, you register a rider here and login
+
+After we have a rider on the app, we can now register sellers on the app
+
+`http://localhost:3000/seller` is the url for the seller app, when a seller is registered, he can create a store.
+
+A store is automatically assigned to a rider (as long as a rider from the seller's country exists on the app).
+
+The Identity of the rider is not known to the seller on the app, we decide to hold full responsibility over the riders actions
+
+After a store has been created, a seller can now create products to those stores, the page for creating products 
+collects the name of the product, price, description and images. A product cant be added to the application without adding the minimum of 2 images
+
+Now we have products on the app, buyers can now visit the website (products page) to buy products
+
+on the products app, you can only view products that exist in your country which we identified using an IP finder. 
+
+you can add products to cart and checkout, you would need to fill in details needed to collect payment for your order (we are using flutterwave V3 sandbox so you need to use test cards)
+
+when payment is complete, the app transfers the allocated commissions to the riders and sellers accounts in which they filled after registering on the app
+
+## how the payment is allocated
+
+Delivery Fee is 7.5 percent of Product cost
+
+that means if a product is 1000 dollars, the delivery fee is 75 dollars
+
+Seller commission on sale is 97.5 percent of the product cost
+
 <!-- What the mvp covers -->
 
 ## What we hope to achieve in the future.

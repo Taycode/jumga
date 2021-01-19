@@ -117,7 +117,7 @@ class UserDetailsSerializer(serializers.ModelSerializer):
 			data.update({
 				'stores_count': instance.store_set.count(),
 				'product_count': Product.objects.filter(store__owner=instance).count(),
-				'sales': ProductsInOrder.objects.filter(product__store__owner=self).count(),
+				'sales': ProductsInOrder.objects.filter(product__store__owner=instance).count(),
 			})
 		if instance.role == 'rider':
 			data.update({
