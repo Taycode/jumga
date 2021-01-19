@@ -15,6 +15,7 @@ from .serializers import (
 )
 from products.models import Product
 from orders.models import Order, ProductsInOrder
+from products.services import ProductService
 
 
 class CheckoutAPIView(CreateAPIView):
@@ -26,6 +27,15 @@ class CheckoutAPIView(CreateAPIView):
 		"""Get Queryset"""
 
 		return Product.objects.all()
+
+	def perform_create(self, serializer):
+		"""Customize Create method"""
+		ip = self.request.data.get('ip')
+		product_service = ProductService()
+		country = product_service.get_country(ip) if ip else 'nigeria'
+		if country.lower() == 'united kingdom':
+			country = 'uk'
+		serializer.save(country=country.lower())
 
 
 class ConfirmOrderPaymentAPIView(UpdateAPIView):
@@ -67,7 +77,7 @@ class ListProductsInOrderAPIView(ListAPIView):
 	def get_queryset(self):
 		"""Get Queryset"""
 
-		return ProductsInOrder.objects.filter(product__store__owner=self.request.user)
+		return ProductsInOrder.objects.filter(product__store__owner=self.request.user, order__paid=True)
 
 
 class RetrieveProductsInOrderAPIView(RetrieveAPIView):

@@ -40,3 +40,4 @@ class ProductsInOrder(models.Model):
 	jumga_commission = models.BigIntegerField(default=0)
 	rider_commission = models.BigIntegerField(default=0)
 	seller_commission = models.BigIntegerField(default=0)
+	delivery_fee = models.BigIntegerField(default=0)
