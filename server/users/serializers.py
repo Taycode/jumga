@@ -8,6 +8,8 @@ from .choices import role_choices, DEFAULT_USER_ROLE, country_choices, DEFAULT_C
 from products.models import Product
 from payment.flutterwave import Flutterwave
 from orders.models import ProductsInOrder
+from rider.models import Delivery
+
 
 class SuperUserCreateSerializer(serializers.Serializer):
 	"""Serializer for Creating Super Users"""
@@ -115,10 +117,17 @@ class UserDetailsSerializer(serializers.ModelSerializer):
 			data.update({
 				'stores_count': instance.store_set.count(),
 				'product_count': Product.objects.filter(store__owner=instance).count(),
-				'sales': 0,
-				'balance': 0,
-				'earnings': 0
+				'sales': ProductsInOrder.objects.filter(product__store__owner=self).count(),
 			})
+		if instance.role == 'rider':
+			data.update({
+				'total_deliveries': Delivery.objects.filter(rider=instance).count(),
+				'pending_deliveries': Delivery.objects.exclude(status='delivered').count(),
+				'delivered': Delivery.objects.filter(status='delivered').count()
+			})
+		data.update({
+			'earnings': data.get('balance') + data.get('withdrawn')
+		})
 		return data
 
 	class Meta:
@@ -134,7 +143,9 @@ class UserDetailsSerializer(serializers.ModelSerializer):
 			'account_name',
 			'account_bank',
 			'account_number',
-			'verified'
+			'verified',
+			'balance',
+			'withdrawn'
 		)
 
 
