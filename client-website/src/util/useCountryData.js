@@ -11,7 +11,7 @@ export const useCountryData = () => {
       const source = CancelToken.source();
       const data = await axios({
         method: "get",
-        url: `https://ipapi.co/json/`,
+        url: `https://cors-anywhere.herokuapp.com/https://ipapi.co/json/`,
         cancelToken: source.token,
       });
 

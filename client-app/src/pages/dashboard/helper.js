@@ -5,6 +5,7 @@ import {
   MAKE_PAYMENT,
   SHOW_DELIVERY,
   VIEW_ORDER,
+  ADD_PAYMENT_DATA,
 } from "../../util/constants";
 
 const AddStore = lazy(() => import("../../modals/AddStore"));
@@ -12,6 +13,7 @@ const AddProduct = lazy(() => import("../../modals/AddProduct"));
 const MakePayment = lazy(() => import("../../modals/MakePayment"));
 const ShowDelivery = lazy(() => import("../../modals/ShowDelivery"));
 const ShowOrder = lazy(() => import("../../modals/ShowOrder"));
+const AddPaymentdata = lazy(() => import("../../modals/AddBankDetails"));
 
 const allModals = {
   [ADD_STORE]: (setShowModal, data) => (
@@ -28,6 +30,9 @@ const allModals = {
   ),
   [VIEW_ORDER]: (setShowModal, data) => (
     <ShowOrder setShowModal={setShowModal} data={data} />
+  ),
+  [ADD_PAYMENT_DATA]: (setShowModal, data) => (
+    <AddPaymentdata setShowModal={setShowModal} data={data} />
   ),
 };
 

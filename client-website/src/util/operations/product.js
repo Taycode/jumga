@@ -1,7 +1,7 @@
 import { apiRequest } from "../apiRequest";
 
-export const fetchProducts = () => {
-  return apiRequest("/all-products/", "GET");
+export const fetchProducts = (country) => {
+  return apiRequest(`/all-products/?country=${country?.toLowerCase()}`, "GET");
 };
 
 export const fetchSingleProduct = (productdata) => {

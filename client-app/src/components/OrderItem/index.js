@@ -1,12 +1,15 @@
 import React from "react";
 import { Col, Card, Row, Badge } from "react-bootstrap";
 import { VIEW_ORDER } from "../../util/constants";
+import { formatMoney, getCurrency } from "../../util/helper-functions";
 import "../StoreItem/styles.scss";
 
 const OrderItem = ({ orderData, setShowModal, mediaQuery }) => {
   const {
     product: { name },
-    order: { paid, rider },
+    status,
+    order: { paid, rider, country },
+    seller_commission,
   } = orderData;
 
   return (
@@ -31,10 +34,10 @@ const OrderItem = ({ orderData, setShowModal, mediaQuery }) => {
                   <span> {name}</span>
                 </Col>
                 <Col className="is-clickable" md={3}>
-                  Unassigned
+                  {rider?.name ? rider.name : "Unassigned"}
                 </Col>
                 <Col className="text-center is-clickable" md={2}>
-                  <span className="store-item__name"> Enroute Delivery </span>
+                  <span className="store-item__name"> {status} </span>
                 </Col>
                 <Col className="" md={2}>
                   <div className="store-item__actions-section">
@@ -45,7 +48,10 @@ const OrderItem = ({ orderData, setShowModal, mediaQuery }) => {
                   </div>
                 </Col>
                 <Col className="text-center" md={2}>
-                  <span className="store-item__name"> N 300,000 </span>
+                  <span className="store-item__name">
+                    {" "}
+                    {getCurrency(country)} {formatMoney(seller_commission)}{" "}
+                  </span>
                 </Col>
               </>
             ) : (
@@ -72,7 +78,7 @@ const OrderItem = ({ orderData, setShowModal, mediaQuery }) => {
                         <span className="store-item-mob-title">
                           Delivery status
                         </span>
-                        <span> Enroute delivery </span>
+                        <span> {status} </span>
                       </div>
                       <div className="mb-1">
                         <span className="store-item-mob-title">
@@ -89,7 +95,11 @@ const OrderItem = ({ orderData, setShowModal, mediaQuery }) => {
                     <div className="mob-data-row">
                       <div className="mb-1">
                         <span className="store-item-mob-title">Commision</span>
-                        <span> N 300,000 </span>
+                        <span>
+                          {" "}
+                          {getCurrency(country)}{" "}
+                          {formatMoney(seller_commission)}{" "}
+                        </span>
                       </div>
                     </div>
                   </div>

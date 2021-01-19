@@ -9,8 +9,9 @@ const ShowOrder = ({ setShowModal, data }) => {
     status,
     id,
     order: { paid },
-    product: { name },
+    product: { name, country },
     rider,
+    seller_commission,
   } = orderData;
   return (
     <section>
@@ -25,8 +26,7 @@ const ShowOrder = ({ setShowModal, data }) => {
         <Col className="mt-3" md={4}>
           <span className="dd-title"> Commision </span>
           <span className="dd-data ">
-            N 300,000
-            {/* {getCurrency(country)} {formatMoney(rider_commision)}{" "} */}
+            {getCurrency(country)} {formatMoney(seller_commission)}{" "}
           </span>
         </Col>
         <Col className="mt-3" md={4}>
@@ -41,7 +41,7 @@ const ShowOrder = ({ setShowModal, data }) => {
         </Col>
         <Col className="mt-3" md={4}>
           <span className="dd-title"> Delivery Status </span>
-          <span className="dd-data ">Enroute delivery</span>
+          <span className="dd-data ">{status} </span>
         </Col>
         <Col className="mt-3" md={4}>
           <span className="dd-title"> Payment Status </span>

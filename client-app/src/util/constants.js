@@ -18,13 +18,14 @@ export const AUTH_TYPES = {
 };
 
 export const WEBSITE_DEV_URL = "http://localhost:3000";
-export const WEBSITE_PROD_URL = "";
+export const WEBSITE_PROD_URL = "https://jumga-web.netlify.app";
 
 export const ADD_STORE = "ADD_STORE";
 export const ADD_PRODUCT = "ADD_PRODUCT";
 export const VIEW_ORDER = "VIEW_ORDER";
 export const MAKE_PAYMENT = "MAKE_PAYMENT";
 export const SHOW_DELIVERY = "SHOW_DELIVERY";
+export const ADD_PAYMENT_DATA = "ADD_PAYMENT_DATA";
 
 export const SELLER_VERIFY_AMOUNT = 20;
 
