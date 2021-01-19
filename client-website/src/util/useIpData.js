@@ -2,20 +2,24 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-export const useCountryData = () => {
-  const [data, setData] = useState([]);
+// d0449587db056408a2e7cc50d38b60ce00f433283bfb0801bd39fd05
 
-  const getBanks = async function () {
+export const useIpData = () => {
+  const [data, setData] = useState("");
+
+  const getData = async function () {
     try {
       const { CancelToken } = axios;
       const source = CancelToken.source();
       const data = await axios({
         method: "get",
-        url: `https://cors-anywhere.herokuapp.com/https://ipapi.co/json/`,
+        url: "https://api.ipify.org?format=json",
         cancelToken: source.token,
       });
+      // => Ghana Ip address
+      return "2.16.77.255";
 
-      return data.data;
+      return data.data.ip;
     } catch (err) {
       if (axios.isCancel(err)) {
         toast.error("Request has been canceled");
@@ -27,7 +31,7 @@ export const useCountryData = () => {
   };
 
   useEffect(() => {
-    getBanks().then((response) => setData(response));
+    getData().then((response) => setData(response));
 
     return;
     // eslint-disable-next-line react-hooks/exhaustive-deps

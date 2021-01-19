@@ -9,11 +9,11 @@ import { Context as ProductsContext } from "./../../contexts/productsContext";
 import { Context as CartContext } from "./../../contexts/cartContext";
 import PageLoader from "../../components/PageLoader";
 import Emptycomponent from "../../components/Empty";
-import { useCountryData } from "../../util/useCountryData";
+import { useIpData } from "../../util/useIpData";
 
 const ProductsPage = ({ mediaQuery }) => {
   const router = useRouter();
-  const countryData = useCountryData();
+  const ipAddress = useIpData();
 
   const {
     state: { products, loading },
@@ -23,10 +23,10 @@ const ProductsPage = ({ mediaQuery }) => {
   const { fetchCartItems } = useContext(CartContext);
 
   useEffect(() => {
-    fetchAllProducts(products, countryData.country_name);
+    fetchAllProducts(products, ipAddress);
     fetchCartItems();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [countryData]);
+  }, [ipAddress]);
 
   return (
     <>

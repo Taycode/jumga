@@ -29,6 +29,12 @@ After cloning this repository,
 
 navigate into the project directory and run the command below
 
+First, you need to build the images
+
+```bash
+docker-compose build
+```
+
 ```bash
 docker-compose up
 ```
@@ -38,11 +44,13 @@ On your browser, open up
 => `http://localhost:3000` - To view the jumga website
 => `http://localhost:3001` - To view the jumga app
 
+
 Easy yeah ?
 
-### Running each service independently
 
-Hmmmmm....
+### Running each service independently without Docker
+
+Hmmmmm, this is how to run the app if you do not wish to run it using Docker....
 
 - Running the client-app: Navigate into the client directory and run
   ```bash
