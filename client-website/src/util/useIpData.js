@@ -17,7 +17,7 @@ export const useIpData = () => {
         cancelToken: source.token,
       });
       // => Ghana Ip address
-      return "2.16.77.255";
+      // return "2.16.77.255";
 
       return data.data.ip;
     } catch (err) {
