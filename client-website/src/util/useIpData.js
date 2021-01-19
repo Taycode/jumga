@@ -16,6 +16,8 @@ export const useIpData = () => {
         url: "https://api.ipify.org?format=json",
         cancelToken: source.token,
       });
+      // => Ghana Ip address
+      return "2.16.77.255";
 
       return data.data.ip;
     } catch (err) {

@@ -6,6 +6,7 @@ const AddBankDetails = ({ setShowModal, data }) => {
 
   return (
     <>
+      <h4 className="text-center mb-3"> Add Payment Details</h4>
       <Paymentdata
         user={userData}
         setShowModal={setShowModal}

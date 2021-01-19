@@ -41,10 +41,10 @@ const formatProductsData = (products) => {
 export const handleCreateOrder = async (
   formdata,
   cartdata,
-
   clearCartItems,
   setLoading,
-  router
+  router,
+  userIp
 ) => {
   setLoading(true);
 
@@ -52,6 +52,7 @@ export const handleCreateOrder = async (
 
   const orderData = {
     orders: formatedProductsData,
+    ip: userIp,
     ...formdata,
   };
 

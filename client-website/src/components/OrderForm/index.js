@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FormGroup, Button, Spinner, Card } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useRouter } from "../../util/router";
+import { useIpData } from "../../util/useIpData";
 import { handleCreateOrder, orderDetails } from "./helper";
 
 const OrderForm = ({ orderItems, clearCartItems }) => {
@@ -9,13 +10,16 @@ const OrderForm = ({ orderItems, clearCartItems }) => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
+  const userIp = useIpData();
+
   const submit = (formData) => {
     return handleCreateOrder(
       formData,
       orderItems,
       clearCartItems,
       setLoading,
-      router
+      router,
+      userIp
     );
   };
 

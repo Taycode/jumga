@@ -15,7 +15,7 @@ const fetchAllProducts = (dispatch) => async (products, ipAddress) => {
   if (products && products.length > 0) {
     return;
   }
-  console.log(ipAddress);
+
   if (ipAddress) {
     const { status, data, message } = await fetchProducts(ipAddress);
 
