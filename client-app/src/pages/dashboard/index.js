@@ -55,7 +55,8 @@ const DashboardPage = () => {
         },
       });
 
-    !user.account_number &&
+    ((verified && user.role === "seller") || user.role === "rider") &&
+      !user.account_number &&
       !user.account_bank &&
       setShowModal({
         show: true,
