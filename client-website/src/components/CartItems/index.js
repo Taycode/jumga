@@ -6,7 +6,7 @@ import {
   getCurrency,
 } from "../../util/helper-functions";
 
-const CartItems = ({ products, removeCartitem, country }) => {
+const CartItems = ({ products, removeCartitem }) => {
   const [total, setTotal] = useState([[], []]);
 
   useEffect(() => {

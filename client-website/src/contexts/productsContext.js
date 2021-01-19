@@ -11,12 +11,13 @@ const reducer = (state, action) => {
   }
 };
 
-const fetchAllProducts = (dispatch) => async (products, country) => {
+const fetchAllProducts = (dispatch) => async (products, ipAddress) => {
   if (products && products.length > 0) {
     return;
   }
-  if (country) {
-    const { status, data, message } = await fetchProducts(country);
+  console.log(ipAddress);
+  if (ipAddress) {
+    const { status, data, message } = await fetchProducts(ipAddress);
 
     !status && notifyUser({ status, message });
 

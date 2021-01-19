@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "../../util/router";
 import { handleCreateOrder, orderDetails } from "./helper";
 
-const OrderForm = ({ orderItems, country, clearCartItems }) => {
+const OrderForm = ({ orderItems, clearCartItems }) => {
   const { register, handleSubmit, errors } = useForm();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -13,7 +13,6 @@ const OrderForm = ({ orderItems, country, clearCartItems }) => {
     return handleCreateOrder(
       formData,
       orderItems,
-      country,
       clearCartItems,
       setLoading,
       router

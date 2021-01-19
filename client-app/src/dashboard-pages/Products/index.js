@@ -5,6 +5,7 @@ import { ADD_PRODUCT } from "../../util/constants";
 import "./styles.scss";
 import ProductList from "../../components/ProductList";
 import { Context as ProductsContext } from "./../../contexts/productContext";
+import { Context as StoreContext } from "./../../contexts/storeContext";
 
 const Products = ({ setShowModal, mediaQuery }) => {
   const {
@@ -13,8 +14,14 @@ const Products = ({ setShowModal, mediaQuery }) => {
     removeProduct,
   } = useContext(ProductsContext);
 
+  const {
+    state: { stores },
+    fetchAllStores,
+  } = useContext(StoreContext);
+
   useEffect(() => {
     fetchAllProducts(products);
+    fetchAllStores(stores);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -40,11 +47,16 @@ const Products = ({ setShowModal, mediaQuery }) => {
               <div>
                 <Button
                   onClick={() => {
-                    setShowModal({
-                      show: true,
-                      modalId: ADD_PRODUCT,
-                      data: {},
-                    });
+                    if (stores && stores.length > 0) {
+                      return setShowModal({
+                        show: true,
+                        modalId: ADD_PRODUCT,
+                        data: {},
+                      });
+                    }
+                    return alert(
+                      "You have not created a store! You need to have a store first !"
+                    );
                   }}
                   className="btn-info btn-sm d-block"
                 >
