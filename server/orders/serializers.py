@@ -34,7 +34,13 @@ class CreateProductInOrderSerializer(serializers.Serializer):
 		order = Order.objects.get(id=validated_data.get('order_id'))
 		product = Product.objects.get(id=validated_data.get('product_id'))
 		quantity = validated_data.get('quantity')
-		return ProductsInOrder.objects.create(product=product, order=order, quantity=quantity)
+		price = float(quantity) * float(product.price)
+		delivery_fee = 0.075 * price
+		return ProductsInOrder.objects.create(
+			product=product, order=order,
+			quantity=quantity, total_cost=price,
+			delivery_fee=delivery_fee
+		)
 
 	def update(self, instance, validated_data):
 		"""Update Method"""
@@ -50,8 +56,9 @@ class CreateOrderOnCheckoutSerializer(serializers.Serializer):
 	address = serializers.CharField()
 	phone_number = serializers.CharField()
 	email = serializers.CharField()
-	total_cost = serializers.IntegerField(read_only=True)
+	total_cost = serializers.DecimalField(read_only=True)
 	name = serializers.CharField()
+	delivery_fee = serializers.DecimalField(read_only=True)
 
 	def create(self, validated_data):
 		"""Create Method"""
