@@ -7,7 +7,7 @@ from .models import User
 from .choices import role_choices, DEFAULT_USER_ROLE, country_choices, DEFAULT_COUNTRY_CHOICE
 from products.models import Product
 from payment.flutterwave import Flutterwave
-
+from orders.models import ProductsInOrder
 
 class SuperUserCreateSerializer(serializers.Serializer):
 	"""Serializer for Creating Super Users"""
@@ -190,3 +190,17 @@ class UserProfileSerializer(serializers.ModelSerializer):
 		"""MEta Class"""
 		model = User
 		fields = ('id', 'name', 'role', 'country', )
+
+
+class SellerStatisticsSerializer(serializers.ModelSerializer):
+	"""Serializer for Seller Statistics"""
+
+	stores = serializers.ReadOnlyField(source='get_stores_count')
+	products = serializers.ReadOnlyField(source='get_products_count')
+	earning = serializers.ReadOnlyField(source='get_earnings')
+
+	class Meta:
+		"""Meta Class"""
+		model = User
+		fields = ('stores', 'products', 'balance', 'earning', )
+

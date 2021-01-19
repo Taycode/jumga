@@ -8,6 +8,7 @@ from payment.models import Transaction
 from rider.models import Delivery
 from .services import OrderServices
 from users.choices import country_choices, DEFAULT_COUNTRY_CHOICE
+from users.serializers import UserProfileSerializer
 
 
 class ViewOrderSerializer(serializers.ModelSerializer):
@@ -144,6 +145,8 @@ class ConfirmOrderPaymentSerializer(serializers.Serializer):
 
 class RetrieveAndListProductsInOrderSerializer(serializers.ModelSerializer):
 	"""Serializer for List of products in orders"""
+	rider = UserProfileSerializer(source='product.store.rider')
+	delivery_status = serializers.ReadOnlyField(source='delivery.status')
 
 	class Meta:
 		"""Meta Class"""

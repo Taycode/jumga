@@ -18,3 +18,6 @@ ADD . /server/
 RUN pip install -r requirements.txt
 
 EXPOSE 8000
+
+# run gunicorn
+CMD gunicorn jumga.wsgi:application --bind 0.0.0.0:$PORT
