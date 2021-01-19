@@ -25,6 +25,7 @@ export const ADD_PRODUCT = "ADD_PRODUCT";
 export const VIEW_ORDER = "VIEW_ORDER";
 export const MAKE_PAYMENT = "MAKE_PAYMENT";
 export const SHOW_DELIVERY = "SHOW_DELIVERY";
+export const ADD_PAYMENT_DATA = "ADD_PAYMENT_DATA";
 
 export const SELLER_VERIFY_AMOUNT = 20;
 

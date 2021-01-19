@@ -11,7 +11,11 @@ import PageLoader from "../../components/PageLoader";
 import appRoutes from "../../util/dashboard-routes";
 import useMedia from "../../util/useQuery";
 import allModals from "./helper";
-import { MAKE_PAYMENT, SELLER_VERIFY_AMOUNT } from "../../util/constants";
+import {
+  MAKE_PAYMENT,
+  SELLER_VERIFY_AMOUNT,
+  ADD_PAYMENT_DATA,
+} from "../../util/constants";
 
 import { toast } from "react-toastify";
 import { getCurrency } from "../../util/helper-functions";
@@ -45,6 +49,17 @@ const DashboardPage = () => {
       setShowModal({
         show: true,
         modalId: MAKE_PAYMENT,
+        data: {
+          userData: user,
+          setUser,
+        },
+      });
+
+    !user.account_number &&
+      !user.account_bank &&
+      setShowModal({
+        show: true,
+        modalId: ADD_PAYMENT_DATA,
         data: {
           userData: user,
           setUser,

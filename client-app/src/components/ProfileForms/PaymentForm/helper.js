@@ -1,7 +1,14 @@
 import { editDetails } from "../../../util/operations/account";
 import { notifyUser } from "../../../util/helper-functions";
 
-export const handleFormSubmission = async (formData, setLoading) => {
+export const handleFormSubmission = async (
+  formData,
+  setLoading,
+  setShowModal,
+  setUser,
+  forced,
+  userData
+) => {
   setLoading(true);
 
   const response = await editDetails(formData);
@@ -9,7 +16,17 @@ export const handleFormSubmission = async (formData, setLoading) => {
   response && notifyUser(response);
 
   if (response && response.status) {
-    //
+    // Might not be needed again , since this would be forced now
+  }
+
+  if (forced) {
+    setUser({
+      ...userData,
+      ...response.data,
+    });
+    setShowModal({
+      show: false,
+    });
   }
   return setLoading(false);
 };
