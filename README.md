@@ -2,7 +2,7 @@
 
 ### Team Abdulmateen & Samuel
 
-You can view the live project here [View Deployed app](https://google.com/).
+You can view the live project here [View Deployed app](https://jumga-web.netlify.app/).
 
 Technologies used:
 
@@ -44,9 +44,7 @@ On your browser, open up
 => `http://localhost:3000` - To view the jumga website
 => `http://localhost:3001` - To view the jumga app
 
-
 Easy yeah ?
-
 
 ### Running each service independently without Docker
 
@@ -75,20 +73,18 @@ The commands you ran should install the necessary dependencies and run each serv
 
 On your browser, open up
 
-=> `http://localhost:3000` - To view the jumga website
-=> `http://localhost:3001` - To view the jumga app
+- `http://localhost:3000` - To view the jumga website
+- `http://localhost:3001` - To view the jumga app
 
 ## Problem Solving Approach
 
 Taking a stern look into the problem statement provided by the flutterwave team,
 
-We were told to build an application where a seller can create stores, and each stores are assigned
-to a rider. 
+We were told to build an application where a seller can create stores, and each stores are assigned a rider.
 
-Sellers can also create products from each stores. 
+Sellers can also create products for each stores.
 
-The app should also be able to receive payment from UK, Kenya, Ghana and Nigeria. 
-
+The sellers should also be able to receive payment from UK, Kenya, Ghana and Nigeria.
 
 ## What we have been able to achieve.
 
@@ -97,46 +93,46 @@ this challenge which includes the following:
 
 - Sellers App
 
-We have a dashboard for sellers where they can create stores, create products, check orders that have been made and see 
-how much they have made
+We have a section for sellers where they can create stores, create products, check orders that have been made and see how much they have made
 
-- Rider App 
+- Rider App
 
-We have a dashboard for Riders too where they register on the platform, see the list of deliveries they have been assigned.
-One special feature on this rider app is the ability to update the status of a delivery [in shop, enroute destination, delivered]
+We have a section for Riders too where they register on the platform, see the list of deliveries they have been assigned.
 
-They can also check how much they have made so far on their dashboard
+One special feature on this rider app is the ability to update the delivery status of a delivery [in shop, enroute destination, delivered]
+
+They can also check how much they have made so far on their dashboard.
 
 - Website
 
-This is the part that shows the list of the products on the app, we return products based on location (we used IP address to determine the location of a user)
+This is the part that shows the list of the products on the app, we return products based on a users location (we used IP address to determine the location of a user)
 
-A user in Nigeria can only receive products in Nigeria, same as Ghana and other countries
+A user in Nigeria can only view and purchase products in Nigeria, same as Ghana and other countries.
 
 ## How the application works
 
 First, we need Riders on the app so we can automatically assign riders to a store when a store is created.
 
-`http://localhost:3000/rider` is the url for the rider app, you register a rider here and login
+`http://localhost:3000/rider` || `https://jumga-web.netlify.app/rider` is the url to get started on the rider app, you register as a rider here and login.
 
 After we have a rider on the app, we can now register sellers on the app
 
-`http://localhost:3000/seller` is the url for the seller app, when a seller is registered, he can create a store.
+`http://localhost:3000/seller` || `https://jumga-web.netlify.app/seller` is the url to get started as a seller, when a seller is registered, he can create a store, add products to a store and manage products he adds to each store.
 
-A store is automatically assigned to a rider (as long as a rider from the seller's country exists on the app).
+A store is automatically assigned a rider (as long as a rider from the seller's country exists on the app).
 
 The Identity of the rider is not known to the seller on the app, we decide to hold full responsibility over the riders actions
 
-After a store has been created, a seller can now create products to those stores, the page for creating products 
+After a store has been created, a seller can now add products to those stores, the section for creating products
 collects the name of the product, price, description and images. A product cant be added to the application without adding the minimum of 2 images
 
 Now we have products on the app, buyers can now visit the website (products page) to buy products
 
-on the products app, you can only view products that exist in your country which we identified using an IP finder. 
+on the products app, you can only view products that exist in your country which we identified using an IP finder.
 
-you can add products to cart and checkout, you would need to fill in details needed to collect payment for your order (we are using flutterwave V3 sandbox so you need to use test cards)
+you can add products to cart and checkout, you would need to fill in details needed to collect payment for your order (we are using flutterwave V3 sandbox so you need to use test cards... These test cards have been pre-filled in the payments section for easy testing.)
 
-when payment is complete, the app transfers the allocated commissions to the riders and sellers accounts in which they filled after registering on the app
+when payment is complete, the app transfers the allocated commissions to the riders and sellers accounts in which they filled immediately after registering on the app
 
 ## how the payment is allocated
 
@@ -147,12 +143,13 @@ so he is gonna pay the total of 1075 dollars
 
 Seller commission on sale is 97.5 percent of the product cost
 
-<!-- What the mvp covers -->
-
 ## What we hope to achieve in the future.
 
 Due to the fact that we had only about 3 weeks to run through this project, we were focused on shipping the MVP before implementing additional features. Unfortunately we ran out of time and we could not cover all we had in mind for this project. We had plans to add a few features to enhance the platform. Features including
 
+- Product tracking by buyers on the platform
+- Products/ store ratings to help other buyers
+- Search and filter features for easily navigating through numerous products
 -
 
 ## Team behind this project
