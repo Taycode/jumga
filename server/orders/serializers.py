@@ -79,6 +79,11 @@ class CreateOrderOnCheckoutSerializer(serializers.Serializer):
 		"""Update Method"""
 		pass
 
+	def to_representation(self, instance):
+		"""customize response"""
+		data = super(CreateOrderOnCheckoutSerializer).to_representation(instance)
+
+
 
 class ViewTransactionSerializer(serializers.ModelSerializer):
 	"""Serializer for Viewing Transactions"""

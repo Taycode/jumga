@@ -77,7 +77,7 @@ class ListProductsInOrderAPIView(ListAPIView):
 	def get_queryset(self):
 		"""Get Queryset"""
 
-		return ProductsInOrder.objects.filter(product__store__owner=self.request.user)
+		return ProductsInOrder.objects.filter(product__store__owner=self.request.user, order__paid=True)
 
 
 class RetrieveProductsInOrderAPIView(RetrieveAPIView):
