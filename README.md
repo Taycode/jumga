@@ -139,6 +139,7 @@ when payment is complete, the app transfers the allocated commissions to the rid
 Delivery Fee is 7.5 percent of Product cost
 
 that means if a product is 1000 dollars, the delivery fee is 75 dollars
+so he is gonna pay the total of 1075 dollars
 
 Seller commission on sale is 97.5 percent of the product cost
 
